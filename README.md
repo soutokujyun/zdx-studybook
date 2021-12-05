@@ -3,6 +3,11 @@
 
 # 日志
 
+## 2021/12/5
+206.反转链表 [掘金](https://juejin.cn/post/7038118138306789406/)  
+92.反转链表II [掘金](https://juejin.cn/post/7038120170874748935/)  
+项目训练--nuxt.js + egg.js
+
 ## 2021/12/4
 141.环形链表 [掘金](https://juejin.cn/post/7037681417093906463) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/141-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8.js)  
 142.环形链表II [掘金](https://juejin.cn/post/7037751052875071501) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.js)  
