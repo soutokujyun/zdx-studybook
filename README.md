@@ -4,9 +4,9 @@
 # 日志
 
 ## 2021/12/6
-25.K 个一组翻转链表 [掘金](https://juejin.cn/post/7038585583974907935/)  
-61.旋转链表 [掘金](https://juejin.cn/post/7038592970609655838/)  
-24.两两交换链表中的节点 [掘金](https://juejin.cn/post/7038603414502113317/)  
+25.K 个一组翻转链表 [掘金](https://juejin.cn/post/7038585583974907935/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/25-K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.js)  
+61.旋转链表 [掘金](https://juejin.cn/post/7038592970609655838/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8.js)  
+24.两两交换链表中的节点 [掘金](https://juejin.cn/post/7038603414502113317/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.js)  
 开发vue案例
 
 ## 2021/12/5
