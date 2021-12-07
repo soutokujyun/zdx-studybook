@@ -1,7 +1,13 @@
 # 算法
 ## 欧几里得算法
+求最大公约数
 终极奥义 gcd(a,b) = gcd(b, a%b) = gcd(b, 0)
-
+```
+function gcd(a, b) {
+  if (b) gcd(b, a % b) 
+  return a;
+}
+```
 ## 扩展欧几里得算法
 ### 贝祖等式
 ax + by = gcd(a,b) = c 保证 ax + by = c     一定有解
