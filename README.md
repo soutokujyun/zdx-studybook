@@ -7,7 +7,8 @@
 725.分隔链表 [掘金](https://juejin.cn/post/7039350546511167502/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/725-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.js)  
 138.复制带随机指针的链表 [掘金](https://juejin.cn/post/7039351016831221773/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/138-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8.js)  
 622.设计循环队列  [掘金](https://juejin.cn/post/7039351462714933284/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/622-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97.js)  
-641.设计循环双端队列 [掘金](https://juejin.cn/post/7039358680097095694/) [Code]()
+641.设计循环双端队列 [掘金](https://juejin.cn/post/7039358680097095694/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/641-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97.js)  
+1670.设计前中后队列 [掘金](https://juejin.cn/post/7039369159527890958/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/1670-%E8%AE%BE%E8%AE%A1%E5%89%8D%E4%B8%AD%E5%90%8E%E9%98%9F%E5%88%97.js)
 
 ## 2021/12/7
 19.删除链表的倒数第 N 个结点 [掘金](https://juejin.cn/post/7038984909649608711/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9.js)  
