@@ -3,6 +3,11 @@
 
 # 日志
 
+## 2021/12/9
+剑 042.最近请求次数 [掘金](https://juejin.cn/post/7039725210945191943) [Code]()  
+面 17.09 第k个数 [掘金](https://juejin.cn/post/7039725375542263822) [Code]()  
+859.亲密字符串 [掘金](https://juejin.cn/post/7039725683966214180) [Code]()  
+
 ## 2021/12/8
 725.分隔链表 [掘金](https://juejin.cn/post/7039350546511167502/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/725-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.js)  
 138.复制带随机指针的链表 [掘金](https://juejin.cn/post/7039351016831221773/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/138-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8.js)  
