@@ -3,13 +3,13 @@
 
 # 日志
 ## 2021/12/11
-621.任务调度器 [掘金](https://juejin.cn/post/7040712845880721444/) [Code]()
+621.任务调度器 [掘金](https://juejin.cn/post/7040712845880721444/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8.js)
 
 ## 2021/12/11
-969.煎饼排序 [掘金](https://juejin.cn/post/7040712581148835870/) [Code]()
+969.煎饼排序 [掘金](https://juejin.cn/post/7040712581148835870/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F.js)
 
 ## 2021/12/10
-860.柠檬水找零 [掘金](https://juejin.cn/post/7040712190520737799/) [Code]()
+860.柠檬水找零 [掘金](https://juejin.cn/post/7040712190520737799/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6.js)
 
 ## 2021/12/9
 剑 042.最近请求次数 [掘金](https://juejin.cn/post/7039725210945191943) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E5%89%91-042-%E6%9C%80%E8%BF%91%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0.js)  
