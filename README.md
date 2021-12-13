@@ -3,8 +3,8 @@
 
 # 日志
 ## 2021/12/13
-复习二分查找算法  
-1447.最简分数 [掘金](https://juejin.cn/post/7041215160547016735/)  
+复习二分查找算法 [markdown](https://github.com/soutokujyun/studybook/blob/main/captain/markdown/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md)  
+1447.最简分数 [掘金](https://juejin.cn/post/7041215160547016735/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0.js)  
 
 ## 2021/12/12
 621.任务调度器 [掘金](https://juejin.cn/post/7040712845880721444/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8.js)  
