@@ -2,6 +2,16 @@
 记录每日学习情况
 
 # 日志
+
+## 2021/12/15
+面 03.04 化栈为队 [掘金](https://juejin.cn/post/7041942399743950861/)  
+682.棒球比赛 [掘金](https://juejin.cn/post/7041942033820286983/)  
+844.比较含退格的字符串 [掘金](https://juejin.cn/post/7041943481560301576/)  
+946.验证栈序列 [掘金](https://juejin.cn/post/7041944006490030094/)  
+vue案例开发
+## 2021/12/14
+项目实战nuxt.js + egg.js：登录验证  
+
 ## 2021/12/13
 复习二分查找算法 [markdown](https://github.com/soutokujyun/studybook/blob/main/captain/markdown/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md)  
 1447.最简分数 [掘金](https://juejin.cn/post/7041215160547016735/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0.js)  
