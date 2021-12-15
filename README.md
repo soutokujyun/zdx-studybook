@@ -4,10 +4,10 @@
 # 日志
 
 ## 2021/12/15
-面 03.04 化栈为队 [掘金](https://juejin.cn/post/7041942399743950861/)  
-682.棒球比赛 [掘金](https://juejin.cn/post/7041942033820286983/)  
-844.比较含退格的字符串 [掘金](https://juejin.cn/post/7041943481560301576/)  
-946.验证栈序列 [掘金](https://juejin.cn/post/7041944006490030094/)  
+面 03.04 化栈为队 [掘金](https://juejin.cn/post/7041942399743950861/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E9%9D%A2-03-04-%E5%8C%96%E6%A0%88%E4%B8%BA%E9%98%9F.js) 
+682.棒球比赛 [掘金](https://juejin.cn/post/7041942033820286983/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/682-%E6%A3%92%E7%90%83%E6%AF%94%E8%B5%9B.js)  
+844.比较含退格的字符串 [掘金](https://juejin.cn/post/7041943481560301576/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2.js)  
+946.验证栈序列 [掘金](https://juejin.cn/post/7041944006490030094/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/946-%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97.js)  
 vue案例开发
 ## 2021/12/14
 项目实战nuxt.js + egg.js：登录验证  
