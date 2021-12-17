@@ -2,7 +2,9 @@
 记录每日学习情况
 
 # 日志
-
+## 2021/12/17
+1021.删除最外层的括号 [掘金](https://juejin.cn/post/7042682908523364383/)  
+1249.移除无效的括号 [掘金](https://juejin.cn/post/7042681787062943751/)  
 ## 2021/12/16
 20.有效的括号 [掘金](https://juejin.cn/post/7042345068518670367/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.js)  
 项目实战nuxt.js + egg.js：图片上传  
