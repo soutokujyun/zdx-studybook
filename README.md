@@ -3,8 +3,8 @@
 
 # 日志
 ## 2021/12/17
-1021.删除最外层的括号 [掘金](https://juejin.cn/post/7042682908523364383/)  
-1249.移除无效的括号 [掘金](https://juejin.cn/post/7042681787062943751/)  
+1021.删除最外层的括号 [掘金](https://juejin.cn/post/7042682908523364383/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/1021-%E5%88%A0%E9%99%A4%E6%9C%80%E5%A4%96%E5%B1%82%E7%9A%84%E6%8B%AC%E5%8F%B7.js)  
+1249.移除无效的括号 [掘金](https://juejin.cn/post/7042681787062943751/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/1249-%E7%A7%BB%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.js)  
 ## 2021/12/16
 20.有效的括号 [掘金](https://juejin.cn/post/7042345068518670367/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.js)  
 项目实战nuxt.js + egg.js：图片上传  
