@@ -2,6 +2,9 @@
 记录每日学习情况
 
 # 日志
+
+## 2021/12/19
+项目实战nuxt.js + egg.js: 文件切片上传
 ## 2021/12/18
 144.二叉树的前序遍历 [掘金](https://juejin.cn/post/7043081772652822535/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.js)  
 94.二叉树的中序遍历 [掘金](https://juejin.cn/post/7043081803288018952/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.js)  
