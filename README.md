@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2021/12/21
+331.验证二叉树的前序序列化.js [掘金](https://juejin.cn/post/7043823568316006436/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/331-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E5%BA%8F%E5%88%97%E5%8C%96.js)
 
 ## 2021/12/19
 项目实战nuxt.js + egg.js: 文件切片上传
