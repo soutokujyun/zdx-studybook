@@ -2,6 +2,14 @@
 记录每日学习情况
 
 # 日志
+## 2021/12/23
+445.两数相加 II [掘金](https://juejin.cn/post/7044916993249509407/)  
+剑指 Offer 22. 链表中倒数第k个节点 [掘金](https://juejin.cn/post/7044917166784643086/)  
+剑指 Offer 35. 复杂链表的复制 [掘金](https://juejin.cn/post/7044917880042815502/)  
+面试题 02.02. 返回倒数第 k 个节点 [掘金](https://juejin.cn/post/7044918366921818119/)  
+面试题 02.03. 删除中间节点 [掘金](https://juejin.cn/post/7044918551148232740/)
+## 2021/12/22
+1124.表现良好的最长时间段 [掘金](https://juejin.cn/post/7044916386136588296/)
 ## 2021/12/21
 227.基本计算器 II [掘金](https://juejin.cn/post/7044187094670901256/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/227-%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8%20II.js)  
 636.函数的独占时间 [掘金](https://juejin.cn/post/7044187638252699656/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/636-函数的独占时间.js)
