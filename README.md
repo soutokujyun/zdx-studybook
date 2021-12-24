@@ -2,6 +2,10 @@
 记录每日学习情况
 
 # 日志
+## 2021/12/24
+面试题 02.08. 环路检测 [掘金](https://juejin.cn/post/7045302548198064158/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2002.08.%20%E7%8E%AF%E8%B7%AF%E6%A3%80%E6%B5%8B.js)
+707.设计链表 [掘金](https://juejin.cn/post/7045300135693123598/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/707.%20%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.js)
+143.重排链表 [掘金](https://juejin.cn/post/7045304459479482375/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/143.%20%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8.js)
 ## 2021/12/23
 445.两数相加 II [掘金](https://juejin.cn/post/7044916993249509407/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/445.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%20II.js)  
 剑指 Offer 22. 链表中倒数第k个节点 [掘金](https://juejin.cn/post/7044917166784643086/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2022.%20%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9.js)  
