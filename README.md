@@ -2,6 +2,12 @@
 记录每日学习情况
 
 # 日志
+## 2021/12/26
+剑指 Offer 18. 删除链表的节点 [掘金](https://juejin.cn/post/7046000591792930847/) [Code]()  
+725.分隔链表 [掘金](https://juejin.cn/post/7046000737196703780/) [Code]()  
+面试题 02.04. 分割链表 [掘金](https://juejin.cn/post/7046001157709234206/) [Code]()  
+779.第K个语法符号 [掘金](https://juejin.cn/post/7046001762053914631/) [Code]()  
+509.斐波那契数 [掘金](https://juejin.cn/post/7046002034784337956/) [Code]()
 ## 2021/12/24
 面试题 02.08. 环路检测 [掘金](https://juejin.cn/post/7045302548198064158/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2002.08.%20%E7%8E%AF%E8%B7%AF%E6%A3%80%E6%B5%8B.js)  
 707.设计链表 [掘金](https://juejin.cn/post/7045300135693123598/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/707.%20%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.js)  
