@@ -3,7 +3,7 @@
 
 # 日志
 ## 2021/12/27
-112.路径总和 [掘金](https://juejin.cn/post/7046407422952341540/)
+112.路径总和 [掘金](https://juejin.cn/post/7046407422952341540/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/112.%20%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C.js)
 ## 2021/12/26
 剑指 Offer 18. 删除链表的节点 [掘金](https://juejin.cn/post/7046000591792930847/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2018.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E8%8A%82%E7%82%B9.js)  
 725.分隔链表 [掘金](https://juejin.cn/post/7046000737196703780/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/725-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.js)  
