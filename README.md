@@ -2,6 +2,11 @@
 记录每日学习情况
 
 # 日志
+## 2021/12/28
+105.从前序与中序遍历序列构造二叉树 [掘金](https://juejin.cn/post/7046759305801891870/) [Code]()
+222.完全二叉树的节点个数 [掘金](https://juejin.cn/post/7046759244489572382/) [Code]()
+剑指 Offer 26. 树的子结构 [掘金](https://juejin.cn/post/7046760062592745508/) [Code]()
+剑指 Offer 54. 二叉搜索树的第k大节点 [掘金](https://juejin.cn/post/7046759864151834631/) [Code]()
 ## 2021/12/27
 112.路径总和 [掘金](https://juejin.cn/post/7046407422952341540/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/112.%20%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C.js)
 ## 2021/12/26
