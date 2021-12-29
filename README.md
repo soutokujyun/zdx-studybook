@@ -3,7 +3,7 @@
 
 # 日志
 ## 2021/12/29
-589.N 叉树的前序遍历 [掘金](https://juejin.cn/post/7047151447862935589/)
+589.N 叉树的前序遍历 [掘金](https://juejin.cn/post/7047151447862935589/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/589.%20N%20%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.js)
 ## 2021/12/28
 105.从前序与中序遍历序列构造二叉树 [掘金](https://juejin.cn/post/7046759305801891870/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/105.%20%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91.js)
 222.完全二叉树的节点个数 [掘金](https://juejin.cn/post/7046759244489572382/) [Code](https://github.com/soutokujyun/studybook/blob/main/algorithm/code/222.%20%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0.js)
