@@ -2,6 +2,9 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/1
+226.翻转二叉树 [掘金](https://juejin.cn/post/7048225009659019278/) [code]()
+剑指 Offer 32 - II. 从上到下打印二叉树 II [掘金](https://juejin.cn/post/7048231031417241631/) [code]()
 
 ## 2021/12/30
 662.二叉树最大宽度 [掘金](https://juejin.cn/post/7047518488323162143/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/662.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6.js)
