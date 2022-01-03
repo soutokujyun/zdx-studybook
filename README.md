@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/3
+26.删除有序数组中的重复项 [掘金](https://juejin.cn/post/7048983430209634311/) [code]()
 ## 2022/1/2
 103.二叉树的锯齿形层序遍历 [掘金](https://juejin.cn/post/7048606504034762759/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/103.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.js)  
 110.平衡二叉树  [掘金](https://juejin.cn/post/7048613413949276173/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/110.%20%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.js)
