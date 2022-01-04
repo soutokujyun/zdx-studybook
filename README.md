@@ -3,7 +3,7 @@
 
 # 日志
 ## 2022/1/4
-968.监控二叉树 [掘金](https://juejin.cn/post/7049377414111035399/) [code]()
+968.监控二叉树 [掘金](https://juejin.cn/post/7049377414111035399/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/968.%20%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91.js)
 ## 2022/1/3
 26.删除有序数组中的重复项 [掘金](https://juejin.cn/post/7048983430209634311/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/26.%20%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9.js)
 ## 2022/1/2
