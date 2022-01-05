@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/5
+剑指 Offer 40. 最小的k个数 [掘金](https://juejin.cn/post/7049743613130965028/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2040.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0.js)
 ## 2022/1/4
 968.监控二叉树 [掘金](https://juejin.cn/post/7049377414111035399/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/968.%20%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91.js)
 ## 2022/1/3
