@@ -3,12 +3,12 @@
 
 # 日志
 ## 2022/1/10
-1046.最后一块石头的重量 [掘金](https://juejin.cn/post/7051598005593440270/)  
-703.数据流中的第 K 大元素 [掘金](https://juejin.cn/post/7051597862220038174/)  
-692.前K个高频单词 [掘金](https://juejin.cn/post/7051598822316703751/)
-373.查找和最小的K对数字 [掘金](https://juejin.cn/post/7051599740772810759/)
-355.设计推特 [掘金](https://juejin.cn/post/7051599551362236429/)
-215.数组中的第K个最大元素 [掘金](https://juejin.cn/post/7051600344995856398/)
+1046.最后一块石头的重量 [掘金](https://juejin.cn/post/7051598005593440270/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1046.%20%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8F.js)  
+703.数据流中的第 K 大元素 [掘金](https://juejin.cn/post/7051597862220038174/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/703.%20%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%AC%AC%20K%20%E5%A4%A7%E5%85%83%E7%B4%A0.js)  
+692.前K个高频单词 [掘金](https://juejin.cn/post/7051598822316703751/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/692.%20%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%8D%95%E8%AF%8D.js)  
+373.查找和最小的K对数字 [掘金](https://juejin.cn/post/7051599740772810759/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/373.%20%E6%9F%A5%E6%89%BE%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84K%E5%AF%B9%E6%95%B0%E5%AD%97.js)  
+355.设计推特 [掘金](https://juejin.cn/post/7051599551362236429/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/355.%20%E8%AE%BE%E8%AE%A1%E6%8E%A8%E7%89%B9.js)  
+215.数组中的第K个最大元素 [掘金](https://juejin.cn/post/7051600344995856398/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/215.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.js)
 ## 2022/1/5
 剑指 Offer 40. 最小的k个数 [掘金](https://juejin.cn/post/7049743613130965028/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2040.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0.js)
 ## 2022/1/4
