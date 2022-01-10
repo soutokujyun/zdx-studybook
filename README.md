@@ -2,6 +2,13 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/10
+1046.最后一块石头的重量 [掘金](https://juejin.cn/post/7051598005593440270/)  
+703.数据流中的第 K 大元素 [掘金](https://juejin.cn/post/7051597862220038174/)  
+692.前K个高频单词 [掘金](https://juejin.cn/post/7051598822316703751/)
+373.查找和最小的K对数字 [掘金](https://juejin.cn/post/7051599740772810759/)
+355.设计推特 [掘金](https://juejin.cn/post/7051599551362236429/)
+215.数组中的第K个最大元素 [掘金](https://juejin.cn/post/7051600344995856398/)
 ## 2022/1/5
 剑指 Offer 40. 最小的k个数 [掘金](https://juejin.cn/post/7049743613130965028/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2040.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0.js)
 ## 2022/1/4
