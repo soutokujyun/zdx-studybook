@@ -2,6 +2,9 @@
 记录每日学习情况
 
 # 日志
+
+## 2022/1/12
+
 ## 2022/1/10
 1046.最后一块石头的重量 [掘金](https://juejin.cn/post/7051598005593440270/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1046.%20%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8F.js)  
 703.数据流中的第 K 大元素 [掘金](https://juejin.cn/post/7051597862220038174/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/703.%20%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%AC%AC%20K%20%E5%A4%A7%E5%85%83%E7%B4%A0.js)  
