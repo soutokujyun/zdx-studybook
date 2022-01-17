@@ -3,9 +3,9 @@
 
 # 日志
 ## 2022/1/17
-264.丑数 II [掘金](https://juejin.cn/post/7054182910466719781/) [code]()  
-313.超级丑数 [掘金](https://juejin.cn/post/7054183418002669581/) [code]()  
-1753.移除石子的最大得分 [掘金](https://juejin.cn/post/7054192240800825375/) [code]()
+264.丑数 II [掘金](https://juejin.cn/post/7054182910466719781/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/264.%20%E4%B8%91%E6%95%B0%20II.js)  
+313.超级丑数 [掘金](https://juejin.cn/post/7054183418002669581/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/313.%20%E8%B6%85%E7%BA%A7%E4%B8%91%E6%95%B0.js)  
+1753.移除石子的最大得分 [掘金](https://juejin.cn/post/7054192240800825375/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1753.%20%E7%A7%BB%E9%99%A4%E7%9F%B3%E5%AD%90%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86.js)
 ## 2022/1/13
 面试题 17.20. 连续中值 [掘金](https://juejin.cn/post/7052697321607266317/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2017.20.%20%E8%BF%9E%E7%BB%AD%E4%B8%AD%E5%80%BC.js)  
 295.数据流的中位数 [掘金](https://juejin.cn/post/7052698489829982215/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/295.%20%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.js)  
