@@ -2,6 +2,10 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/18
+并查集学习  
+547.省份数量 [掘金](https://juejin.cn/post/7054570287223799815/) [code]()
+
 ## 2022/1/17
 264.丑数 II [掘金](https://juejin.cn/post/7054182910466719781/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/264.%20%E4%B8%91%E6%95%B0%20II.js)  
 313.超级丑数 [掘金](https://juejin.cn/post/7054183418002669581/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/313.%20%E8%B6%85%E7%BA%A7%E4%B8%91%E6%95%B0.js)  
