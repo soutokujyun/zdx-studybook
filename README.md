@@ -4,7 +4,7 @@
 # 日志
 ## 2022/1/18
 并查集学习  
-547.省份数量 [掘金](https://juejin.cn/post/7054570287223799815/) [code]()
+547.省份数量 [掘金](https://juejin.cn/post/7054570287223799815/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/547.%20%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.js)
 
 ## 2022/1/17
 264.丑数 II [掘金](https://juejin.cn/post/7054182910466719781/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/264.%20%E4%B8%91%E6%95%B0%20II.js)  
