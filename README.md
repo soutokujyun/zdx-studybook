@@ -3,7 +3,7 @@
 
 # 日志
 ## 2022/1/19
-200.岛屿数量 [掘金](https://juejin.cn/post/7054943791702081566/) [code]()
+200.岛屿数量 [掘金](https://juejin.cn/post/7054943791702081566/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F.js)
 ## 2022/1/18
 并查集学习  
 547.省份数量 [掘金](https://juejin.cn/post/7054570287223799815/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/547.%20%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.js)
