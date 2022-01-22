@@ -4,10 +4,10 @@
 # 日志
 ## 2022/1/22
 最近手开始痛了，是那种快要断了的感觉，感觉是关节炎，休息了2天，今天继续开始，之前断断续续的是因为开始厌学了，但是过一阵应该就会好了。  
-990.等式方程的可满足性 [掘金](https://juejin.cn/post/7055910623237898254/) [code]()  
-684.冗余连接 [掘金](https://juejin.cn/post/7055916707692412965/) [code]()  
-1319.连通网络的操作次数 [掘金](https://juejin.cn/post/7055937280199884831/) [code]()  
-128.最长连续序列 [掘金](https://juejin.cn/post/7055954222080065573/) [code]()
+990.等式方程的可满足性 [掘金](https://juejin.cn/post/7055910623237898254/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/990.%20%E7%AD%89%E5%BC%8F%E6%96%B9%E7%A8%8B%E7%9A%84%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7.js)  
+684.冗余连接 [掘金](https://juejin.cn/post/7055916707692412965/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/684.%20%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5.js)  
+1319.连通网络的操作次数 [掘金](https://juejin.cn/post/7055937280199884831/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1319.%20%E8%BF%9E%E9%80%9A%E7%BD%91%E7%BB%9C%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.js)  
+128.最长连续序列 [掘金](https://juejin.cn/post/7055954222080065573/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/128.%20%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97.js)
 ## 2022/1/19
 200.岛屿数量 [掘金](https://juejin.cn/post/7054943791702081566/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F.js)
 ## 2022/1/18
