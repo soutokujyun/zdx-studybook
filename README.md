@@ -2,6 +2,12 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/22
+最近手开始痛了，是那种快要断了的感觉，感觉是关节炎，休息了2天，今天继续开始，之前断断续续的是因为开始厌学了，但是过一阵应该就会好了。  
+990.等式方程的可满足性 [掘金](https://juejin.cn/post/7055910623237898254/) [code]()  
+684.冗余连接 [掘金](https://juejin.cn/post/7055916707692412965/) [code]()  
+1319.连通网络的操作次数 [掘金](https://juejin.cn/post/7055937280199884831/) [code]()  
+128.最长连续序列 [掘金](https://juejin.cn/post/7055954222080065573/) [code]()
 ## 2022/1/19
 200.岛屿数量 [掘金](https://juejin.cn/post/7054943791702081566/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F.js)
 ## 2022/1/18
