@@ -1,3 +1,16 @@
+var removeStones = function(stones) {
+    let u = new UnionSet(stones.length)
+    for (let i = 0; i < stones.length; i++) {
+        for (let j = 0; j < stones.length; j++) {
+            let stone1 = stones[i];
+            let stone2 = stones[j];
+            if (stone1[0] == stone2[0] || stone1[1] == stone2[1]) {
+                u.merge(i, j)
+            }
+        }
+    }
+    return stones.length - u.getCount()
+};
 class UnionSet {
     constructor(n) {
         this.count = n

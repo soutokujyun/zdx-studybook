@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/23
+947.移除最多的同行或同列石头 [掘金](https://juejin.cn/post/7056410359027990536/) [code]()
 ## 2022/1/22
 最近手开始痛了，是那种快要断了的感觉，感觉是关节炎，休息了2天，今天继续开始，之前断断续续的是因为开始厌学了，但是过一阵应该就会好了。  
 990.等式方程的可满足性 [掘金](https://juejin.cn/post/7055910623237898254/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/990.%20%E7%AD%89%E5%BC%8F%E6%96%B9%E7%A8%8B%E7%9A%84%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7.js)  
