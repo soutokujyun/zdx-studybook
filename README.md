@@ -8,6 +8,9 @@
 721.账户合并
 765.情侣牵手
 685.冗余连接 II
+实际：
+1202.交换字符串中的元素 [掘金](https://juejin.cn/post/7056808392542650381/) [code]()
+721.账户合并 [掘金](https://juejin.cn/post/7056809875661127711/) [code]()
 ## 2022/1/23
 947.移除最多的同行或同列石头 [掘金](https://juejin.cn/post/7056410359027990536/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/947.%20%E7%A7%BB%E9%99%A4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%90%8C%E8%A1%8C%E6%88%96%E5%90%8C%E5%88%97%E7%9F%B3%E5%A4%B4.js)
 ## 2022/1/22
