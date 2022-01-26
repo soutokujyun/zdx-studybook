@@ -8,7 +8,7 @@
 剑指 Offer 59 - I. 滑动窗口的最大值 
 470.用 Rand7() 实现 Rand10()
 实绩：
-685.冗余连接 II 掘金](https://juejin.cn/post/7057539702148038686/) [code]()
+685.冗余连接 II 掘金](https://juejin.cn/post/7057539702148038686/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/685.%20%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5%20II.js)
 ## 2022/1/25
 预计:   
 765.情侣牵手  
