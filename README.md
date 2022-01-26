@@ -2,13 +2,18 @@
 记录每日学习情况
 
 # 日志
+## 2022/1/26
+预计：
+685.冗余连接 II 
+剑指 Offer 59 - I. 滑动窗口的最大值 
+470.用 Rand7() 实现 Rand10()
 ## 2022/1/25
 预计:   
 765.情侣牵手  
 685.冗余连接 II 
 剑指 Offer 59 - I. 滑动窗口的最大值  
 实绩：  
-765.情侣牵手 [掘金](https://juejin.cn/post/7057047073593491493/) [code]()
+765.情侣牵手 [掘金](https://juejin.cn/post/7057047073593491493/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/765.%20%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B.js)
 
 ## 2022/1/24
 预计:  
