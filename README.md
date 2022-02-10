@@ -2,6 +2,12 @@
 记录每日学习情况
 
 # 日志
+## 2022/2/10
+预计：
+* 470.用 Rand7() 实现 Rand10()
+
+实绩：
+* 470.用 Rand7() 实现 Rand10() [掘金](https://juejin.cn/post/7062966879123406884/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/markdown/470.%E7%94%A8%20Rand7()%20%E5%AE%9E%E7%8E%B0%20Rand10().md)
 ## 2022/2/9
 预计：
 * 470.用 Rand7() 实现 Rand10()
