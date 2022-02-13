@@ -1,0 +1,55 @@
+var threshold = 16;
+var swap = function(arr, i, j) {
+    [arr[j], arr[i]] = [arr[i], arr[j]];
+}
+var getmid = function(arr, a, b, c) {
+    if (arr[a] > arr[b]) swap(arr, a, b);
+    if (arr[a] > arr[c]) swap(arr, a, c);
+    if (arr[b] > arr[c]) swap(arr, b, c);
+    return arr[b];
+}
+var __quick_sort = function(arr, l, r) {
+    while(r - l > threshold) {
+        let x = l, y = r, base = getmid(arr, l, (l + r) / 2 | 1, r);
+        do{
+            while(arr[x] < base) x++;
+            while(arr[y] > base) y--;
+            if (x <= y) {
+                swap(arr, x, y)
+                x++, y--;
+            }
+        }while(x <= y);
+        __quick_sort(arr, x, r);
+        r = y;
+    }
+}
+// 插入排序
+var final_insert_sort = function(arr, l, r) {
+    let ind = l;
+    // 找到最小值
+    for (let i = l + 1; i <= r; i++) {
+        if (arr[i] < arr[ind]) ind = i;
+    }
+    while(ind > l) {
+        swap(arr, ind, ind - 1);
+        ind--;
+    }
+    
+    for(let i = l + 2; i <= r; i++) {
+        let j = i;
+        while(arr[j] < arr[j - 1]) {
+            swap(arr, j, j - 1);
+            j--;
+        }
+    }
+}
+
+var quick_sort = function(arr, l, r) {
+    __quick_sort(arr, l, r);
+    final_insert_sort(arr, l, r);
+}
+var sortArray = function(nums) {
+    if (nums.length < 2) return nums;
+    quick_sort(nums, 0, nums.length - 1);
+    return nums;
+};
