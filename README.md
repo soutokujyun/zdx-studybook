@@ -4,8 +4,8 @@
 # 日志
 ## 2022/2/13
 * 快排算法复习
-* 面试题 17.14. 最小K个数 [掘金](https://juejin.cn/post/7064213231388065800/) [code]()
-* 912.排序数组 [掘金](https://juejin.cn/post/7064215737035915278/) [code]()
+* 面试题 17.14. 最小K个数 [掘金](https://juejin.cn/post/7064213231388065800/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2017.14.%20%E6%9C%80%E5%B0%8FK%E4%B8%AA%E6%95%B0.js)
+* 912.排序数组 [掘金](https://juejin.cn/post/7064215737035915278/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/912.%20%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84.js)
 ## 2022/2/10
 预计：
 * 470.用 Rand7() 实现 Rand10()
