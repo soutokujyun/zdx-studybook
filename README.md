@@ -8,8 +8,8 @@
 * 剑指 Offer 21. 调整数组顺序使奇数位于偶数签名
 
 实绩：
-* 148.排序链表 [掘金](https://juejin.cn/post/7064942884797022244/) [code]()
-* 剑指 Offer 21. 调整数组顺序使奇数位于偶数签名 [掘金](https://juejin.cn/post/7064932754705612830/) [code]()
+* 148.排序链表 [掘金](https://juejin.cn/post/7064942884797022244/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/148.%20%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.js)
+* 剑指 Offer 21. 调整数组顺序使奇数位于偶数签名 [掘金](https://juejin.cn/post/7064932754705612830/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2021.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E7%AD%BE%E5%90%8D.js)
 ## 2022/2/13
 * 快排算法复习
 * 面试题 17.14. 最小K个数 [掘金](https://juejin.cn/post/7064213231388065800/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2017.14.%20%E6%9C%80%E5%B0%8FK%E4%B8%AA%E6%95%B0.js)
