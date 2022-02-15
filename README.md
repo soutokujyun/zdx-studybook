@@ -2,10 +2,14 @@
 记录每日学习情况
 
 # 日志
-## 2022/2/14
+## 2022/2/15
 预计：
-* 排序链表
-* 调整数组顺序使奇数位于偶数签名
+* 148.排序链表
+* 剑指 Offer 21. 调整数组顺序使奇数位于偶数签名
+
+实绩：
+* 148.排序链表 [掘金](https://juejin.cn/post/7064942884797022244/) [code]()
+* 剑指 Offer 21. 调整数组顺序使奇数位于偶数签名 [掘金](https://juejin.cn/post/7064932754705612830/) [code]()
 ## 2022/2/13
 * 快排算法复习
 * 面试题 17.14. 最小K个数 [掘金](https://juejin.cn/post/7064213231388065800/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2017.14.%20%E6%9C%80%E5%B0%8FK%E4%B8%AA%E6%95%B0.js)
