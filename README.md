@@ -5,9 +5,9 @@
 ## 2022/2/17
 * 95.不同的二叉搜索树 II [掘金](https://juejin.cn/post/7065698220298469384/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/95.%20%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%20II.js)
 * 539.最小时间差 [掘金](https://juejin.cn/post/7065704504137613349/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/539.%20%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE.js)
-* 剑指 Offer II 036. 后缀表达式 [掘金](https://juejin.cn/post/7065707159891214343/) [code]()
-* 剑指 Offer II 034. 外星语言是否排序 [掘金](https://juejin.cn/post/7065710195418071070/) [code]()
-* 剑指 Offer II 033. 变位词组 [掘金](https://juejin.cn/post/7065710931090620452/) [code]()
+* 剑指 Offer II 036. 后缀表达式 [掘金](https://juejin.cn/post/7065707159891214343/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20036.%20%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F.js)
+* 剑指 Offer II 034. 外星语言是否排序 [掘金](https://juejin.cn/post/7065710195418071070/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20034.%20%E5%A4%96%E6%98%9F%E8%AF%AD%E8%A8%80%E6%98%AF%E5%90%A6%E6%8E%92%E5%BA%8F.js)
+* 剑指 Offer II 033. 变位词组 [掘金](https://juejin.cn/post/7065710931090620452/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20033.%20%E5%8F%98%E4%BD%8D%E8%AF%8D%E7%BB%84.js)
 ## 2022/2/15
 预计：
 * 148.排序链表
