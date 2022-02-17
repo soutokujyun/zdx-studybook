@@ -5,8 +5,9 @@
 ## 2022/2/17
 * 95.不同的二叉搜索树 II [掘金](https://juejin.cn/post/7065698220298469384/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/95.%20%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%20II.js)
 * 539.最小时间差 [掘金](https://juejin.cn/post/7065704504137613349/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/539.%20%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE.js)
-
-
+* 剑指 Offer II 036. 后缀表达式 [掘金](https://juejin.cn/post/7065707159891214343/) [code]()
+* 剑指 Offer II 034. 外星语言是否排序 [掘金](https://juejin.cn/post/7065710195418071070/) [code]()
+* 剑指 Offer II 033. 变位词组 [掘金](https://juejin.cn/post/7065710931090620452/) [code]()
 ## 2022/2/15
 预计：
 * 148.排序链表
