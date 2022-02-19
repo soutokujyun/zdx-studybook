@@ -2,6 +2,14 @@
 记录每日学习情况
 
 # 日志
+## 2022/2/19
+* 剑指 Offer II 012. 左右两边子数组的和相等 [掘金](https://juejin.cn/post/7066249727943114789/) [code]()
+* 剑指 Offer II 010. 和为 k 的子数组 [掘金](https://juejin.cn/post/7066262665861005319/) [code]()
+* 剑指 Offer II 011. 0 和 1 个数相同的子数组 [掘金](https://juejin.cn/post/7066295535543517220/) [code]()
+* 剑指 Offer 56 - I. 数组中数字出现的次数 [掘金](https://juejin.cn/post/7066305857482391559/) [code]()
+* 剑指 Offer 56 - II. 数组中数字出现的次数 [掘金](https://juejin.cn/post/7066312791359455263/) [code]()
+* 剑指 Offer II 003. 前 n 个数字二进制中 1 的个数 [掘金](https://juejin.cn/post/7066321468380053517/) [code]()
+* 剑指 Offer II 005. 单词长度的最大乘积 [掘金](https://juejin.cn/post/7066329173148565535/) [code]()
 ## 2022/2/17
 * 95.不同的二叉搜索树 II [掘金](https://juejin.cn/post/7065698220298469384/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/95.%20%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%20II.js)
 * 539.最小时间差 [掘金](https://juejin.cn/post/7065704504137613349/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/539.%20%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE.js)
