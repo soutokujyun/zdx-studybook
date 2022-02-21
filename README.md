@@ -3,9 +3,9 @@
 
 # 日志
 ## 2022/2/21
-* 剑指 Offer 61. 扑克牌中的顺子 [掘金](https://juejin.cn/post/7067173386589306888/) [code]()
-* 剑指 Offer II 008. 和大于等于 target 的最短子数组 [掘金](https://juejin.cn/post/7067176445423910949/) [code]()
-* 剑指 Offer II 009. 乘积小于 K 的子数组 [掘金](https://juejin.cn/post/7067178725686640677/) [code]()
+* 剑指 Offer 61. 扑克牌中的顺子 [掘金](https://juejin.cn/post/7067173386589306888/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2061.%20%E6%89%91%E5%85%8B%E7%89%8C%E4%B8%AD%E7%9A%84%E9%A1%BA%E5%AD%90.js)
+* 剑指 Offer II 008. 和大于等于 target 的最短子数组 [掘金](https://juejin.cn/post/7067176445423910949/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20008.%20%E5%92%8C%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E%20target%20%E7%9A%84%E6%9C%80%E7%9F%AD%E5%AD%90%E6%95%B0%E7%BB%84.js)
+* 剑指 Offer II 009. 乘积小于 K 的子数组 [掘金](https://juejin.cn/post/7067178725686640677/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20009.%20%E4%B9%98%E7%A7%AF%E5%B0%8F%E4%BA%8E%20K%20%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.js)
 ## 2022/2/19
 * 剑指 Offer II 012. 左右两边子数组的和相等 [掘金](https://juejin.cn/post/7066249727943114789/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20012.%20%E5%B7%A6%E5%8F%B3%E4%B8%A4%E8%BE%B9%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C%E7%9B%B8%E7%AD%89.js)
 * 剑指 Offer II 010. 和为 k 的子数组 [掘金](https://juejin.cn/post/7066262665861005319/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20010.%20%E5%92%8C%E4%B8%BA%20k%20%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.js)
