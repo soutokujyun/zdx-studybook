@@ -3,8 +3,8 @@
 
 # 日志
 ## 2022/2/22
-* 1305.两棵二叉搜索树中的所有元素 [掘金](https://juejin.cn/post/7067356423444758542/) [code]()
-* 面试题 04.08. 首个共同祖先[掘金](https://juejin.cn/post/7067411350250586125/) [code]()
+* 1305.两棵二叉搜索树中的所有元素 [掘金](https://juejin.cn/post/7067356423444758542/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1305.%20%E4%B8%A4%E6%A3%B5%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0.js)
+* 面试题 04.08. 首个共同祖先[掘金](https://juejin.cn/post/7067411350250586125/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2004.08.%20%E9%A6%96%E4%B8%AA%E5%85%B1%E5%90%8C%E7%A5%96%E5%85%88.js)
 ## 2022/2/21
 * 剑指 Offer 61. 扑克牌中的顺子 [掘金](https://juejin.cn/post/7067173386589306888/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2061.%20%E6%89%91%E5%85%8B%E7%89%8C%E4%B8%AD%E7%9A%84%E9%A1%BA%E5%AD%90.js)
 * 剑指 Offer II 008. 和大于等于 target 的最短子数组 [掘金](https://juejin.cn/post/7067176445423910949/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20008.%20%E5%92%8C%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E%20target%20%E7%9A%84%E6%9C%80%E7%9F%AD%E5%AD%90%E6%95%B0%E7%BB%84.js)
