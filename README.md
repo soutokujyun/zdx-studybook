@@ -2,6 +2,9 @@
 记录每日学习情况
 
 # 日志
+## 2022/2/22
+* 1305.两棵二叉搜索树中的所有元素 [掘金](https://juejin.cn/post/7067356423444758542/) [code]()
+* 面试题 04.08. 首个共同祖先[掘金](https://juejin.cn/post/7067411350250586125/) [code]()
 ## 2022/2/21
 * 剑指 Offer 61. 扑克牌中的顺子 [掘金](https://juejin.cn/post/7067173386589306888/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%2061.%20%E6%89%91%E5%85%8B%E7%89%8C%E4%B8%AD%E7%9A%84%E9%A1%BA%E5%AD%90.js)
 * 剑指 Offer II 008. 和大于等于 target 的最短子数组 [掘金](https://juejin.cn/post/7067176445423910949/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E5%89%91%E6%8C%87%20Offer%20II%20008.%20%E5%92%8C%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E%20target%20%E7%9A%84%E6%9C%80%E7%9F%AD%E5%AD%90%E6%95%B0%E7%BB%84.js)
