@@ -2,6 +2,12 @@
 记录每日学习情况
 
 # 日志
+## 2022/2/29
+* 53.最大子数组和 [掘金](https://juejin.cn/post/7070132708919214087/) [code]()
+
+## 2022/2/28
+* 1302.层数最深叶子节点的和 [掘金](https://juejin.cn/post/7069735044675436580/) [code]()
+* 归并排序
 ## 2022/2/22
 * 1305.两棵二叉搜索树中的所有元素 [掘金](https://juejin.cn/post/7067356423444758542/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/1305.%20%E4%B8%A4%E6%A3%B5%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0.js)
 * 面试题 04.08. 首个共同祖先[掘金](https://juejin.cn/post/7067411350250586125/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/%E9%9D%A2%E8%AF%95%E9%A2%98%2004.08.%20%E9%A6%96%E4%B8%AA%E5%85%B1%E5%90%8C%E7%A5%96%E5%85%88.js)
