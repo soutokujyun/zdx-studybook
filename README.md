@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/3/4
+* 1288.删除被覆盖区间 [掘金](https://juejin.cn/post/7070914317515751432/) [code]()
 ## 2022/3/3
 * 56.合并区间 [掘金](https://juejin.cn/post/7070901563945910303/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/56.%20%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4.js)
 ## 2022/3/1
