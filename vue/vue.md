@@ -1,0 +1,55 @@
+# Vue
+
+## 源码学习方法
+- 找到一条主线
+    - 写上一段简单vue3代码
+    - 思考如何跑起来
+    - createApp
+    - app.mount()
+    - 数据何时变
+    - 更新
+        - 异步更新策略
+        - patch细节
+- 画一张思维导图
+- 提出一个问题，去源码中找到答案
+- 找一个轮子（写一个简单版的vue3）
+- 费曼学习
+
+## 搭建源码调试环境
+下载
+```
+git clone https://github.com/vuejs/core.git
+删除 puppeteer
+pnpm install
+npm i -g n
+n lts
+n
+
+package.json: dev --sourcemap
+pnpm run serve
+```
+起服务
+```
+vue/example/compostion/todomvc
+```
+开发者工具 source
+```
+cmd + p 打开todo
+```
+打断点 createApp + 刷新
+然后 右键 Reveal in sidebar ==> 获取真实目录地址
+
+## vue源码整体结构
+### 目录结构
+packages/*
+
+主要的是：
+- 编译器 compiler
+- 运行时 runtime
+- 入口模块 vue
+- 响应式 reactivity
+### 模块依赖关系
+- vue
+    - compiler-dom - compiler-core
+    - reactivity
+    - runtime-dom - runtime-core
