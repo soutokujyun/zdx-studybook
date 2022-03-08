@@ -53,3 +53,22 @@ packages/*
     - compiler-dom - compiler-core
     - reactivity
     - runtime-dom - runtime-core
+## vue3初始化流程分析
+- 主线
+    - 应用程序实例创建过程 
+        - createApp()
+        - 问题：图和创建实例，实例长什么样 
+            - renderer.createApp()
+            - 实例：{use(){}, component(){}, mount(){}}
+    - 挂载过程
+        - app.mount()
+        - 问题：挂载都做了什么？
+            - 创建VNode
+            - 执行render
+                - 第一步生成的vnode传递给patch函数转为dom
+                - 追加到宿主元素
+            - 回答：传入组件数据和状态转换为dom，并追加到宿主元素
+- 学习方法
+    - 调试方法
+        - 单步调试
+        - 查看调用栈
