@@ -72,3 +72,16 @@ packages/*
     - 调试方法
         - 单步调试
         - 查看调用栈
+        - 读源码
+
+### 读源码
+
+- scripts/dev.js 中的build({entryPoints: ...}) 找到入口文件
+- packages/vue/src/index.ts 获取模版字符串，将模版字符串编译成renderer
+- packages/runtime-dom/src/index.ts 找到createApp()函数，通过ensureRenderer()渲染器调用createApp()方法获取app实例，-- ensureRenderer()
+- packages/runtime-core/src/renderer.ts createRenderer - baseCreateRenderer - 返回 { createApp: createAppAPI() }
+- packages/runtime-core/src/apiCreateApp.ts 返回真正的createApp函数，createApp()里面声明app的实例并返回
+- mount()函数 首次执行并未挂挂载 - 创建根组件的vnode - 然后执行render(函数)
+- packages/runtime-core/src/renderer.ts render() 由于传入的第一个参数null，所以首次patch实际上是挂载过程，不是更新过程，vnode会被patch函数转化为dom对象，并追加到container的容器中
+
+首次patch
