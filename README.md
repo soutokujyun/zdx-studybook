@@ -3,8 +3,8 @@
 
 # 日志
 ## 2022/3/10
-* 23.合并K个升序链表 [掘金](https://juejin.cn/post/7073494237672636429/) [code]()
-* 315.计算右侧小于当前元素的个数 [掘金](https://juejin.cn/post/7073494640875274253/) [code]()
+* 23.合并K个升序链表 [掘金](https://juejin.cn/post/7073494237672636429/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/23.%20%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8.js)
+* 315.计算右侧小于当前元素的个数 [掘金](https://juejin.cn/post/7073494640875274253/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/315.%20%E8%AE%A1%E7%AE%97%E5%8F%B3%E4%BE%A7%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0.js)
 ## 2022/3/9
 vue3源码解析
 ## 2022/3/8
