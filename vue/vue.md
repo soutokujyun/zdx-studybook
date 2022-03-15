@@ -85,3 +85,61 @@ packages/*
 - packages/runtime-core/src/renderer.ts render() 由于传入的第一个参数null，所以首次patch实际上是挂载过程，不是更新过程，vnode会被patch函数转化为dom对象，并追加到container的容器中
 
 首次patch
+mount() -> render() -> patch() -> processElement() / proceComponent()/等 -> mountComponent() -> setupRenderEffect() -> patch() -> processElement() -> mountElement() ->? mountChildren() -> patch() -> 直到把树遍历完整
+
+## 思考 - vue3 和 vue2 初始化方式的变化及原因
+```
+<div id="app">
+    <h1>Vue3 init</h1>
+    <comp></comp>
+</div>
+<script src="../dist/vue.global.js"></script>
+<script>
+    // 变化1: 函数式的创建实例
+    // 动机： 对TS强类型的支持
+    // vue2 : new Vue({})
+    const app = Vue.createApp({
+        render() {
+            return Vue.h('div', {
+                // vue2: attrs:{} props:{} 
+                // vue3: 增强一致性 -- 扁平化
+                title: '1', myprop: '1', onClick:()=>{}
+            })
+        }
+    })
+    // 变化2: 实例方法
+    // vue2: Vue.component('',{}) // 直接挂载到构造函数中会造成全局污染
+    app.component('comp', {
+        template: '<div>comp</div>'
+    })
+    // 变化3: 挂载方法 
+    // -- API简化、一致性
+    // vue2: app.$mount('#app') 或者 el：‘#app’
+    app.mount('#app')
+</script>
+```
+## vue3更新流程分析
+### 整体思路
+- setupRenderEffect 建立更新机制
+- 当前组件响应式数据发生变化，就会执行更新函数
+- 内部会调用patch
+### 学习方法
+- 调用栈信息
+- 单步调试
+- 看源码
+    - setupRenderEffect()
+    - queueJob()
+    - queueFlush()
+    - --- async --- 会执行异步任务
+    - flushJobs
+    - effect.run() - class ReactiveEffect{ run(){} }
+    - fn()
+    - componentUpdateFn()
+    - patch()
+### 整体流程
+- 更新机制的建立
+    - mountComponent() -> setupRenderEffect() -> effect = new ReactiveEffect(fn, scheduler)
+- 更新过程
+    - anonymous() -> 拦截函数的set() -> trigger() -> triggerEffect() 触发和当前数据相关的所有函数 -> effect.scheduler() -> queueJob() 排队 -> queueFlush() 准备刷新
+    - ---async---
+    - flushJobs() -> effect.run() => effect.fn() => componentUpdateFn() -> patch() -> 界面就更新
