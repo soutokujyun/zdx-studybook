@@ -200,3 +200,7 @@ app.mount('#app')
     - 两者是可共存
     - Vue3的处理行为： 对组件实例上下文instance.ctx做代理，在PublicInstanceProxyHandlers的get中会做逻辑判断，优先从setupState中获取，然后data,最后props
 - 声明周期钩子是如何工作的
+
+### 其他有意思的点
+- provide / inject
+- getCurrentInstance
