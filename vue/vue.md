@@ -143,3 +143,60 @@ mount() -> render() -> patch() -> processElement() / proceComponent()/等 -> mou
     - anonymous() -> 拦截函数的set() -> trigger() -> triggerEffect() 触发和当前数据相关的所有函数 -> effect.scheduler() -> queueJob() 排队 -> queueFlush() 准备刷新
     - ---async---
     - flushJobs() -> effect.run() => effect.fn() => componentUpdateFn() -> patch() -> 界面就更新
+
+## Composition API 
+- setup
+- 生命周期钩子
+- getCurrentInstance 获取组件实例
+- provide / inject
+
+- 可维护性
+- 逻辑复用
+- 消灭this
+
+- 结合reactivity
+- 生命周期钩子
+- 属性和上下文
+```
+const app = Vue.createApp({
+    // data() {
+    //     return {
+    //         counter: 1
+    //     }
+    // },
+    // mounted () {
+    //     setInterval(() => {
+    //         this.counter++
+    //     }, 1000);
+    // },
+    // props需要声明
+    setup(props, ctx) {
+        // props.xxx 使用
+        // ctx = { emit, slots, attrs, expose }
+        const counter = Vue.ref(0)
+        Vue.onMounted(() => {
+            setInterval(()=> {
+                counter.value++
+            }, 1000)
+        })
+        return { counter }
+        // setup可以返回渲染函数
+        // return () => Vue.h('div')
+    }
+})
+app.mount('#app')
+```
+### 探究
+- setup执行的时刻？setup函数中没有created钩子？
+    - setup返回的是方法时，返回的应该是一个渲染函数
+    - processComponent
+    - mountComponent 
+        - 创建组件实例
+        - 组件实例的初始化 setupComponent(instance)
+    - 回答： 执行时刻早于beforeCreate和created之类的传统声明周期钩子。实际上在setup函数执行时，组件的实例已经创建了，所以在setup中去处理beforeCreate和created是没有意义的
+- 传入setup参数中，是props ctx， 他们是什么 从何而来
+- 如果和options api中的data()这些数据发生冲突，他们能共存吗，Vue3处理是的行为？
+    - setup优先级更高
+    - 两者是可共存
+    - Vue3的处理行为： 对组件实例上下文instance.ctx做代理，在PublicInstanceProxyHandlers的get中会做逻辑判断，优先从setupState中获取，然后data,最后props
+- 声明周期钩子是如何工作的
