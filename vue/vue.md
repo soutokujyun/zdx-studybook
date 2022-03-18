@@ -204,3 +204,27 @@ app.mount('#app')
 ### 其他有意思的点
 - provide / inject
 - getCurrentInstance
+
+## Reactivity API
+- 包括API
+    - 基础API
+    - Refs
+    - computed 与 watch
+    - effect scoped api
+- 实现原理
+    - 什么是响应式数据
+        - reactive()
+            - new Proxy
+            - proxyHandler
+                - get - track() - depsMap
+                - set - trigger() - depsMap
+        - ref()
+            - createRef() - Reflmpl
+                - get - trackRefValue - trackEffects
+                - set - triggerRefValue - triggerEffects
+
+    - 为什么数据是响应式的时候，他们变化，视图会更新
+    - ref是如何实现的，为什么它需要一个value
+        - activeEffect(ReactiveEffect)
+    - watch底层如何实现
+    - computed返回值是什么类型？
