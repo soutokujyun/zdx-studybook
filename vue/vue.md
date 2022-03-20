@@ -227,4 +227,28 @@ app.mount('#app')
     - ref是如何实现的，为什么它需要一个value
         - activeEffect(ReactiveEffect)
     - watch底层如何实现
+        - watch(source, cb) - doWatch(source, cb) - new ReactiveEffect(getter, schduler) - effect() - cb()
+        - set() - trgger() - triggerEffect() - schduler - queueFlushPreCb() - queueFlush() - flushJobs() - flushPreCbs() - 执行effect
     - computed返回值是什么类型？
+        - computed(getter) - new computedRefImpl(getter) 创建依赖关系链 - new ReactiveEffect(getter) getter内部响应式数据和getter之间的依赖关系建立(将来响应式数据变化，会执行getter) - get value() 此函数调用 - trackRefValue(self) 建立计算属性和读取当前值之间的关系 - new ReactiveEffect(componentUpdateFn)
+- Vue3响应式应用
+    - 如何对数据做响应式处理
+        - options api 
+            - data
+            - props
+            - watch
+            - computed
+        - composition api
+- 响应式原理pk
+    - 实现方式
+        - vue2 - Object.defineProperty(obj,key,{})
+        - vue3 - new Proxy(obj, {})
+    - defineProperty方式
+        - 每次只能监控一个key,初始化时需要循环递归遍历obj中的所有key,s速度慢，资源占用大
+        - 无法检测动态属性的新增和删除
+        - 对于数组无法很好的支持数组，需要额外的数组响应式实现
+        - 无法支持collection类型
+    - Proxy不支持IE11以下版本 - Vue2.7
+        - vue3 - 3.1 / compat 用vue3的语法写vue2
+- Vue3异步更新策略 - nextTick
+    - 原理：利用Promise.resolve().then(cb)微任务的执行方式
