@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/4/7
+* Vue组件搭建
 ## 2022/3/1
 * 53.最大子数组和 [掘金](https://juejin.cn/post/7070132708919214087/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/algorithm/code/53.%20%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.js)
 
