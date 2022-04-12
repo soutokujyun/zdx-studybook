@@ -3,9 +3,9 @@
 
 # 日志
 ## 2022/4/12
-* Node.js -- Koa简单实现 [掘金](https://juejin.cn/post/7085746303069585422/) [code]()
+* Node.js -- Koa简单实现 [掘金](https://juejin.cn/post/7085746303069585422/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/node/01/index.md)
 ## 2022/4/11
-* Node.js -- http服务 [掘金](https://juejin.cn/post/7085328996455415844/) [code]()
+* Node.js -- http服务 [掘金](https://juejin.cn/post/7085328996455415844/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/node/02/index.md)
 ## 2022/4/7
 * Vue3组件化开发
 ## 2022/3/23
