@@ -2,6 +2,8 @@
 记录每日学习情况
 
 # 日志
+## 2022/4/13
+* Node.js -- Egg基本使用
 ## 2022/4/12
 * Node.js -- Koa简单实现 [掘金](https://juejin.cn/post/7085746303069585422/) [code](https://github.com/soutokujyun/zdx-studybook/blob/main/node/01/index.md)
 ## 2022/4/11
