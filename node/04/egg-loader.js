@@ -15,9 +15,9 @@ function load(dir, cb) {
 
 // 加载路由
 function initRouter() {
-    
     const router = new Router();
     load('routes', (filename, routes) => {
+        // 加载路由的时候，文件名称是路由的前缀，可能会有index，需要把index去掉改成 /
         // index => /
         // user => /user
         const prefix = filename === 'index' ? '' : `/${filename}`;
