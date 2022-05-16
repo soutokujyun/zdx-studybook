@@ -1,0 +1,21 @@
+.section {
+    display: flex;
+    width: 300px;
+    height: 200px;
+}
+
+.section .item {
+    flex: 1;
+}
+
+.section .item:first-child {
+    background-color: blue;
+}
+
+.section .item:last-child {
+    background-color: brown;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

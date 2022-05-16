@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div onclick="getUserData()">getUserData</div>
+    <div onclick="getProductData()">getProductData</div>
+    <div onclick="cancleAll()">Cancle All</div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/qs@6.10.2/dist/qs.js"></script>
+    <script>
+        // 方法1：
+        // const CancelToken = axios.CancelToken;
+        // const source = CancelToken.source();
+
+        // axios
+        //     .get("http://localhost:3000/users", {
+        //         cancelToken: source.token,
+        //     })
+        //     .catch(function (thrown) {
+        //         if (axios.isCancel(thrown)) {
+        //             console.log("Request canceled", thrown.message);
+        //         } else {
+        //             // 处理错误
+        //         }
+        //     });
+
+        // axios.post(
+        //     "http://localhost:3000/users",
+        //     {
+        //         name: "new name",
+        //     },
+        //     {
+        //         cancelToken: source.token,
+        //     }
+        // );
+
+        // 取消请求（message 参数是可选的）
+        // source.cancel("Operation canceled by the user.");
+    </script>
+    <script>
+        // 方法2：
+        // const CancelToken = axios.CancelToken;
+        // let cancel;
+
+        // axios.get('http://localhost:3000/users', {
+        //     cancelToken: new CancelToken(function executor(c) {
+        //         // executor 函数接收一个 cancel 函数作为参数
+        //         cancel = c;
+        //     })
+        // });
+
+        // // cancel the request
+        // cancel();
+    </script>
+    <script>
+        const CancelToken = axios.CancelToken;
+        const map = new Map();
+
+        function generateReqKey(config) {
+            const { method, url, params, data } = config;
+            return [method, url, Qs.stringify(params), Qs.stringify(data)].join("&")
+        }
+
+        function addPendingRequest(config) {
+            const requestKey = generateReqKey(config)
+            config.cancelToken = config.cancelToken ||
+                new axios.CancelToken((cancel) => {
+                    if (!map.has(requestKey)) {
+                        map.set(requestKey, cancel)
+                    }
+                })
+        }
+
+        function removePendingRequest(config) {
+            const requestKey = generateReqKey(config)
+            if (map.get(requestKey)) {
+                const cancel = map.get(requestKey);
+                cancel(requestKey)
+                map.delete(requestKey)
+            }
+        }
+
+        function getApi() {
+            const instance = new axios.create({
+                baseURL: 'http://localhost:3000',
+                timeout: 5000
+            })
+
+            instance.interceptors.request.use(function (config) {
+                removePendingRequest(config)
+                addPendingRequest(config)
+                return config
+            }, function (error) {
+                return Promise.reject(error)
+            })
+
+            instance.interceptors.response.use(function (response) {
+                removePendingRequest(response.config)
+                return response
+            }, function (error) {
+                removePendingRequest(error.config || {})
+                // if (axios.isCancel(error)) {
+                //     console.log("已取消的重复请求：" + error.message);
+                // } else {
+                //     // 添加异常处理
+                // }
+                return Promise.reject(error)
+            })
+
+            return instance
+        }
+
+        function cancleAll() {
+            console.log(map);
+            map.forEach((cancle) => {
+                cancle()
+            })
+            map.clear()
+            console.log(map);
+        }
+
+        async function getUserData() {
+            try {
+                const data = await getApi().get('/users')
+                console.log(data)
+            } catch (error) {
+                if (axios.isCancel(error)) {
+                    console.log('Request canceled', error.message)
+                } else {
+                    console.log(error)
+                }
+            }
+        }
+
+        async function getProductData() {
+            try {
+                const data = await getApi().get('/product')
+                console.log(data)
+            } catch (error) {
+                if (axios.isCancel(error)) {
+                    console.log('Request canceled', error.message)
+                } else {
+                    console.log(error)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
