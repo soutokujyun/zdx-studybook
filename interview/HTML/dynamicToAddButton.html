@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态添加按钮</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    for (var i = 1; i < 6; i++) {
+        var input = document.createElement('input')
+        input.setAttribute('type', 'button');
+        input.value = 'button ' + i;
+        (function (n) { input.onclick = function () { alert(n) } })(i)
+        document.body.appendChild(input);
+    }
+</script>
+
+</html>
