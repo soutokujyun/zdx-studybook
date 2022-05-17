@@ -1,0 +1,17 @@
+{
+    "presets": [
+        // "@babel/preset-env",
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "chrome": "66",
+                    "edge": "16"
+                },
+                "corejs": 2, // 核心库版本 3.x最新 npm i core-js@3  3比2大了很多 所以使用ES6\7\8一般选2
+                "useBuiltIns": "usage"
+            }
+        ],
+        "@babel/preset-react"
+    ]
+}

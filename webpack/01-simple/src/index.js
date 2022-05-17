@@ -1,2 +1,2 @@
-import "./index.css";
-console.log('hello');
+import css from "./index.css";
+console.log("hello webpack");

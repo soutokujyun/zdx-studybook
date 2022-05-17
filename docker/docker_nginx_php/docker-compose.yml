@@ -1,0 +1,16 @@
+version: "3.0"
+services:
+  php:
+    image: php:5.6-fpm
+    volumes:
+      - "./www:/www"
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./www/:/usr/share/nginx/html
+    links:
+      - php
