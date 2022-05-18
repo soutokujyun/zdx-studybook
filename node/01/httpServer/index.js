@@ -20,6 +20,7 @@ http.createServer((req, res) => {
         res.writeHead(200, {'Content-Type': 'application/json'})
         res.end(JSON.stringify({ username: 'wang xiao er', age: '30' }))
     } else if (method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
+        // 通过流传递数据
         fs.createReadStream('.' + url).pipe(res)
     } else {
         res.statusCode = 404
