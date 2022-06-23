@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import HomePage from './pages/HomePage';
+import ReduxPage from './pages/ReduxPage';
 import styles from './styles/app.module.scss'
 // import ClockClass from './components/ClockClass';
 // import ClockFunction from './components/ClockFunction';
@@ -11,6 +12,7 @@ function App() {
       <div className={styles.header}>My App</div>
       <img src={logo} className={styles.logo} alt="logo" />
       <HomePage />
+      <ReduxPage />
       {/* <ClockClass></ClockClass> */}
       {/* <ClockFunction /> */}
       {/* <SetStatePage /> */}

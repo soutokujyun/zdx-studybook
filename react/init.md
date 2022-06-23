@@ -112,6 +112,8 @@ Layout.js
     }
 ```
 ## redux
+### 是什么
+redux是JavaScript应用的状态容器，提供可预测化的状态管理。它保证程序行为一致性且易于测试。
 ### 何时用
 > Redux是负责组织state的工具
 引入Redux场景：
@@ -120,4 +122,47 @@ Layout.js
 3. state放在顶层组件已经无法满足需要。
 4. 某个组件的状态需要共享
 ### 安装
+```
+$ npm install redux --save
+```
 ### 使用
+1. 需要一个store存储数据
+新建 ./store/index.js
+```
+import { createStore } from "redux"
+
+// 定义state初始化和修改规则
+function counterReducer(state = 0, action) {
+    switch (action.type) {
+        case 'ADD': return state + 1;
+        case 'MIUNS': return state + 1;
+        default: return state;
+    }
+}
+const store = createStore(counterReducer)
+
+export default store;
+```
+
+pages/ReduxStore.js
+```
+import React, { Component } from 'react'
+import store from '../store'
+export default class ReduxPage extends Component {
+    componentDidMount() {
+        store.subscribe(() => {
+            this.forceUpdate();
+        })
+    }
+    render() {
+        console.log('store', store)
+        return (
+            <div>
+                <h3>ReduxPage</h3>
+                <p>{store.getState()}</p>
+                <button onClick={() => store.dispatch({ type: "ADD" })}>ADD</button>
+            </div>
+        )
+    }
+}
+```
