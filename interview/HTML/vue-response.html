@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue响应式原理</title>
+</head>
+<body>
+    <div id="app">
+        <input id="inp" type="text">
+        <div id="msg"></div>
+    </div>
+    <script>
+        let obj = {}
+
+        function defineReactive(obj, key, val) {
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log(`get ${key}: ${val}`)
+                    return val
+                },
+                set(newVal) {
+                    if (newVal == val) return
+                    console.log(`set ${key}: ${newVal}`)
+                    val = newVal
+                }
+            })
+        }
+
+        defineReactive(obj, 'msg', 'Hello World')
+
+        // console.log(obj.msg) // Hello World  get msg: Hello World
+
+        obj.msg = 'ni hao !'
+
+        console.log(obj.msg)
+
+        // /*
+        //     view = ViewModel = model
+        // */
+        // // 模拟Vue data属性
+        // let data = {
+        //     msg: ''
+        // }
+        
+        // // 模拟vue 实例
+        // let vm = {}
+
+        // // 绑定
+        // Object.keys(data).forEach(key => {
+        //     Object.defineProperty(vm, key, {
+        //         get() {
+        //             return data[key]
+        //         },
+        //         set(newValue) {
+        //             if (data[key] == newValue) return
+        //             // 修改数据
+        //             data[key] = newValue
+        //             document.getElementById('msg').textContent = data[key]
+        //         }
+        //     })
+        // })
+
+        // document.getElementById('inp').addEventListener('input', (e) => {
+        //     // vm.msg 触发defineProperty set()
+        //     vm.msg = e.target.value
+        // })
+    </script>
+</body>
+</html>

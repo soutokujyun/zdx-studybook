@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue源码解析</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <input type="text" v-model="msg" />
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // vue 使用 Object.defineProperty + 观察者模式对数据模版进行绑定，对于数据来说需要进行更新时，会触发对应的getter和setter函数，在setter函数中，即可根据对应收集依赖，触发对应视图层更新。
+        // 1. new Vue() 首先执行初始化，对data执行响应化处理，这个过程 发生在Observe中。
+        // 2. 同时对模版执行编译，找到其中动态绑定的数据，从data中获取并初始化视图，这个过程发生在Compier中。
+        // 3. 同时定义一个更新函数Watcher， 将来对应数据发生变化时，Watcher会调用更新函数
+        // 4. 由于data 的某一个key在视图中可能出现多次, 所以每个key都需要一个管家Dep来管理Watcher
+        // 5. 将来data中数据一旦发生变化，会首先找到对应的Dep，通知所以Watcher执行更新函数
+        
+        /*
+                            Observer 对数据进行响应拦截  
+                        /                                           \
+            new Vue()                                               Dep 记录每个数据所有的Watcher
+                        \                                           /
+                            Compiler 编译模版 - Watcher 记录编译依赖，控制更新函数 
+        */
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hell World'
+            }
+        })
+    
+    </script>
+</body>
+</html>
