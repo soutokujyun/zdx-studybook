@@ -1,10 +1,20 @@
+let TRAGET = null;
 const utils = {
     getValue(expr, vm) {
         return vm.$data[expr.trim()] 
     },
+    setValue(expr, vm, value) {
+        vm.$data[expr.trim()] = value
+    },
     model(node, value, vm) {
         const initValue = this.getValue(value, vm)
         this.modelUpdater(node, initValue)
+        new Watcher(value, vm, (newValue) => {
+            this.modelUpdater(node, newValue)
+        })
+        node.addEventListener('input', (e) => {
+            this.setValue(value, vm, e.target.value)
+        })
     },
     text(node, value, vm) {
         // {{ msg }} v-text="msg"
@@ -13,9 +23,16 @@ const utils = {
             // {{ msg }} => msg
             initValue = value.replace(/{{(.+)}}/g, (...args) => {
                 const expr = args[1]
+                new Watcher(expr, vm, (newValue) => {
+                    this.textUpdater(node, newValue)
+                })
                 return this.getValue(expr, vm)
             })
         } else {
+            // v-text
+            new Watcher(value, vm, (newValue) => {
+                this.textUpdater(node, newValue)
+            })
             initValue = this.getValue(value, vm)
         }
         this.textUpdater(node, initValue)
@@ -25,6 +42,44 @@ const utils = {
     },
     textUpdater(node, value) {
         node.textContent = value
+    }
+}
+
+class Watcher {
+    constructor(expr, vm, cb) {
+        this.expr = expr
+        this.vm = vm
+        this.cb = cb
+
+        this.oldValue = this.getOldValue()
+    }
+
+    getOldValue() {
+        TRAGET = this
+        const oldValue = utils.getValue(this.expr, this.vm)
+        TRAGET = null
+        return oldValue
+    }
+
+    update() {
+        const newValue = utils.getValue(this.expr, this.vm)
+        if (newValue != this.oldValue) {
+            this.cb(newValue)
+        }
+    }
+}
+
+class Dep {
+    constructor() {
+        this.collect = []
+    }
+
+    addWatcher(watcher) {
+        this.collect.push(watcher)
+    }
+
+    notify() {
+        this.collect.forEach(w => w.update())
     }
 }
 
@@ -43,15 +98,16 @@ class Observer {
 
     defineReactive(obj, key, val) {
         this.observe(val)
+        const dep = new Dep()
         Object.defineProperty(obj, key, {
             get() {
-                console.log(`get ${key}: ${val}`)
+                TRAGET && dep.addWatcher(TRAGET)
                 return val
             },
             set(newVal) {
                 if (newVal == val) return
-                console.log(`set ${key}: ${newVal}`)
                 val = newVal
+                dep.notify()
             }
         })
     }
