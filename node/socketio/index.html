@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="message"></ul>
+    <form action="">
+        <input id="m" type="text" autocomplete="off"><button>Send</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var socket = io()
+            $('form').submit(function(e){
+                e.preventDefault() // 避免表单默认提交行为
+                socket.emit('chat message', $('#m').val())
+                $('#m').val('')
+                return false
+            })
+
+            socket.on('chat message', function (msg) {
+                $("#message").append($('<li>').text(msg))
+            })
+        })
+    </script>
+</body>
+</html>
