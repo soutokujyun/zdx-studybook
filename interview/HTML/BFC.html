@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .in-flow {
+            width: 400px;
+            height: 150px;
+            background-color: aquamarine;
+        }
+        .in-flow-samll {
+            width: 200px;
+            height: 50px;
+            background-color: brown;
+        }
+        .m-50 {
+            margin: 50px 0;
+        }
+        .mt-50 {
+            margin-top: 50px;
+        }
+        .float-left {
+            float: left;
+        }
+        .border-1 {
+            border: 1px solid #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        为什么文档流会发生外边距重叠？
+        早期html开发是为了适应word文档而开发一套代码，在word中比如浮动（float）其实早期只为了处理文字环绕图片的效果，
+        行与行之间设置上下外边距，之间的外边距只会取最大值，然后html也延续了word的诸多情况，这些都是历史遗留的问题。
+
+        那么怎么解决呢？
+        MDN(https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+        上给出了BFC的方案来解决外边距重叠问题。
+
+        BFC是什么？ 解决了哪些问题？
+        > 块格式化上下文（Block Formatting Context，BFC） 是 Web 页面的可视 CSS 渲染的一部分，
+        是块级盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+        简单来说 -- BFC在页面上是一个独立的容器，容器里面的子元素不会影响到外面的元素。
+
+        产生BFC的条件：
+        1. 根元素（<html>）
+        2. 浮动元素（float 值不为 none）
+        3. 绝对定位元素（position 值为 absolute 或 fixed）
+        4. 行内块元素（display 值为 inline-block）
+        5. 表格单元格（display 值为 table-cell，HTML 表格单元格默认值）
+        6. 表格标题（display 值为 table-caption，HTML 表格标题默认值）
+        7. 匿名表格单元格元素（display 值为 table、table-row、 table-row-group、table-header-group、
+           table-footer-group（分别是 HTML table、tr、tbody、thead、tfoot 的默认值）或 inline-table）
+        8. overflow 值不为 visible、clip 的块元素 => 可以为 hidden auto 
+        9. display 值为 flow-root 的元素
+        10. contain 值为 layout、content 或 paint 的元素
+        11. 弹性元素（display 值为 flex 或 inline-flex 元素的直接子元素），如果它们本身既不是 flex、grid 也不是 table 容器
+        12. 网格元素（display 值为 grid 或 inline-grid 元素的直接子元素），如果它们本身既不是 flex、grid 也不是 table 容器
+        13. 多列容器（column-count 或 column-width (en-US) 值不为 auto，包括column-count 为 1）
+        14. column-span 值为 all 的元素始终会创建一个新的 BFC，即使该元素没有包裹在一个多列容器中
+
+        BFC的作用
+        1. 包含内部浮动
+        2. 排除外部浮动
+        3. 阻止外边距重叠
+    -->
+    <h1>1. 浮动后父级高度塌陷</h1> 
+    <div class="border-1">
+        <div class="in-flow float-left"></div>
+    </div>
+    <div class="in-flow"></div>
+
+    <h1>解决: 3. 行内块元素</h1> 
+    <div class="border-1" style="display: inline-block;">
+        <div class="in-flow float-left"></div>
+    </div>
+    <div class="in-flow"></div>
+
+    <h1>2. 浮动元素覆盖后面非浮动元素</h1>
+    <!-- 触发条件是 浮动元素后面跟着非浮动元素 -->
+    <div>
+        <div class="in-flow-samll float-left"></div>
+        <div class="in-flow"></div>
+    </div>
+    <h1>解决: 11.弹性元素</h1>
+    <div>
+        <div class="in-flow-samll float-left"></div>
+        <div class="in-flow" style="display: flex;"></div>
+    </div>
+
+
+    <h1>3. 外边距折叠</h1>
+    <div class="in-flow m-50"></div>
+    <div class="in-flow m-50">
+        <div class="mt-50 in-flow-samll"></div>
+    </div>
+    <h1>解决: 10.contain 值为 layout、content 或 paint 的元素</h1>
+    <div class="in-flow m-50"></div>
+    <div class="in-flow m-50" style="contain: content;">
+        <div class="mt-50 in-flow-samll"></div>
+    </div>
+    
+</body>
+</html>
