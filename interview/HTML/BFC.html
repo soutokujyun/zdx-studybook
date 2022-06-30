@@ -32,6 +32,17 @@
 </head>
 <body>
     <!-- 
+        外边距折叠是什么？
+        In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin. 
+        Margins that combine this way are said to collapse, and the resulting combined margin is called a collapsed margin.
+        两个或多个盒子（可以同胞或父子间嵌套）的邻接边缘可以组合以形成单个边缘，以这种方式组合的边缘被称为折叠，并且所得到的组合边缘被称为折叠边缘。
+
+        边距相邻情况：
+        1. 没有线框，没有间距，没有填充和边界分开它们；
+        2. 两者属于垂直相邻的盒边缘，即形成以下对中的一个：盒子的顶部边缘和其第一流入子节点的顶部边缘
+        3. 底部边缘和其下一个流入的上边缘如果父节点具有“自动”计算的高度，则最后一个流入子节点的底边距和其父节点的底边距
+        4. 没有建立新的块格式化上下文并且具有零计算的“最小高度”，零或“自动”计算的“高度”的框的顶部和底部边缘，并且不包含子节点
+
         为什么文档流会发生外边距重叠？
         早期html开发是为了适应word文档而开发一套代码，在word中比如浮动（float）其实早期只为了处理文字环绕图片的效果，
         行与行之间设置上下外边距，之间的外边距只会取最大值，然后html也延续了word的诸多情况，这些都是历史遗留的问题。
