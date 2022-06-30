@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a标签 LoVe-HAte 原则 </title>
+    <style>
+        a:link {
+            color: black;
+        }
+
+        a:hover {
+            color: red;
+        }
+
+        a:visited {
+            color: blue;
+        }
+        
+        a:active {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        a标签伪类样式定义
+        a:link  => 标签未被访问的样式
+        a:visited => 标签已被访问过的样式
+        a:hover => 鼠标移动到上面的样式
+        a:active => 鼠标点击时的样式
+
+        正确渲染 a 标签伪类样式需要遵循 LoVe-HAte 原则
+
+        上面的a标签点击后，hover失效问题，是因为没有遵循这个原则。
+        只需把hover和visited调换位置就可以了
+     -->
+    <a href="https://www.baidu.com" target="_blank">a标签点击后，hover失效问题</a>
+</body>
+</html>

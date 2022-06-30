@@ -166,3 +166,87 @@ export default class ReduxPage extends Component {
     }
 }
 ```
+## react-redux
+### 按照
+```
+npm install react-redux --save
+```
+### 使用
+react-redux提供两种API:
+1. Provider 为后代组件提供store
+2. connect为组件提供数据和变更方法
+创建ReactReduxPage.js
+```
+import store from '../store'
+import { Provider } from 'react-redux'
+export default class ReactReduxPage extends Component {
+  render() {
+    return (
+        <Provider store={store}>
+            <div>ReactReduxPage</div>
+            <RrpComponent />
+        </Provider>
+    )
+  }
+}
+```
+创建RrpComponent.js
+```
+import { connect } from 'react-redux'
+
+export default connect(
+    // mapStateToProps 把state映射到props上
+    state => ({ num: state }),
+    // 默认情况下：mapDispatchToProps 就已经把dispatch映射到props
+    // 当然也可以把dispatch结构成多个执行方法
+    //{
+    //    add: () => ({ type: 'ADD' })
+    //}
+)(class RrpComponent extends Component {
+  render() {
+
+    const { num, dispatch } = this.props
+    // const { num, add } = this.props
+    console.log(this.props)
+    return (
+    <div>
+        <h3>RrpComponent</h3>
+        <p>{ num }</p>
+        <button onClick={() => dispatch({ type: "ADD" })}>ADD</button>
+        {/* <button onClick={add}>ADD</button> */}
+    </div>
+    )
+  }
+})
+```
+
+## react-router
+### 是什么
+包含三个库：react-router、react-router-dom和react-router-native。
+
+react-router-dom和react-router-native都依赖react-router。在安装时也会自动安装。
+
+### 安装
+```
+npm install --save react-router-dom
+```
+### 基本使用
+react-router中奉行一切皆组件的思想:
+1. 链接  ```<Link to="/">``` 普通a标签链接
+2. 导航链接 ```<NavLink to="/message" className={({isActive}) => {}}  style={({isActive}) => {} } />``` 可以知道当前链接活动状态。
+3. 导航 ```<Navigate to="/dashboard" replace={true}>``` 如果使用replace: true，导航将替换历史堆栈中的当前条目，而不是添加新条目。
+4. 出口 ```<Outlet>``` 渲染子路由组件
+5. 路由 ```<Routes><Route path="/message" element={<Page />}></Route></Routes>``` 两个是搭配使用的作为渲染组件路由。
+
+```
+<BrowserRouter>
+    <Link to="/">首页</Link>
+    <Link to="/redux">ReduxPage</Link>
+    <Link to="/react-redux">ReactReduxPage</Link>
+    <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/redux" element={<ReduxPage/>} />
+        <Route path="/react-redux" element={<ReactReduxPage/>} />
+    </Routes>
+</BrowserRouter>
+```
