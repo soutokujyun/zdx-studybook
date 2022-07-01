@@ -240,13 +240,60 @@ react-router中奉行一切皆组件的思想:
 
 ```
 <BrowserRouter>
-    <Link to="/">首页</Link>
-    <Link to="/redux">ReduxPage</Link>
-    <Link to="/react-redux">ReactReduxPage</Link>
+    <Link to="/">首页</Link> | 
+    <Link to="/redux">Redux</Link> | 
+    <Link to="/redux/react">ReactRedux</Link> | 
+    <Link to="/pure">PureComponent</Link>
     <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/redux" element={<ReduxPage/>} />
-        <Route path="/react-redux" element={<ReactReduxPage/>} />
+        <Route path="/redux" element={<Redux />}>
+            <Route index element={<ReduxPage/>} />
+            <Route path="react" element={<ReactReduxPage/>} />
+        </Route>
+        <Route path="/pure" element={<PureComponentPage/>} />
     </Routes>
 </BrowserRouter>
+```
+## PureCompnent
+```
+export default class PureComponentPage extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            count: 0
+        }
+    }
+    setCount = () => {
+        this.setState({ count: 100 })
+    }
+
+    render() {
+        console.log('render');
+        const { count } = this.state
+        return (
+            <div>
+                <h3>PureComponentPage</h3>
+                <button onClick={() => this.setCount()}>{count}</button>
+            </div>
+        )
+    }
+}
+```
+以上这种情况点击按钮触发setCount函数时，在state值不改变的情况下，render函数还是会执行，这样就造成性能问题，解决办法就是使用shouldComponentUpdate生命周期钩子来决定是否执行update生命周期函数。
+```
+shouldComponentUpdate(nextProps, nextState) {
+    return nextState.count !== this.state.count
+}
+```
+也可以使用PureComponent来对比state值
+```
+export default class PureComponentPage extends PureComponent {
+}
+```
+当然PureComponent也有缺点，就是只能用于Class组件且只适用于浅比较，如果多级对象就无效。
+```
+setCount = () => {
+    // PureComponent只能用于 >>浅比较<< ，多级对象就不起作用了，render函数还是会执行
+    this.setState({ obj: { num: 100 } })
+}
 ```
