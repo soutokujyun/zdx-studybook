@@ -297,3 +297,12 @@ setCount = () => {
     this.setState({ obj: { num: 100 } })
 }
 ```
+
+## Hook
+### 认识Hook
+Hook是一个特殊的函数，它可以“钩入”React的特性。例如，useState是允许你在React函数组件中添加state的Hook。
+
+#### useState
+```
+
+```

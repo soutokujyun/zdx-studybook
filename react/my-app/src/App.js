@@ -18,24 +18,29 @@ function App() {
         <div className={styles.header}>My App</div>
         <img src={logo} className={styles.logo} alt="logo" />
       </div>
-      <div style={{ 'textAlign': 'center' }}>
-      <BrowserRouter>
-        <Link to="/">首页</Link> | 
-        <Link to="/redux">Redux</Link> | 
-        <Link to="/redux/react">ReactRedux</Link> | 
-        <Link to="/pure">PureComponent</Link>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/redux" element={<Redux />}>
-            <Route index element={<ReduxPage/>} />
-            <Route path="react" element={<ReactReduxPage/>} />
-          </Route>
-          <Route path="/pure" element={<PureComponentPage/>} />
-        </Routes>
-      </BrowserRouter>
-      {/* <ClockClass></ClockClass> */}
-      {/* <ClockFunction /> */}
-      {/* <SetStatePage /> */}
+      <div className={styles.container}>
+        <BrowserRouter>
+          <div className={styles.navbar}>
+            <Link className={styles.link} to="/">首页</Link>
+            <Link className={styles.link} to="/pure">PureComponent</Link>
+            <Link className={styles.link} to="/hook">Hook</Link>
+            <Link className={styles.link} to="/redux">Redux</Link>
+            <Link className={styles.link} to="/redux/react">ReactRedux</Link>
+          </div>
+          <div className={styles.main}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/redux" element={<Redux />}>
+                <Route index element={<ReduxPage />} />
+                <Route path="react" element={<ReactReduxPage />} />
+              </Route>
+              <Route path="/pure" element={<PureComponentPage />} />
+            </Routes>
+            {/* <ClockClass></ClockClass> */}
+            {/* <ClockFunction /> */}
+            {/* <SetStatePage /> */}
+          </div>
+        </BrowserRouter>
       </div>
     </div>
   );
