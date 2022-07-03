@@ -302,7 +302,204 @@ setCount = () => {
 ### 认识Hook
 Hook是一个特殊的函数，它可以“钩入”React的特性。例如，useState是允许你在React函数组件中添加state的Hook。
 
+函数组件没有生命周期和state定义，这些只能在class组件使用，所以需要hook来帮助定义
 #### useState
 ```
+import React, { useState } from 'react'
+
+export default function HookPage() {
+    // 定义一个count的state变量， 初始化为0
+    const [count, setCount] = useState(0)
+  return (
+    <div>
+        <h3>HookPage</h3>
+        <p>{count}</p>
+        <button onClick={() => setCount(count + 1)}>add</button>
+    </div>
+  )
+}
+```
+#### Effect Hook
+Effect Hook 可以让你在函数组件中执行副作用操作。
+
+数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用。
 
 ```
+// 与 componentdidMount componentdidUpdate类似
+useEffect(() => {
+    console.log('Effect')
+    document.title = `点击了${count}次`
+})
+```
+条件执行
+
+```
+const [date, setDate] = useState(new Date())
+useEffect(() => {
+    // 条件1: 只需要在count改变时执行
+    document.title = `点击了${count}次`
+    // 条件2: 只需要在didMount的时候执行就可以了
+    const timer = setInterval(() => {
+        setDate(new Date())
+    }, 1000)
+})
+```
+以上document.title在count不变的情况下会一直赋值，effect会一直执行。
+
+那么要满足两个条件，只需要多个Effct分别执行他们两个
+```
+// 条件执行，只有满足count改变时才会执行effect
+useEffect(() => {
+    console.log('Effect1')
+    document.title = `点击了${count}次`
+}, [count])
+
+useEffect(() => {
+     console.log('Effect2')
+    const timer = setInterval(() => {
+        setDate(new Date())
+    }, 1000)
+    // 清除副作用
+    return () => {
+        clearInterval(timer)
+    }
+}, [])
+```
+清除副作用
+
+在useEffect() 函数里面返回一个函数来清除函数，会在函数卸载时执行return 的函数
+```
+useEffect(() => {
+    const timer = setInterval(() => {
+        setDate(new Date())
+    }, 1000)
+    // 清除副作用
+    return () => {
+        clearInterval(timer)
+    }
+}, [])
+```
+
+## 自定义Hook和Hook使用规则
+1. 自定义Hook
+组件间重用一些状态逻辑。可以调用以use开头命名的函数（自定义Hook）,函数内部也可以调用其他Hook。
+```
+<p>{useClock().toLocaleTimeString()}</p>
+
+// 抽取函数使用自定义Hook，命名要以use开头
+function useClock() {
+    const [date, setDate] = useState(new Date())
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setDate(new Date())
+        }, 1000)
+        return () => {
+            clearInterval(timer)
+        }
+    }, [])
+
+    return date
+}
+```
+2. 使用规则
+* 只能在函数最外层调用Hook， 不能在循环、条件判断、或者之函数中调用。
+* 只能在React函数组件中调用会自定义Hook里。
+
+## useMemo 和 useCallback
+### useMemo
+把 “创建”函数 和 依赖项数组 作为参数传入useMemo，它仅会在某个依赖项改变时才重新计算memoized值。这种优化有助于避免在每次渲染时都进行高开销的计算。（类似Vue Computed接口）
+
+```
+const [value, setValue] = useState('')
+const [count, setCount] = useState(0)
+// 未优化时，value改变时，expensive函数也会执行
+const expensive = () => {
+    console.log('compute')
+    let sum = 0;
+    for(let i = 0; i < count; i++) {
+        sum += i
+    }
+    return sum
+}
+...
+<p>expensive: {expensive()}</p>
+<input value={value} onChange={(e) => setValue(e.target.value)} />
+```
+优化
+```
+const expensive = useMemo(() => {
+    console.log('compute')
+    let sum = 0;
+    for(let i = 0; i < count; i++) {
+        sum += i
+    }
+    return sum
+    // 只有count改变时，当前函数才会重新执行
+}, [count])
+```
+## useCallback
+把内联函数及依赖项数组作为参数传入useCallback，它将返回该回调函数的memoized版本，
+该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化并使用引用相等性去避免非必要渲染（例如shouldComponentUpdate）的子组件时，它将非常有用。
+
+```
+export default function UseCallbackPage() {
+    const [value, setValue] = useState('')
+    const [count, setCount] = useState(0)
+
+    const addClick = () => {
+        let sum = 0;
+        for (let i = 0; i < count; i++) {
+            sum += i
+        }
+        return sum
+    }
+
+    return (
+        <div>
+            <h3>UseCallbackPage</h3>
+            <p>count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>add</button>
+            <input value={value} onChange={(e) => setValue(e.target.value)} />
+            <Child addClick={addClick} />
+        </div>
+    )
+}
+
+class Child extends Component {
+    render() {
+        const { addClick } = this.props
+        // input框更新时此时Child组件redner函数还是会执行
+        console.log('child render')
+        return (
+            <div>
+                <h4>Child</h4>
+                <button onClick={() => console.log(addClick())}>add</button>
+            </div>
+        )
+    }
+}
+```
+在更新input时，没有必要每次都去更新addClick的函数
+
+优化
+```
+export default function UseCallbackPage() {
+    // 返回的是函数执行后的值的记录版本
+    const addClick = useCallback(() => {
+        ...
+    }, [count])
+    return (
+        <div>
+            ...
+            <Child addClick={addClick} />
+        </div>
+    )
+}
+
+// 改为PureComponent
+class Child extends PureComponent {
+    ...
+}
+```
+> useCallback(fn, deps) 相当于 useMemo(() => fn, deps)

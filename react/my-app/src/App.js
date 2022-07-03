@@ -10,6 +10,9 @@ import styles from './styles/app.module.scss'
 
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom'
 import PureComponentPage from './pages/PureComponentPage';
+import HookPage from './pages/hook/HookPage';
+import UseMemoPage from './pages/hook/UseMemoPage';
+import UseCallbackPage from './pages/hook/UseCallbackPage';
 
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
             <Link className={styles.link} to="/">首页</Link>
             <Link className={styles.link} to="/pure">PureComponent</Link>
             <Link className={styles.link} to="/hook">Hook</Link>
+            <Link className={styles.link} to="/hook/memo">useMemo</Link>
+            <Link className={styles.link} to="/hook/callback">useCallback</Link>
             <Link className={styles.link} to="/redux">Redux</Link>
             <Link className={styles.link} to="/redux/react">ReactRedux</Link>
           </div>
@@ -34,6 +39,9 @@ function App() {
                 <Route index element={<ReduxPage />} />
                 <Route path="react" element={<ReactReduxPage />} />
               </Route>
+              <Route path='/hook' element={<HookPage/>}></Route>
+              <Route path='/hook/memo' element={<UseMemoPage />}></Route>
+              <Route path='/hook/callback' element={<UseCallbackPage />}></Route>
               <Route path="/pure" element={<PureComponentPage />} />
             </Routes>
             {/* <ClockClass></ClockClass> */}
