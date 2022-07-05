@@ -13,6 +13,7 @@ import PureComponentPage from './pages/PureComponentPage';
 import HookPage from './pages/hook/HookPage';
 import UseMemoPage from './pages/hook/UseMemoPage';
 import UseCallbackPage from './pages/hook/UseCallbackPage';
+import DialogPage from './pages/DialogPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Link className={styles.link} to="/hook/callback">useCallback</Link>
             <Link className={styles.link} to="/redux">Redux</Link>
             <Link className={styles.link} to="/redux/react">ReactRedux</Link>
+            <Link className={styles.link} to="/dialog">Dialog</Link>
           </div>
           <div className={styles.main}>
             <Routes>
@@ -43,6 +45,7 @@ function App() {
               <Route path='/hook/memo' element={<UseMemoPage />}></Route>
               <Route path='/hook/callback' element={<UseCallbackPage />}></Route>
               <Route path="/pure" element={<PureComponentPage />} />
+              <Route path="/dialog" element={<DialogPage />} />
             </Routes>
             {/* <ClockClass></ClockClass> */}
             {/* <ClockFunction /> */}

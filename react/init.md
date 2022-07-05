@@ -503,3 +503,38 @@ class Child extends PureComponent {
 }
 ```
 > useCallback(fn, deps) 相当于 useMemo(() => fn, deps)
+
+## 弹窗类组件设计与实现
+### 传送门 createPortal
+把将要渲染的DOM放到DOM树的另一个角落
+
+Dialog.js
+```
+import React, { Component } from 'react'
+import { createPortal } from 'react-dom'
+
+export default class Dialog extends Component {
+    constructor(props) {
+        super(props)
+        const doc = window.document
+        this.node = doc.createElement('div')
+        doc.body.appendChild(this.node)
+    }
+
+    componentWillUnmount() {
+        if (this.node) {
+            // this.node.remove()
+            window.document.body.removeChild(this.node)
+        }
+    }
+
+    render() {
+        return createPortal(
+            <div className='dialog'>
+                <h3>Dialog</h3>
+            </div>,
+            this.node
+        )
+    }
+}
+```
