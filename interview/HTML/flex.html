@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 布局</title>
+    <link rel="stylesheet" href="../CSS/normalize.css" />
+    <link rel="stylesheet" href="../CSS/flex.css" />
+</head>
+
+<body>
+    <main>
+        <h1>Flexible Box 模型</h1>
+        <!-- 通常被称为 flexbox，是一种一维的布局模型。
+            它给flexbox的子元素之间提供了强大的空间分布和对齐能力。
+            一维的布局：一个模型一次只能处理一个维度上的元素布局，一行或一列。
+            作为对比的是另外一个二维布局CSS Grid Layout，可以同时处理行和列上的布局。 -->
+        <h3>flex</h3>
+        <!-- flex容器会填满父级容器宽度（容器宽度为父级容器宽度） -->
+        <div class="w-300 h-50">
+            <div class="flex">
+                <div style="width: 50px; height: 50px" bg-red></div>
+                <div style="width: 50px; height: 50px" bg-blue></div>
+                <div style="width: 50px; height: 50px" bg-green></div>
+            </div>
+        </div>
+        <h3>inline-flex</h3>
+        <!-- flex容器包裹容器内flex元素（容器宽度随所有子元素宽度的总和） -->
+        <div class="box-row h-50">
+            <div class="inline-flex">
+                <div style="width: 50px; height: 50px" bg-red></div>
+                <div style="width: 50px; height: 50px" bg-blue></div>
+                <div style="width: 50px; height: 50px" bg-green></div>
+            </div>
+        </div>
+        <!-- flex: 1 -->
+        <h2>flex 元素上的属性(flex: 1)</h2>
+        <!-- 作用：flex属性用于设置或检索弹性盒模型对象的子元素如何分配空间。
+        flex属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性(flex: flex-grow | flex-shrink | flex-basis) -->
+        <ul>
+            <li>flex-grow</li>
+            <!--
+            (正整数) 规定了flex-grow项在flex容器中分配剩余空间的相对比例 
+            flex-grow = <number [0, ∞]>
+            lex定义省略时默认值为1。（初始值：0） -->
+            <div class="flex w-300 h-50">
+                <div class="flex-grow-1" bg-red>1</div>
+                <div class="flex-grow-1" bg-blue>1</div>
+                <div class="flex-grow-2" bg-green>2</div>
+            </div>
+            <li>flex-shrink</li>
+            <!-- 
+            指定了 flex 元素的收缩规则（当flex容器空间不足时flex元素收缩比例）
+            flex-grow = <number>
+            flex定义省略时默认值为1。（初始值：0） -->
+            <div class="flex w-300 h-50">
+                <div class="flex-basis-120 flex-shrink-.5" bg-red>0.5</div>
+                <div class="flex-basis-120 flex-shrink-0" bg-blue>0</div>
+                <div class="flex-basis-120 flex-shrink-10" bg-green>10</div>
+            </div>
+            <li>flex-basis</li>
+            <!-- 
+            指定了 flex 元素在主轴方向上的初始大小
+            flex-basis = content(根据内容宽度) | <'width'>
+            省略时默认值为 0。(初始值：auto)
+            若值为0，则必须加上单位，以免被视作伸缩性(flex-shrink)。 -->
+            <div class="flex w-300 h-50">
+                <div class="flex-grow-1 flex-basis-content" bg-red>content</div>
+                <div class="flex-grow-1 flex-basis-120" bg-blue>120px</div>
+                <div class="flex-grow-1 flex-basis-130" bg-green>130px</div>
+            </div>
+        </ul>
+        <p>可以使用一个，两个或三个值来指定 flex属性：</p>
+        <ul>
+            <li>flex: 1（<i>flex-grow</i>）</li>
+            <li>flex: 1 1（<i>flex-grow flex-shrink</i>）或flex: 1 20px（<i>flex-grow flex-basis</i>）</li>
+            <li>flex: 1 1 20px（<i>flex-grow flex-shrink flex-basis</i>）</li>
+        </ul>
+        <h2>flex 排列方式： flex-diraction</h2>
+        <ul>
+            <li>row</li>
+            <div class="flex flex-row w-300 h-50">
+                <div class="flex-1" bg-red></div>
+                <div class="flex-1" bg-blue></div>
+                <div class="flex-1" bg-green></div>
+            </div>
+            <li>row-reverse</li>
+            <div class="flex flex-row-reverse w-300 h-50">
+                <div class="flex-1" bg-red></div>
+                <div class="flex-1" bg-blue></div>
+                <div class="flex-1" bg-green></div>
+            </div>
+            <li>column</li>
+            <div class="flex flex-column w-100 h-150">
+                <div class="flex-1 h-50" bg-red></div>
+                <div class="flex-1 h-50" bg-blue></div>
+                <div class="flex-1 h-50" bg-green></div>
+            </div>
+            <li>column-reverse</li>
+            <div class="flex flex-column-reverse w-100 h-150">
+                <div class="flex-1 h-50" bg-red></div>
+                <div class="flex-1 h-50" bg-blue></div>
+                <div class="flex-1 h-50" bg-green></div>
+            </div>
+        </ul>
+    </main>
+</body>
+
+</html>
