@@ -38,7 +38,8 @@
         <!-- flex: 1 -->
         <h2>flex 元素上的属性(flex: 1)</h2>
         <!-- 作用：flex属性用于设置或检索弹性盒模型对象的子元素如何分配空间。
-        flex属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性(flex: flex-grow | flex-shrink | flex-basis) -->
+        flex属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性
+        (flex: flex-grow | flex-shrink | flex-basis) -->
         <ul>
             <li>flex-grow</li>
             <!--
@@ -103,6 +104,110 @@
                 <div class="flex-1 h-50" bg-red></div>
                 <div class="flex-1 h-50" bg-blue></div>
                 <div class="flex-1 h-50" bg-green></div>
+            </div>
+        </ul>
+        <h2>flex-wrap 实现多行 flex 容器</h2>
+        <!-- 首先我们知道flex时一维模型，只能在一行或一列上分布，
+        但是是使用flex-wrap：wrap时可以使其变成多行（每一行看作新的flex容器）。 -->
+        <!-- 取值：
+        flex-wrap: nowrap; // Defalut value
+        flex-wrap: wrap;
+        flex-wrap: wrap-reverse -->
+        <p>flex-basis:25%</p>
+        <div class="flex flex-wrap w-300 h-50">
+            <div class="flex-basis-25%" bg-red></div>
+            <div class="flex-basis-25%" bg-blue></div>
+            <div class="flex-basis-25%" bg-green></div>
+            <div class="flex-basis-25%" bg-red></div>
+            <div class="flex-basis-25%" bg-blue></div>
+            <div class="flex-basis-25%" bg-green></div>
+        </div>
+        <h2>元素间的对齐和空间分配</h2>
+        <h3>align-items： 交叉轴（主轴垂直方向）方向对齐</h3>
+        <!-- 
+            align-items可以使元素在交叉轴（主轴垂直方向）方向对齐。
+            这个属性初始值为stretch，这就是为什么flex元素会默认被拉伸到最高元素的高度。
+            取值：
+            flex-start：容器顶部对齐
+            flex-end： 容器的下部对齐
+            center： 容器交叉轴居中对齐
+         -->
+         <ul class="items">
+            <li>stretch</li>
+            <div class="flex w-300 h-50">
+                <div class="flex-1" border-1>red</div>
+                <div class="flex-1" border-1>blue</div>
+                <div class="flex-1" border-1>green<br/>green</div>
+            </div>
+            <li>flex-start</li>
+            <div class="flex items-start w-300 h-50">
+                <div class="flex-1" border-1>red</div>
+                <div class="flex-1" border-1>blue</div>
+                <div class="flex-1" border-1>green<br/>green</div>
+            </div>
+            <li>flex-end</li>
+            <div class="flex items-end w-300 h-50">
+                <div class="flex-1" border-1>red</div>
+                <div class="flex-1" border-1>blue</div>
+                <div class="flex-1" border-1>green<br/>green</div>
+            </div>
+            <li>center</li>
+            <div class="flex items-center  w-300 h-50">
+                <div class="flex-1" border-1>red</div>
+                <div class="flex-1" border-1>blue</div>
+                <div class="flex-1" border-1>green<br/>green</div>
+            </div>
+         </ul>
+         <h3>justify-content：主轴方向上对齐</h3>
+         <!-- 
+            主轴方向是flex-direction设置的方向。
+            取值：
+            flex-start/start:（初始值）元素从容器起始位置排列
+            flex-end/end: 元素从容器终止位置开始排列
+            center: 中间排列
+            space-between: 元素排列好之后的剩余空间拿出来平均分配到元素之间
+            space-around: 每个元素的左右空间相等。每行第一个元素到行首的距离和
+                        每行最后一个元素到行尾的距离将会是相邻元素之间距离的一半。
+            space-evenly: 每个元素的左右空间相等。相邻 flex 项之间的间距，
+                        主轴起始位置到第一个 flex 项的间距，
+                        主轴结束位置到最后一个 flex 项的间距，都完全一样。 
+        -->
+        <ul>
+            <li>flex-start/start</li>
+            <div class="flex justify-start w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
+            </div>
+            <li>flex-end/end</li>
+            <div class="flex justify-end w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
+            </div>
+            <li>center</li>
+            <div class="flex justify-center w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
+            </div>
+            <li>space-between</li>
+            <div class="flex justify-space-between w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
+            </div>
+            <li>space-around</li>
+            <div class="flex justify-space-around w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
+            </div>
+            <li>space-evenly</li>
+            <div class="flex justify-space-evenly w-300 h-50">
+                <div class="flex-basis-content" bg-red>red</div>
+                <div class="flex-basis-content" bg-blue>blue</div>
+                <div class="flex-basis-content" bg-green>green-green</div>
             </div>
         </ul>
     </main>

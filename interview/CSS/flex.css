@@ -14,6 +14,9 @@ div[bg-green] {
     line-height: 50px;
     background-color: green;
 }
+div[border-1] {
+    border: 1px solid rgb(0, 0, 0);
+}
 .w-300 {
     width: 300px;
 }
@@ -88,5 +91,43 @@ div[bg-green] {
 .flex-basis-130 {
     flex-basis: 130px;
 }
+.flex-basis-25\% {
+    flex-basis: 25%;
+}
 
 /*===================*/
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+/*===================*/
+.items-start {
+    align-items: flex-start;
+}
+.items-end {
+    align-items: flex-end;
+}
+.items-center {
+    align-items: center;
+}
+/*===================*/
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-space-between {
+    justify-content: space-between;
+}
+.justify-space-around {
+    justify-content: space-around;
+}
+.justify-space-evenly {
+    justify-content: space-evenly;
+}
