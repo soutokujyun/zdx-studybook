@@ -538,3 +538,115 @@ export default class Dialog extends Component {
     }
 }
 ```
+## 高阶组件-HOC
+定义：高阶组件是参数为组件，返回值为新组件的函数。
+```
+const foo = Comp => props => {
+    return (<div>
+        <Comp {...props} />
+    </div>)
+}
+function Child(props) {
+    return <div>Child</div>
+}
+// 不要在render方法里定义
+const Foo = foo(Child)
+export default function HocPage() {
+  return (
+    <div>
+       <h3>HocPage</h3>
+       <Foo />
+    </div>
+  )
+}
+```
+### 链式调用
+```
+const Foo = foo(foo(Child))
+```
+### 装饰器写法
+```
+@foo
+class ClassChild extends Component {
+    render() {
+        return (
+            <div>ClassChild</div>
+        )
+    }
+}
+
+<ClassChild /> 
+```
+#### 配置方法
+1. 使用eject
+```
+$ npm run eject
+$ npm i -D @babel/plugin-proposal-decorators
+```
+修改package.json文件，添加babel配置
+```
+"babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
+    ],
+    "presets": [
+      "react-app"
+    ]
+  }
+```
+
+文件-> 首选项 -> 搜索 ExperimentalDecorators 打开vscode支持装饰器
+
+2. react-app-rewrited
+```
+npm i react-app-rewired customize-cra --save-dev
+npm i -D @babel/plugin-proposal-decorators
+```
+修改package.json 的scripts
+```
+  "scripts": {
+    "r:start": "react-app-rewired start",
+    "r:build": "react-app-rewired build",
+    "r:test": "react-app-rewired test",
+    "r:eject": "react-app-rewired eject"
+  },
+```
+新建config-overrides.js
+```
+const {
+  override,
+  addDecoratorsLegacy
+} = require('customize-cra')
+
+module.exports = override(
+  // enable legacy decorators babel plugin
+  addDecoratorsLegacy(),
+)
+```
+添加less
+```
+$ npm i less less-loader --save-dev
+```
+修改config-overrides.js
+```
+const {
+  override,
+  addLessLoader,
+  addDecoratorsLegacy
+} = require('customize-cra')
+
+module.exports = override(
+  // enable legacy decorators babel plugin
+  addDecoratorsLegacy(),
+  // less
+  addLessLoader()
+)
+```
+
+3. craco
+
