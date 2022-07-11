@@ -1,0 +1,15 @@
+.app {
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.app .header{
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.app .main {
+    font-size: 18px;
+    color: gray;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css @import用法</title>
+    <link rel="stylesheet" href="../CSS/import.css">
+
+    <!-- 当然也可以使用link标签的media属性来切换css
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="../CSS/greater768style.css">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="../CSS/less768style.css">
+    -->
+</head>
+<body>
+    <!-- 
+    css导入样式
+    
+    @import "someone.css" 
+    或
+    @import url("someone.css")
+
+    使用规则：
+        1. 可以在一张样式表中导入另一张样式表
+        2. 必须放在文档顶部（@charset 声明之后）
+        3. 支持媒体查询，*依赖媒体查询导入* 
+
+    > 其中比较重要的是 *依赖媒体查询导入* 那么我们就可以通过这种方式来切换PC端和手机端的样式。
+    > 以往的写法是 每个class、id、section都设置一个媒体查询，这样会让整个css变的很乱。
+    比如： 
+        @media screen and (max-width: 768) {
+            .app {
+                ...
+            }
+            .header {
+                ...
+            }
+        }
+        @media screen and (min-width: 768) {
+            .app {
+                ...
+            }
+            .header {
+                ...
+            }
+        }
+    像这种写法就比较啰嗦且复杂
+    -->
+
+    <div class="app">
+        <div class="header">
+            导航样式
+        </div>
+        <div class="main">
+            内容样式
+        </div>
+    </div>
+</body>
+</html>

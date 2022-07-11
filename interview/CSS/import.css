@@ -1,0 +1,5 @@
+@charset "UTF-8";
+/* 小于或等于768样式 */
+@import "./less768style.css" screen and (max-width: 768px);
+/* 大于768样式 */
+@import url("./greater768style.css") screen and (min-width: 768px);
