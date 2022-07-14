@@ -214,59 +214,160 @@ Promise.resolve().then(() => { console.log('ok') })
  new Promise((resolve, reject) => reject('出错了'))
 
 
-// promise 状态
-const PENDING = "PENDING",
-    FULFILLED = "FULFILLED",
-    REJECTED = "REJECTED";
+// 5 基本原理
 
-class basePromise {
+// Promise有3种状态
+const PENDING = "PENDING"
+const FULFILLED = "FULFILLED";
+const REJECTED = "REJECTED";
+
+class BasePromise {
     constructor(executor) {
-        this.status = PENDING; // 默认状态为PENDING
-        this.value = undefined; // 保存成功状态的值，默认为undefined
-        this.reason = undefined; // 保存失败状态的值，默认为undefined
-        this.onResolvedCallbacks = []; // 保存成功回调
-        this.onRejectCallbacks = []; // 保存失败回调
+        this.status = PENDING // 初始状态为Pending
+        this.value = undefined // 存储成功状态的值，默认值为undefined
+        this.reason = undefined // 存储失败状态的值，默认值为undefined
 
-        const resovle = (value) => {
+        this.onResolveCallback = [] // 存储成功状态的回调函数
+        this.onRejectCallback = [] // 存储失败状态的回调函数
+
+        // resolve()方法 改变Promise状态为fulfilled
+        const resolve = (value) => {
+            // 一旦状态改变就不会再变更
             if (this.status == PENDING) {
-                this.status = FULFILLED;
-                this.value = value;
+                this.status = FULFILLED
+                this.value = value
 
-                // 依次执行对应函数
-                this.onResolvedCallbacks.forEach((fn) => fn());
+                // 执行then接口传入的回调函数
+                // this.onResolveCallback.forEach(fn => fn())
+                // 回调函数有return时返回
             }
-        };
+        }
 
-        const reject = (reason) => {
+        // reject()方法 改变Promise状态为rejected
+        const reject = (value) => {
+            // 一旦状态改变就不会再变更
             if (this.status == PENDING) {
-                this.status = REJECTED;
-                this.reason = reason;
+                this.status = REJECTED
+                this.reason = value
 
-                this.onRejectCallbacks.forEach((fn) => fn());
+                // 执行then接口传入的回调函数
+                this.onRejectCallback.forEach(fn => fn())
             }
-        };
+        }
 
         try {
-            executor(resovle, reject);
+            // 执行new Promise(fn)传入的fn方法
+            executor(resolve, reject)
         } catch (error) {
-            reject(error);
+            // 除了resolve、reject可以改变状态，
+            // 也可能也会执行throw()方法
+            reject(error)
         }
     }
 
     then(onFulfilled, onRejected) {
         if (this.status == FULFILLED) {
-            onFulfilled(this.value);
+            onFulfilled(this.value)
         } else if (this.status == REJECTED) {
-            onRejected(this.reason);
-        } else if (this.status == PENDING) {
-            this.onResolvedCallbacks.push(() => {
-                onFulfilled(this.value);
-            });
-            this.onRejectCallbacks.push(() => {
-                onRejected(this.reason);
-            });
+            onRejected(this.reason)
+        } else {
+            onFulfilled && this.onResolveCallback.push(() => onFulfilled(this.value))
+            onRejected && this.onRejectCallback.push(() => onRejected(this.reason))
+        }
+        // 链式调用（实际上这里应该返回新的Promise实例，这里只是简单的使用）
+        return this
+    }
+
+    catch(onRejected) {
+        if (this.status == REJECTED) {
+            onRejected(this.reason)
+        } else {
+            onRejected && this.onRejectCallback.push(() => onRejected(this.reason))
         }
     }
 }
 
-module.exports = basePromise;
+// 测试
+new BasePromise((resolve, reject) => {
+    resolve('输出值成功值')
+    reject('输出错误值')
+}).then((value) => {
+    console.log('Success: ', value) // resolve()先执行时： Success: 输出值成功值
+}, (error) => {
+    console.log('ERR: ' , error) // reject()先执行时： ERR:  输出错误值
+}).catch((error) => {
+    console.log('Catch: ', error) // reject()先执行时： Catch: 输出错误值
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // promise 状态
+// const PENDING = "PENDING",
+//     FULFILLED = "FULFILLED",
+//     REJECTED = "REJECTED";
+
+// class basePromise {
+//     constructor(executor) {
+//         this.status = PENDING; // 默认状态为PENDING
+//         this.value = undefined; // 保存成功状态的值，默认为undefined
+//         this.reason = undefined; // 保存失败状态的值，默认为undefined
+//         this.onResolvedCallbacks = []; // 保存成功回调
+//         this.onRejectCallbacks = []; // 保存失败回调
+
+//         const resovle = (value) => {
+//             if (this.status == PENDING) {
+//                 this.status = FULFILLED;
+//                 this.value = value;
+
+//                 // 依次执行对应函数
+//                 this.onResolvedCallbacks.forEach((fn) => fn());
+//             }
+//         };
+
+//         const reject = (reason) => {
+//             if (this.status == PENDING) {
+//                 this.status = REJECTED;
+//                 this.reason = reason;
+
+//                 this.onRejectCallbacks.forEach((fn) => fn());
+//             }
+//         };
+
+//         try {
+//             executor(resovle, reject);
+//         } catch (error) {
+//             reject(error);
+//         }
+//     }
+
+//     then(onFulfilled, onRejected) {
+//         if (this.status == FULFILLED) {
+//             onFulfilled(this.value);
+//         } else if (this.status == REJECTED) {
+//             onRejected(this.reason);
+//         } else if (this.status == PENDING) {
+//             this.onResolvedCallbacks.push(() => {
+//                 onFulfilled(this.value);
+//             });
+//             this.onRejectCallbacks.push(() => {
+//                 onRejected(this.reason);
+//             });
+//         }
+//     }
+// }
+
+// module.exports = basePromise;
