@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css层叠上下文</title>
+    <style>
+        section {
+            position: relative;
+            height: 100px;
+            margin-bottom: 10px;
+            contain: content;
+        }
+
+        div[bg-yellow] {
+            background-color: yellow;
+        }
+
+        div[bg-pink], span[bg-pink] {
+            background-color: pink;
+        }
+
+        div[bg-greenyellow] {
+            background-color: greenyellow;
+        }
+        .parent {
+            padding: 10px;
+            width: 70px;
+            height: 70px;
+        }
+        .box {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 层叠上下文：在同一层叠上下文中，元素在Z轴上的上下顺序 -->
+    <!-- 优先级：
+    高    z-index为正值
+    ｜    z-index: 0 / auto
+    ｜    行内元素
+    ｜    浮动元素
+    ｜    块级元素
+    ｜    z-index为负值
+    低    background/border -->
+
+    1. 当不同层叠顺序的元素相比较时，不关心元素在 DOM 树中的结构关系
+    <section>
+        <div class="box" bg-pink>
+            <div class="box" style="position: relative; top: 10px; left: 10px; z-index: -1;" bg-greenyellow></div>
+        </div>
+    </section>
+
+    <section>
+        <!-- 浏览器会默认把div标签放到span标签外面 -->
+        <span bg-pink><div bg-greenyellow>div</div>span</span>
+    </section>
+
+    2. 在同一个层叠上下文中，当元素的层叠顺序相同时，按照元素在 HTML 中出现的顺序进行层叠
+    <section>
+        <!-- 先出现背景为黄绿色的元素，所以粉色层级大于黄绿色 -->
+        <div class="box" style="position: absolute;top: 10px; left: 10px;" bg-greenyellow></div>
+        <div class="box" style="position: relative;" bg-pink></div>
+    </section>
+    
+    <section>
+        <!-- 和上面相反 -->
+        <div class="box" style="position: relative;" bg-pink></div>
+        <div class="box" style="position: absolute;top: 10px; left: 10px;" bg-greenyellow></div>
+    </section>
+
+    3. 每个层叠上下文都是独立的，其子元素的层叠上下文是建立在这个元素的基础上的
+    <div class="parent" style="position:relative; z-index: 1;" bg-pink>
+        <div class="box" style="position: relative; z-index: 10;" bg-yellow></div>
+    </div>
+
+    <div class="parent" style="position:relative; z-index: 2; top: -50px; left: 20px;" bg-greenyellow>
+        <div class="box" style="position: relative; z-index: -1;" bg-yellow></div>
+    </div>
+</body>
+
+</html>
