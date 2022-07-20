@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div[border-1] {
+            border: 1px solid black;
+        }
+        div[inline-block] {
+            display: inline-block;
+        }
+        div[inline] {
+            display: inline;
+        }
+        div[flex] {
+            display: flex;
+        }
+        div[align-middle] {
+            vertical-align: middle;
+        }
+        .box {
+            width: 600px;
+            height: 100px;
+            background-color: cadetblue;
+            margin-bottom: 5px;
+        }
+        .box-item {
+            width: 50px;
+            height: 50px;
+        }
+        .box-pseudo::after{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    1. vertical-align: middle方法
+    <!-- vertical-align 属性设置一个元素的垂直对齐方式。
+    行内元素的基线相对于该元素所在行的基线(最高的兄弟元素的高度)的垂直对齐。 display: inline / inline-block;
+    -->
+    <div class="box" border-1>
+        <div class="box-item" align-middle inline-block border-1></div>
+        <div style="height: 80%;" align-middle inline-block></div>
+        <!-- 相对于该元素的高度垂直对齐 -->
+        <div style="height: 100%;" align-middle inline-block></div>
+    </div>
+
+    <!-- 伪元素 -->
+    <div class="box box-pseudo" border-1>
+        <div class="box-item" align-middle inline-block border-1></div>
+    </div>
+
+    <!-- 在表单元格中，这个属性会设置单元格框中的单元格内容的对齐方式。 display: table-cell; -->
+    <!-- 注意：margin不适用于display:table-cell;元素 -->
+    <div class="box" border-1 align-middle style="display: table-cell;">
+        <div class="box-item" inline-block border-1></div>
+    </div>
+    
+    2. display:flex方法
+    <!-- 
+    在子元素上设置align-self: center
+    align-self可以使单个子元素在交叉轴（主轴垂直方向）方向对齐。 -->
+    <div class="box" border-1 flex>
+        <div class="box-item" style="align-self: center;" border-1></div>
+    </div>
+
+    3. transform: translateY(-50%)方法
+    <!-- 子元素可以是相对定位，也可以是绝对定位，top为50%
+    通过translateY移动实现 -->
+    <div class="box" border-1>
+        <div class="box-item" border-1 
+            style="position: relative; top: 50%; transform: translateY(-50%)"></div>
+    </div>
+
+    4. line-height: 100px 方法 (只适用行内元素 display: inline)
+    <!-- 父元素设置行高为当前元素高度，子元素为行内元素 -->
+    <div class="box" border-1 style="line-height: 100%;">
+        <div class="box-item" border-1 inline >123</div>
+    </div>
+</body>
+</html>
