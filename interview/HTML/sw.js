@@ -10,9 +10,17 @@ self.addEventListener('install', function (e) {
     )
 })
 
-self.addEventListener( "activate", event => {
-    console.log('WORKER: activate event in progress.');
-});
+self.addEventListener('activate', function(e) {
+    e.waitUntil(
+      caches.keys().then(function(keyList) {
+        return Promise.all(keyList.map(function(key) {
+          if(cacheName.indexOf(key) === -1) {
+            return caches.delete(key);
+          }
+        }));
+      })
+    );
+  });
 
 self.addEventListener('fetch', function (event) {
     event.respondWith(
