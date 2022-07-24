@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class="webgl"></canvas>
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three';
+        import gsap from 'https://cdn.skypack.dev/gsap';
+        // 创建场景
+        const scene = new THREE.Scene();
+        // 设置轴长度指示
+        const axesHelper = new THREE.AxesHelper(2)
+        scene.add(axesHelper)
+        // 3D对象
+        const geometry = new THREE.BoxGeometry(1, 1, 1) // 几何体
+        const material = new THREE.MeshBasicMaterial({ color: 'red' }) // 材质
+        const mesh = new THREE.Mesh(geometry, material)
+        /*
+            position 移动
+            scale 缩放
+            ratation 旋转
+            quaternion 处理旋转
+        */
+        // mesh.position.x = 0.7
+        mesh.position.set(0.7, - 0.6, 1) // x y z
+        // mesh.rotation.x = Math.PI * 0.25
+        // mesh.rotation.y = Math.PI * 0.25    
+        scene.add(mesh) // 添加到场景中
+        // 相机
+        const sizes = {
+            with: 800,
+            height: 600
+        }
+        const camera = new THREE.PerspectiveCamera(75, sizes.with / sizes.height)
+        camera.position.z = 3 
+        
+
+        scene.add(camera) // 相机也要添加到场景中
+        // 渲染器：把相机在场景中看到的内容渲染到画布上
+        const canvas = document.querySelector('canvas.webgl')
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas
+        })
+        renderer.setSize(sizes.with, sizes.height)
+
+        // requestAnimationFrame方法
+        // window.requestAnimationFrame(...)可以获知屏幕刷新的时机.
+        // 这个方法接受一个函数作为参数。这个函数会在下一次屏幕刷新时调用
+        // const tick = () => {
+        //     mesh.rotation.x += 0.01
+        //     mesh.rotation.y += 0.01
+        //     renderer.render(scene, camera)
+        //     window.requestAnimationFrame(tick)
+        // }
+        
+        // 由于所有屏幕的刷新频率是不一样的，如果能让屏幕刷新和电脑时间有关系，
+        // 根据时间来设置旋转的角度，就可以让所有屏幕保持一样的旋转速度
+        // new Date()方法
+        // const time = new Date().getTime();
+        // const tick = () =>{
+        //     const elapsedTime = (new Date().getTime()-time)/1000;
+        //     mesh.rotation.y = elapsedTime;
+        //     renderer.render(scene, camera)
+        //     window.requestAnimationFrame(tick)
+        // }
+
+        // THREE.Clock方法
+        // const clock = new THREE.Clock()
+
+        // const tick = () => {
+        //     const elapsedTime = clock.getElapsedTime()
+
+        //     mesh.position.x = Math.cos(elapsedTime)
+        //     mesh.position.y = Math.sin(elapsedTime)
+        //     camera.lookAt(mesh.position)
+
+        //     renderer.render(scene, camera)
+        //     window.requestAnimationFrame(tick)
+        // }
+        // tick()
+
+        // 添加动画方法
+        // GSAP库 可以用来精确控制旋转的时间
+        gsap.to(mesh.rotation, { duration: 1, y: 45*(Math.PI/180) })
+
+        const tick = () =>{
+            renderer.render(scene, camera)
+            window.requestAnimationFrame(tick);
+        }
+        tick();
+
+    </script>
+</body>
+
+</html>

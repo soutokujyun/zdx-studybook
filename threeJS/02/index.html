@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础场景</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class="webgl"></canvas>
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three';
+        // 创建场景
+        const scene = new THREE.Scene();
+        // 设置轴长度指示
+        const axesHelper = new THREE.AxesHelper(2)
+        scene.add(axesHelper)
+        // 3D对象
+        const geometry = new THREE.BoxGeometry(1, 1, 1) // 几何体
+        const material = new THREE.MeshBasicMaterial({ color: 'red' }) // 材质
+        const mesh = new THREE.Mesh(geometry, material)
+        /*
+            position 移动
+            scale 缩放
+            ratation 旋转
+            quaternion 处理旋转
+        */
+        // 1. position
+        // mesh.position.x = 0.7
+        mesh.position.set(0.7, - 0.6, 1) // x y z
+
+        // 2. scale
+        // mesh.scale.x = 2
+        // mesh.scale.y = 0.25
+        // mesh.scale.z = 0.5
+
+        // 3. rotation
+        mesh.rotation.x = Math.PI * 0.25
+        mesh.rotation.y = Math.PI * 0.25
+        // 同时旋转多个轴会有问题，所以需要定义轴旋转的顺序
+        mesh.rotation.reorder('yxz') // z轴先旋转
+
+        // 4. quaternion 
+        // 一种更加数学的方式且能解决顺序问题来处理旋转
+
+        
+        scene.add(mesh) // 添加到场景中
+        
+        // 相机
+        const sizes = {
+            with: 800,
+            height: 600
+        }
+        const camera = new THREE.PerspectiveCamera(75, sizes.with / sizes.height)
+        camera.position.z = 4
+        
+        // 使用lookAt让指定的3D物体自动旋转朝向一个坐标，不需要我们去计算角度。
+        camera.lookAt(new THREE.Vector3(1, -1, 0))
+        // 当然我们也可以使用任何现有的3D对象的position作为参数：
+        // camera.lookAt(mesh.position)
+        scene.add(camera) // 相机也要添加到场景中
+        // 渲染器：把相机在场景中看到的内容渲染到画布上
+        const canvas = document.querySelector('canvas.webgl')
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas
+        })
+        renderer.setSize(sizes.with, sizes.height)
+        renderer.render(scene, camera)
+    </script>
+</body>
+
+</html>
