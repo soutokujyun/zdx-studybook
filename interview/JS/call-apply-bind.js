@@ -76,13 +76,35 @@ Function.prototype.myApply = function(context, args) {
 //     return result
 // }
 
-Function.prototype.myBind = function(context) {
-    let _this = this
-    let args = Array.prototype.slice.call(arguments, 1)
+// Function.prototype.myBind = function(context) {
+//     let _this = this
+//     let args = Array.prototype.slice.call(arguments, 1)
 
+//     const result = function (...innerArgs) {
+//         const params = args.concat(innerArgs)
+//         return _this.apply(context, params)
+//     }
+//     result.prototype = Object.create(this.prototype)
+//     return result
+// }
+
+Function.prototype.myBind = function (context, ...args) {
+    if (!context) {
+        context = window
+    }
+    const key = Symbol()
+    context[key] = this
+    let self = this
     const result = function (...innerArgs) {
         const params = args.concat(innerArgs)
-        return _this.apply(context, params)
+        // 实例的原型是构造函数
+        if (this instanceof self) {
+            // 将构造函数对象绑定到实例对象上
+            this[key] = self
+            this[key](...params)
+        } else {
+            context[key](...params)
+        }
     }
     result.prototype = Object.create(this.prototype)
     return result

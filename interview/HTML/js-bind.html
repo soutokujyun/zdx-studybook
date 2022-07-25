@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            name: 'zeng dexun'
+        }
+        function User(gender, country) {
+            this.gender = gender
+            this.country = country
+            console.log(arguments, this.name);
+        }
+
+        User.prototype.say = function() {
+            console.log(this.name, this.gender, this.country)
+        }
+
+        Function.prototype.myBind = function (context, ...args) {
+            if (!context) {
+                context = window
+            }
+            const key = Symbol()
+            context[key] = this
+            let self = this
+            const result = function (...innerArgs) {
+                const params = args.concat(innerArgs)
+                if (this instanceof self) {
+                    this[key] = self
+                    this[key](...params)
+                } else {
+                    context[key](...params)
+                }
+            }
+            result.prototype = Object.create(this.prototype)
+            return result
+        }
+
+        function newFn(fn, ...args) {
+            const obj = {}
+            obj.__proto__ = fn.prototype
+            const result = fn.apply(obj, args)
+            return typeof result == 'object' ? result : obj
+        }
+
+        // 作为构造函数调用 -- 函数作为构造函数时 bind第一个参数无效
+        const bindUser = User.myBind(user, '男')
+        // bindUser('美国')
+        const u = newFn(bindUser, '美国')
+        // const u = new bindUser('美国')
+        console.log(u.gender)
+    </script>
+</body>
+
+</html>
