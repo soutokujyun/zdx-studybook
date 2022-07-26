@@ -50,7 +50,25 @@ if(req.headers['if-none-match'] === hash) {
 ```
 > 如果两种方式都支持的话，服务器会优先考虑ETag。
 
-### 资源存储位置
+## DNS
+### DNS 域名解析过程
+1. 浏览器DNS缓存中是否存在域名的IP地址
+2. 操作系统DNS缓存检查 + host文件检查
+3. 路由器缓存检查
+4. 本地DNS服务器 -- 指的是互联网服务提供商
 
+5. 本地DNS服务器向根域名服务器(.)发起解析请求，返回顶级域名服务器的IP
+6. 本地DNS服务器通过顶级域名服务器(.com)IP发起解析请求，返回权威域名服务器
+7. 本地DNS服务器通过权威域名服务器(baidu.com)IP发起解析请求，返回该域名的IP地址
+8. 本地DNS服务器缓存该域名的IP地址并返回给客户端。
 
-## DNS 域名解析
+### DNS 预解析
+大型网站，有多个不同服务器资源的情况下，都可采取DNS预解析，提前解析，减少页面卡顿。
+```
+<link rel="dns-prefetch" href="//a.baidu.com">
+<link rel="dns-prefetch" href="//b.baidu.com">
+<link rel="dns-prefetch" href="//c.baidu.com">
+```
+## 
+3次握手是为了验证客户端和服务端都有接收和发送的能力。
+4次挥手是为了确保数据能够完整的传输。
