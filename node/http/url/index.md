@@ -69,6 +69,20 @@ if(req.headers['if-none-match'] === hash) {
 <link rel="dns-prefetch" href="//b.baidu.com">
 <link rel="dns-prefetch" href="//c.baidu.com">
 ```
-## 
-3次握手是为了验证客户端和服务端都有接收和发送的能力。
-4次挥手是为了确保数据能够完整的传输。
+## 建立连接 -- TCP/IP连接： 3次握手
+位码即tcp标志位，有6种标示：
+* SYN(synchronous建立联机)
+* ACK(acknowledgement 确认)
+* PSH(push传送)
+* FIN(finish结束)
+* RST(reset重置)
+* URG(urgent紧急)
+
+3次握手：
+* 第一次握手：客户端会发送携带随机数seq=x且标志位SYN=1的TCP包到服务端（SYN=1, seq=x）
+* 第二次握手：服务端收到请求确认信息，向客服端发送携带随机数seq=y，确认码ACK=x+1,标志位SYN=1（SYN=1，ACK=x+1, seq=y）
+* 第三次握手：客户端收到后验证ACK确认码（即第一次客户端发送的随机数），验证成功后，发送ACK=y+1,seq=z的随机数到服务端，服务端接收到并验证ACK成功后建立连接。
+> TCP三次握手会在任何连接被建立之前发生一次。最终，当发送了所有数据之后，服务器发送一个消息，表示不会再有更多数据向客户端发送了；则客户端才会关闭连接（断开 TCP）
+> 3次握手是为了验证客户端和服务端都有接收和发送的能力。
+
+> 4次挥手是为了确保数据能够完整的传输。
