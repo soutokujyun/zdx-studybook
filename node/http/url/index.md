@@ -22,6 +22,7 @@ res.setHeader('Expires', new Date(Date.now() + 10* 1000).toUTCString())
 // 2.http1.1 Cache-Control 设置多少秒内有效时间 优先度大于Expires
 res.setHeader('Cache-Control', 'max-age=20')
 ```
+> 强缓存会将数据缓存到内存和硬盘中，首先先去内存中读取，然后再到硬盘中读取
 2. 协商缓存：没有命中强缓存规则，浏览器会发送请求，根据请求头 If-Modified-Since 和 If-None-Match 判断是否命中协商缓存，如果命中，直接从缓存中取资源，否则直接获取资源。
 ```
 // 1. last-modified & if-modified-since 通过协商修改时间为基础的策略
