@@ -5,6 +5,9 @@ function Parent(name) {
     }
 }
 Parent.prototype.age = 18
+Parent.prototype.say = function() {
+    return `${this.name} say Hello!`;
+}
 
 // 1. 原型链继承
 // function Children(name) {
@@ -70,13 +73,14 @@ Parent.prototype.age = 18
 
 // 6. 寄生组合式继承（常用）
 
-// function Children(name) {
-//     Parent.call(this)
-//     this.name = name
-// }
+function Children(name) {
+    // 构造函数式继承
+    Parent.call(this)
+    this.name = name
+}
 
-// Children.prototype = Object.create(Parent.prototype)
-// Children.prototype.constructor = Children
+Children.prototype = Object.create(Parent.prototype)
+Children.prototype.constructor = Children
 
 // 对策：避免调用两次父类构造函数
 const c = new Children('Aguda')
@@ -85,3 +89,30 @@ console.log(c.name)
 console.log(c.age)
 console.log(c.say())
 console.log(c instanceof Parent);
+
+{
+    // ES6 class
+    class Parent {
+        constructor(name) {
+            this.name = name
+        }
+
+        say() {
+            return `${this.name} say Hello!`;
+        }
+    }
+
+    class Children extends Parent {
+        constructor(name) {
+            super(name)
+            this.name = name
+        }
+    }
+
+    let c = new Children('zeng')
+    console.log(c.say())
+}
+
+// ES6class继承 和 寄生组合式继承的区别：
+// 1. 寄生组合式继承和父类是属于共享原型属性和方法的继承
+// 2. 而class继承是实现真正的继承

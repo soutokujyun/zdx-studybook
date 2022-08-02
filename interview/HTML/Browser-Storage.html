@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器存储</title>
+</head>
+<body>
+    <script>
+        // 1. localStorage:以键值对的方式存储 储存时间没有限制 永久生效 除非自己删除记录
+        window.localStorage.setItem('bs-key', 'something') // 设置
+        window.localStorage.getItem('bs-key') // 保存
+        window.localStorage.removeItem('bs-key'); // 删除
+        window.localStorage.clear() // 清空
+
+        // 2. sessionStorage:当页面关闭后被清理与其他相比不能同源窗口共享 是会话级别的存储方式
+        window.sessionStorage.setItem('bs-key', 'something')
+        window.sessionStorage.getItem('bs-key')
+        window.sessionStorage.removeItem('bs-key')
+        window.sessionStorage.clear()
+
+        // 3. cookies:数据不能超过4k,同时因为每次http请求都会携带cookie 所有cookie只适合保存很小的数据 如会话标识
+        window.document.cookie="bs-key=something; expires=Thu,18 Dec 2043 12:00:00 GMT" // 创建
+        window.document.cookie // 读取
+        
+        // 方法
+        function setCookie(key, value) {
+            const cookies = window.document.cookie.split(';')
+            cookies.push(`${key}=${value}`)
+            window.document.cookie = cookies.join(';')
+        }
+
+        function removeCookie(key) {
+            const cookies = window.document.cookie.split(';')
+            cookies = cookies.filter(cookie => !cookie.includes(key))
+            window.document.cookie = cookies.join(';')
+        }
+
+        // 4. indexDB: 是一种存储在客户端本地的NOSQL数据库，用于数据量较大的数据存储
+        
+        // 打开数据库
+        const db = window.indexedDB.open('db_name', 'version_1')
+
+        // 数据库打开失败事件
+        db.onerror = function(error) {}
+        // 数据库打开成功事件
+        db.onsuccess = function(res) {}
+
+    </script>
+</body>
+</html>
