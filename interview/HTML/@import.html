@@ -26,6 +26,13 @@
         3. 支持媒体查询，*依赖媒体查询导入* 
 
     > 其中比较重要的是 *依赖媒体查询导入* 那么我们就可以通过这种方式来切换PC端和手机端的样式。
+    
+    @charset "UTF-8";
+    /* 小于或等于768样式 */
+    @import "./less768style.css" screen and (max-width: 768px);
+    /* 大于768样式 */
+    @import url("./greater768style.css") screen and (min-width: 768px);
+
     > 以往的写法是 每个class、id、section都设置一个媒体查询，这样会让整个css变的很乱。
     比如： 
         @media screen and (max-width: 768) {
