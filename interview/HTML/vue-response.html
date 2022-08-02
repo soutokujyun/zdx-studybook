@@ -12,7 +12,23 @@
         <div id="msg"></div>
     </div>
     <script>
-        let obj = {}
+        let obj = {
+            msg: 'Hello World!',
+            arr: ['1', '2']
+        }
+
+        const defaultArrayPrototype = Object.create(Array.prototype)
+        let methods = ['push', 'pop', 'unshift', 'shift', 'splice', 'sort', 'reverse']
+
+
+        methods.forEach(key => {
+            const oldMethod = Array.prototype[key]
+            defaultArrayPrototype[key] = function() {
+                oldMethod.apply(this, arguments)
+                console.log('action: ', key)
+            }
+        })
+        Array.prototype = Object.assign(Array.prototype, defaultArrayPrototype)
 
         function defineReactive(obj, key, val) {
             Object.defineProperty(obj, key, {
@@ -27,11 +43,12 @@
                 }
             })
         }
-
-        defineReactive(obj, 'msg', 'Hello World')
+        Object.keys(obj).forEach(key => {
+            defineReactive(obj, 'msg', 'Hello World')
+        })
 
         // console.log(obj.msg) // Hello World  get msg: Hello World
-
+        obj.arr.push('3')
         obj.msg = 'ni hao !'
 
         console.log(obj.msg)
