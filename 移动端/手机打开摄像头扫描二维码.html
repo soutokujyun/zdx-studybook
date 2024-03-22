@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二维码扫描功能</title>
+</head>
+
+<body>
+  <input type="file" accept="image/*" capture="camera" />
+  <input type="file" accept="image/*" />
+  <button onclick="onClick()">点击打开摄像头</button>
+  <script>
+    function onClick() {
+      var mediaStreamTrack = null
+      var video = document.createElement("video");
+      document.body.insertBefore(video, null)
+      var constraints = { 
+        audio: false, 
+        video: { 
+          facingMode: { exact: "environment" },
+          width: { ideal: 600 },
+          height: { ideal: 600 }
+        }
+      };
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(function (mediaStream) {
+          video.srcObject = mediaStream;
+          video.onloadedmetadata = function (e) {
+            video.play();
+
+            setTimeout(() => {
+              var canvas = document.createElement('canvas')
+              document.body.insertBefore(canvas, null)
+              canvas.width = 600
+              canvas.height = 600
+              var ctx = canvas.getContext('2d')
+              ctx.drawImage(video, 0, 0, 600, 600)
+              mediaStream.getVideoTracks().forEach(track => {
+                track.stop()
+              })
+              video.remove()
+              var imgSrc = canvas.toDataURL()
+              var img = new Image()
+              img.width = 600
+              img.height = 600
+              img.src = imgSrc
+              document.body.appendChild(img)
+              img.onload = () => {
+                canvas.remove()
+              }
+              // var text = document.createTextNode(imgSrc)
+              // document.body.appendChild(text)
+              // var img = new Image(150, 150)
+              // img.src = imgSrc
+              // img.onload = () => {
+              //   mediaStream.getVideoTracks().forEach(track => {
+              //     track.stop()
+              //   })
+              //   video.value.srcObject = null
+              //   video.remove()
+              // }
+            }, 3000)
+          };
+        })
+        .catch(function (err) {
+          var text = document.createTextNode(err.message)
+          document.body.appendChild(text)
+          // document.getElementById('message').innerText = err.message
+          console.log(err.name + ": " + err.message);
+        }); // 总是在最后检查错误
+    }
+  </script>
+</body>
+
+</html>
