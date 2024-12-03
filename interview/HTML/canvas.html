@@ -13,6 +13,7 @@
     function drawRoundedRect(ctx, x, y, width, height, radius) {
       ctx.beginPath();
       ctx.strokeStyle="#ccc";
+
       ctx.moveTo(x + radius, y); // 左上角的水平线
       ctx.lineTo(x + width - radius, y); // 右上角的水平线
 
@@ -33,24 +34,27 @@
 
       ctx.closePath(); // 闭合路径
       ctx.stroke(); // 绘制边框
-
-      ctx.font="16px Arial";
-      ctx.fillText("Hello World", 35, 25);
-
-      
       // 如果需要填充，可以调用 fill() 方法
-      // ctx.fill();
+      ctx.fillStyle = '#FFF';
+      ctx.fill();
     }
+
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext("2d");
     canvas.width = 500
     canvas.height = 500
     let img = new Image();
     img.onload = function () {
-      ctx.drawImage(img, 3,3, 30, 30);
+      ctx.drawImage(img, 4, 10, 30, 30);
     };
     img.src = './assets/image/image.svg';
-    drawRoundedRect(ctx, 0, 0, 140, 36, 10)
+    drawRoundedRect(ctx, 7, 1, 140, 36, 10)
+    drawRoundedRect(ctx, 4, 4, 140, 36, 10)
+    drawRoundedRect(ctx, 1, 7, 140, 36, 10)
+    // 文字
+    ctx.fillStyle = '#424242';
+    ctx.font="16px Arial";
+    ctx.fillText("文件123123123", 35, 33);
     document.getElementById('app').appendChild(canvas)
   </script>
 </body>
