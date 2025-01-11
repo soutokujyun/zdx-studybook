@@ -9,6 +9,7 @@
 
 <body>
   <div id="app"></div>
+  <div id="font"></div>
   <script>
     function drawRoundedRect(ctx, x, y, width, height, radius) {
       ctx.beginPath();
@@ -56,6 +57,29 @@
     ctx.font="16px Arial";
     ctx.fillText("文件123123123", 35, 33);
     document.getElementById('app').appendChild(canvas)
+	
+	
+	{
+		const { size = 14, family = 'Microsoft YaHei', fontWeight = '400' } = {
+			"size": "12px",
+			"family": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif",
+			"fontWeight": "700"
+		};
+		const span = document.createElement('span');
+		span.style = "font-size: 12px; family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif; font-weight: 700";
+		span.innerText="时间 -> 时间2";
+		const canvas1 = document.createElement('canvas');
+		const ctx1 = canvas1.getContext('2d');
+		ctx1.font = `${fontWeight} ${size} ${family}`;
+		const metrics = ctx1.measureText('时间 -> 时间2');
+		
+		const actual = Math.abs(metrics.actualBoundingBoxLeft) + Math.abs(metrics.actualBoundingBoxRight);
+		ctx1.fillText('时间 -> 时间2: ' + actual, 20, 20);
+		
+		ctx1.fillText('时间 -> 时间2: ' + 76.392, 40, 40);
+		document.getElementById('font').appendChild(canvas1);
+		document.getElementById('font').appendChild(span);
+	}
   </script>
 </body>
 
