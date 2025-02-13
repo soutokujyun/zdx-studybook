@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin: 10px;
+        }
+        /* flex */
+        .box1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* flex简单版 */
+        .box2 {
+            display: flex;
+        }
+        .box2 > span {
+            margin: auto;
+        }
+        /* grid */
+        .box3 {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+        /* absolute */
+        .box4 {
+            position: relative;
+        }
+        .box4 > span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="box box1">
+            <span>内容</span>
+        </div>
+        <div class="box box2">
+            <span>内容</span>
+        </div>
+        <div class="box box3">
+            <span>内容</span>
+        </div>
+        <div class="box box4">
+            <span>内容</span>
+        </div>
+    </div>
+</body>
+</html>

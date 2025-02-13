@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sendMsg()">提交</button>
+    <script>
+        async function sendMsg() {
+            // 跨域
+            // let data = await fetch('http://localhost:10011/api/user?id=1000', {
+            //     headers: {
+            //         'content-type': 'application/json'
+            //     },
+            //     method: 'GET'
+            // })
+
+            // JONP方式
+            jsonp({
+                url: 'http://localhost:10011/api/user',
+                params: {
+                    id: 10000
+                },
+                onData (data) {
+                    console.log(data);
+                }
+            })
+        }
+        function stringify(jsonData) {
+            // jsonData.
+            return Object.entries(jsonData).map(([k, v]) => {
+                return k + '=' + v
+            }).join('&')
+            
+        }
+        // JONP方式
+        function jsonp({url, onData, params}) {
+            const script = document.createElement('script')
+
+            const cbFnName = `JSONP_PADDING_${Math.random().toString().slice(2)}`
+
+            script.src = `${url}?${stringify({...params, callback: cbFnName})}`
+
+            window[cbFnName] = onData
+            document.body.appendChild(script)
+            document.body.removeChild(script)
+            // delete window[cbFnName]
+        }
+    </script>
+</body>
+</html>

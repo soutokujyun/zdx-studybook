@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header {
+            height: 600px;
+        }
+        a {
+            display: block;
+            padding: 20px;
+        }
+        img {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        console.log('白屏时间', window.performance.timing.domLoading, window.performance.timing.navigationStart)
+        console.log('白屏时间', window.performance.timing.domLoading - window.performance.timing.navigationStart)
+        console.log('首屏时间', window.performance.timing.domInteractive, window.performance.timing.navigationStart)
+        console.log('首屏时间', window.performance.timing.domInteractive - window.performance.timing.navigationStart)
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <p id="clipboard" onclick="setSelection(event)">中华人民共和国</p>
+        <button onclick="copy()">复制</button>
+    </div>
+    <script>
+        function setSelection(e) {
+            const el = e.target
+            window.navigator.clipboard.writeText(el.innerText)
+            console.log(el.innerText);
+        }
+
+        function copy() {
+            console.log('copy');
+            const selection = window.getSelection()
+            const range = document.createRange();
+            const copyEl = document.getElementById('clipboard')
+
+            range.selectNodeContents(copyEl)
+            selection.removeAllRanges();
+            selection.addRange(range)
+
+            selectedText = selection.toString();
+            document.execCommand("copy");
+        }
+    </script>
+    <div class="rwd-grid-unison rwd-grid-cardlist01 pc-grid6of12 sp-grid4of4 ">
+        <a class="rwd-grid-item sp_marginbot10" href="/solution/cloud/mes/">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-08.png" alt="">
+
+            <ul class="content_p">
+                <li class="span_title">制造执行平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10" href="/solution/cloud/srm/">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-01.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">采购管理平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-02.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">生产管理平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10" href="/solution/cloud/ipm/">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-03.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">设备设施运维平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-04.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">质量管理平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10" href="/solution/cloud/stream/">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-05.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">渠道代理商运营平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10" href="/solution/cloud/toc/">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-06.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">渠道管理平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+        <a class="rwd-grid-item sp_marginbot10">
+            <img data-src="https://www.ymsl.com.cn/solution/cloud/img/y-07.png" alt="">
+
+
+            <ul class="content_p">
+                <li class="span_title">行政管理平台</li>
+
+            </ul>
+        </a>
+
+        <!-- / .rwd-grid-item -->
+
+
+    </div>
+    <script>
+        let images = document.querySelectorAll('img')
+
+        // var layzLoad = function() {
+        //     images.forEach(item => {
+        //         if (item.getBoundingClientRect().top < document.documentElement.clientHeight - 200) {
+        //             if ('src' in item.dataset) {
+        //                 item.src = item.dataset.src
+        //             }
+        //         }
+        //     })
+        // }
+
+        // document.addEventListener('scroll', layzLoad)
+
+        const observer = new IntersectionObserver((changes) => {
+            changes.forEach(change => {
+                if (change.isIntersecting) {
+                    const img = change.target;
+                    img.src = img.dataset.src;
+                    observer.unobserve(img);
+                }
+            })
+        })
+        images.forEach(image => observer.observe(image))
+        // observer.observe(img)
+    </script>
+</body>
+
+</html>

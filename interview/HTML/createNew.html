@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+         * new 一个函数所执行的过程
+           1. 首先创建一个空对象 {}
+           2. 将这个对象的__proto__连接到构造函数的原型对象上
+           3. 将构造函数的this指向这个对象
+           4. 如果构造函数有返回值则返回构造函数，如果没有则返回对象
+         */
+        function Ctor() {
+            this.data = '1'
+        }
+
+        function createNew(fn, args) {
+            const obj = {}
+            obj.__proto__ = fn.prototype
+            const res = fn.apply(obj, args)
+            console.log(res);
+            return res instanceof Object ? res : obj
+        }
+
+        let ctor = createNew(Ctor)
+        console.log(ctor.data);
+        
+    </script>
+</body>
+</html>
