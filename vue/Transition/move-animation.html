@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
+    <style>
+        .fade-move,
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: all .5s;
+        }
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        .fade-leave-active {
+            position: absolute; 
+        }
+        .container li {
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="onAdd">Add</button>
+        <transition-group tag="ul" name="fade" class="container">
+            <li v-for="(item, index) in list" :key="item">{{ item }} <button @click="onRemove(index)">x</button></li>
+        </transition-group>
+    </div>
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                }
+            },
+            methods: {
+                onAdd() {
+                    this.list.push(this.list.length + 1)
+                },
+                onRemove(index) {
+                    this.list.splice(index, 1)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
