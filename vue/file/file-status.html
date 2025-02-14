@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="file" multiple @change="onAdd">
+        <div v-for="(file, index) in fileList" :key="index" style="display: flex;">
+            <div>{{ file.name }}</div>
+            <div>{{ file.status }}</div>
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
+                return {
+                    fileList: []
+                }
+            },
+            methods: {
+                checkFile(file) {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader()
+                        reader.readAsDataURL(file)
+                        reader.onload = () => {
+                            resolve(true)
+                        }
+                        reader.onerror = () => {
+                            resolve(false)
+                        }
+                    })
+                },
+                async onAdd(e) {
+                    const target = e.target || e.srcElemen
+                    this.fileList = this.fileList.concat(
+                        Array.from(target.files)
+                    )
+
+
+                    for (let i = 0; i < this.fileList.length; i++) {
+                        const file = this.fileList[i]
+                        const flag = await this.checkFile(file)
+                        if (flag) {
+                            file.status = 'duplicate'
+                        } else {
+                            file.status = 'ready'
+                        }
+                    }
+
+                    // this.fileList.forEach(async (file) => {
+                    //     const flag = await this.checkFile(file)
+                    //     console.log(flag)
+                    //     if (flag) {
+                    //         file.status = 'duplicate'
+                    //     } else {
+                    //         file.status = 'ready'
+                    //     }
+                    // })
+                    this.$forceUpdate()
+                    console.log(this.fileList)
+                },
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
