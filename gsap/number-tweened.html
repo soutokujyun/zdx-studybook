@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字动画</title>
+    <!-- gasp.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+
+<body>
+    <div id="number">0</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let targetNumber = 100; // 目标数字
+            let outputElement = document.getElementById("number"); // 获取要显示数字的DOM元素
+
+            // 使用GSAP对数字进行补间动画
+            gsap.to({}, {
+                duration: 1, // 动画持续时间
+                onUpdate: function () {
+                    let currentNumber = Math.floor((targetNumber * this.progress()));
+                    outputElement.innerText = currentNumber;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
