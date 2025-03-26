@@ -171,7 +171,7 @@
                 if (change.isIntersecting) {
                     const img = change.target;
                     img.src = img.dataset.src;
-                    observer.unobserve(img);
+                    observer.unobserve(img); // 停止观察
                 }
             })
         })

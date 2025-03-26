@@ -297,6 +297,18 @@ setCount = () => {
     this.setState({ obj: { num: 100 } })
 }
 ```
+### PureCompnent限制说明
+1. 能用
+    1. 组件层级简单，props和state都为简单数据类型（字符串、数字等）或单层对象或数组等
+    2. 存展示型组件
+    3. 父组件频繁更新但子组件无更新
+
+2. 不能用
+    1. 组件层级复杂，props和state有多层对象或数组等
+    2. 动态生成回调函数或对象
+    3. 组件内部有异步操作
+    4. 组件内部有setTimeout、setInterval等
+    5. 子组件非纯组件
 
 ## Hook
 ### 认识Hook

@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Ymslx-2020
+    volumes:
+      # - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf/my.cnf:/etc/mysql/my.cnf"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+        - 8080:8080

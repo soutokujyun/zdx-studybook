@@ -1,0 +1,25 @@
+{
+  "name": "codemirror",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c rollup.config.dev.mjs -w",
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@codemirror/lang-css": "^6.3.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "codemirror": "^6.0.1",
+    "rollup": "^4.37.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^3.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4"
+  }
+}

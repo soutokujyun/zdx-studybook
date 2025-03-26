@@ -84,5 +84,51 @@ public class Main {
 2. 实现多态的关键是接口
    - 接口是一个抽象的类型，只提供方法的定义
    - 实现类是一个接口的具体实现，要实现每个接口方法的功能
+## 注解
+
+```java
+@Target({ElementType.TYPE, ElementType.METHOD})
+// ElementType: Constructor, Field, Method, Parameter, Type, Package, LocalVariable
+@Retention(RetentionPolicy.RUNTIME)
+// RetentionPolicy: SOURCE(源码显示), CLASS(源码、编译时显示), RUNTIME（源码、编译、运行时显示）
+@Inherited // 可继承：父类注解可以继承给子类
+@Documented // 生成文档
+public @interface MyAnnotation { // 使用@interface定义注解
+   String desc();
+
+   String author() default "zhangsan"; // 可以设置默认值
+
+   int age() default 18;
+}
+```
+用法
+
+```java
+@MyAnnotation(desc = "这是一个注解", author = "lisi", age = 20)
+public String test() {}
+```
+
+## YAML配置
+### 基础语法
+1. 大小写敏感
+2. 使用缩进表示层级关系
+3. 缩进时不允许使用Tab键，只允许使用空格
+4. 缩进的空格数目不重要，只要相同层级的元素左对齐即可
+5. '#'表示注释
+
+### 示例
+application.yml
+```
+server:
+  port: 8080
+```
+
+```
+student:
+  name: zhangsan
+  age: 18
+```
+
+
 
 ## I/O 输入输出流
