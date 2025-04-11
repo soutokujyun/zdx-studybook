@@ -50,3 +50,11 @@ const line3 = 'This is line 3'
 // 由于 JS 代码高亮，这里不会被正确编译
 const onePlusTwoPlusThree = {{ 1 + 2 + 3 }}
 ```
+
+## 在 Markdown 中使用 Vue
+<div v-for="i in 3"> span: {{ i }} </div>
+
+这是默认主题内置的 `<Badge />` 组件 <Badge text="演示" />
+
+## 图片引用
+![Logo](/images/hero.png)

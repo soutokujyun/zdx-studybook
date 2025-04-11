@@ -96,3 +96,31 @@ const onePlusTwoPlusThree = {{ 1 + 2 + 3 }}
 指定代码语言
 @[code js](../foo.js)
 ```
+
+8. 在 Markdown 中使用 Vue
+```vue
+<div v-for="i in 3"> span: {{ i }} </div>
+```
+```vue
+这是默认主题内置的 `<Badge />` 组件 <Badge text="演示" />
+```
+## 静态资源
+### 相对路径
+使用相对路径来引用静态资源
+```
+![图片](./image.png)
+```
+### Public 文件
+可以把一些静态资源放在 Public 目录中，它们会被复制到最终生成的网站的根目录下。
+```
+└─ docs
+   ├─ .vuepress
+   |  └─ public
+   |     └─ images
+   |        └─ hero.png  # <- Logo 文件
+   └─ guide
+      └─ assets.md       # <- 我们在这里
+```
+```md text="guide/assets.md"
+![Logo](/images/hero.png)
+```
