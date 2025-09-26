@@ -7,6 +7,7 @@
     <title>浏览器存储</title>
 </head>
 <body>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
     <script>
         // 1. localStorage:以键值对的方式存储 储存时间没有限制 永久生效 除非自己删除记录
         window.localStorage.setItem('bs-key', 'something') // 设置
@@ -40,12 +41,40 @@
         // 4. indexDB: 是一种存储在客户端本地的NOSQL数据库，用于数据量较大的数据存储
         
         // 打开数据库
-        const db = window.indexedDB.open('db_name', 'version_1')
+        // const db = window.indexedDB.open('db_name', 'version_1')
 
-        // 数据库打开失败事件
-        db.onerror = function(error) {}
-        // 数据库打开成功事件
-        db.onsuccess = function(res) {}
+        // // 数据库打开失败事件
+        // db.onerror = function(error) {}
+        // // 数据库打开成功事件
+        // db.onsuccess = function(res) {}
+
+        // 使用 Dexie.js 库操作 IndexedDB 数据库
+        // 1.创建数据库实例
+        const db = new Dexie('db_name')
+
+        // 2.定义数据库索引
+        db.version(1).stores({
+            table_name: '++id, name, age, obj' // 主键id 自增, 姓名, 年龄
+        });
+
+        // 3. 数据库操作
+        // 3.1 新增数据
+        db.table_name.add({ name: '张三', age: 18, obj: { a: 1, b: 2 } });
+        // 3.2 查询数据
+        db.table_name.where('name').equals('张三').toArray().then(console.log)
+        // // 3.3 更新数据
+        // db.table_name.where('name').equals('张三').modify({ age: 20 })
+        // // 3.4 删除数据
+        // db.table_name.where('name').equals('张三').delete()
+
+        // // 3.5 范围查询
+        // // 查询年龄大于等于18的所有数据
+        // db.table_name.where('age').aboveOrEqual(18).toArray().then(console.log)
+        // // 3.6 多条件查询
+        // // 查询姓名为张三且年龄大于等于18的所有数据
+        // db.table_name.where({ name: '张三', age: 20 }).first().then(console.log)
+        // // 索引查询
+        // db.table_name.where('name').equals('张三').and('age').aboveOrEqual(18).toArray().then(console.log)
 
     </script>
 </body>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app1"><div id="div1">div1</div></div>
+
+<script>
+    const app1 = document.getElementById("app1");
+    const child1 = app1.childNodes;
+    console.log(child1);
+
+    
+    const app2 = document.createDocumentFragment();
+    const div2 = document.createElement("div");
+    div2.id = "div2";
+    div2.innerHTML = 'div2';
+    app2.appendChild(div2);
+    const child2 = app2.childNodes;
+    console.log(child2);
+
+    
+    const div3 = {
+        name: 'div',
+        id: 'div2',
+        children: []
+    }
+    const app = [div3];
+    console.log(app);
+    
+</script>
+</body>
+</html>
