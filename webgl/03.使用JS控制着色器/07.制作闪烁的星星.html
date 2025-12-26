@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- 顶点着色器 -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+            gl_PointSize = 10.0;
+        }
+    </script>
+    <!-- 片元(纹理)着色器 -->
+    <!-- distance(p1, p2) 计算点p1到点p2的距离
+    gl_PointCoord 表示当前片元在点中心的坐标
+    discard 丢弃当前片元, 不进行任何渲染 -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 u_FragColor;
+        void main() {
+            // 表示从中心点向四周扩散，距离大于0.5的片元会被丢弃
+            float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
+            if (dist > 0.5) {
+                discard;
+            }
+            gl_FragColor = u_FragColor;
+        }
+    </script>
+    <script type="module">
+        import { initShaderProgram } from '../utils.js';
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        const gl = canvas.getContext('webgl');
+        
+        initShaderProgram(gl, vsSource, fsSource);
+
+        const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+
+        // r,g,b,a
+        // gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0);
+        const arr = new Float32Array([1.0, 1.0, 1.0, 1.0]);
+        gl.uniform4fv(u_FragColor, arr);
+
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.drawArrays(gl.POINTS, 0, 1);
+    </script>
+</body>
+</html>

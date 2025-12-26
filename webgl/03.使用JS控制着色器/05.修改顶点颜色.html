@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- 顶点着色器 -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+            gl_PointSize = 100.0;
+        }
+    </script>
+    <!-- 片元(纹理)着色器 -->
+     uniform 是限定符 vec4 是变量类型 u_FragColor 是变量名
+     precision mediump float; 是对浮点数精度的定义，mediump 是中等精度，float 是单精度浮点数
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        // 暴露控制顶点颜色的变量
+        precision mediump float;
+        // 1.定义一个vec4类型的变量 用于存储顶点颜色
+        uniform vec4 u_FragColor;
+        void main() {
+            gl_FragColor = u_FragColor;
+        }
+    </script>
+    <script type="module">
+        import { initShaderProgram } from '../utils.js';
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        const gl = canvas.getContext('webgl');
+        
+        initShaderProgram(gl, vsSource, fsSource);
+
+        // 2.获取片元着色器中变量u_FragColor的位置
+        const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+
+        // 3.设置u_FragColor变量的值
+        // r,g,b,a
+        // gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0);
+        const arr = new Float32Array([1.0, 1.0, 0.0, 1.0]);
+        gl.uniform4fv(u_FragColor, arr);
+
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        // 绘制顶点
+        gl.drawArrays(gl.POINTS, 0, 1);
+    </script>
+</body>
+</html>

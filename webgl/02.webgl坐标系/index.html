@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- // 1. 顶点着色器 -->
+    <!--
+        vec4表示4维向量，前3维表示坐标，x,y,z
+         第四维表示w：
+         1、w=1时表示点
+         2、w=0时表示向量
+    -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            // 点位
+            gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+            // 点大小
+            gl_PointSize = 100.0;
+        }
+    </script>
+    <!-- // 2. 片元(纹理)着色器 -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        void main() {
+            gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
+        }
+    </script>
+    <script type="module">
+        import { initShaderProgram } from '../utils.js';
+        // canvas 2d 和 webgl 的坐标原点，y轴坐标方向 ，坐标基底变了
+        // canvas 2d 坐标原点在 canvas 左上角，x轴向右为正，y轴向下为正
+        // 一个单位的宽高就是一个像素宽高
+        /*
+            原点 * ----------→ x 正
+                 |
+                 |
+                 |
+                 ↓
+                 y 正
+        
+        */
+        // webgl 坐标原点在 canvas 中心，x轴向右为正，y轴向上为正
+        // 一个单位的宽是半个canvas的宽，一个单位的高是半个canvas的高
+        // canvas的宽高为 2 个单位
+        /*
+                
+                    y 正
+                    ↑
+                    |
+                    |
+                    |
+        负 -----原点 * -------→ x 正
+                    |
+                    |
+                    |
+                    负
+        */
+        // 绘制3d图形使用的是GLSL ES语言
+        // 1. 获取 canvas 元素
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        // 获取渲染上下文
+        const gl = canvas.getContext('webgl');
+        
+        // 初始化着色器
+        // 功能： 解析顶点着色器和片元着色器，创建着色器程序，关联到 WebGL 上下文，实现两种语言互相通信
+        initShaderProgram(gl, vsSource, fsSource);
+
+        gl.clearColor(0, 0, 0, 1); // 清空颜色缓冲区为绿色
+        gl.clear(gl.COLOR_BUFFER_BIT); // 清空颜色缓冲区
+
+        // 绘制顶点
+        /**
+         * 绘制顶点
+         * @param {*} gl 渲染上下文
+         * @param {*} primitiveType 绘制类型
+         * @param {*} offset 起始索引位置
+         * @param {*} count 绘制顶点数量
+         */
+        gl.drawArrays(gl.POINTS, 0, 1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- 顶点着色器 -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        attribute vec4 a_Position;
+        attribute float a_PointSize;
+        void main() {
+            gl_Position = a_Position;
+            gl_PointSize = a_PointSize;
+        }
+    </script>
+    <!-- 片元(纹理)着色器 -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 u_FragColor;
+        void main() {
+            gl_FragColor = u_FragColor;
+        }
+    </script>
+    <script type="module">
+        import { initShaderProgram } from '../utils.js';
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        const gl = canvas.getContext('webgl');
+        
+        initShaderProgram(gl, vsSource, fsSource);
+
+        const a_Position = gl.getAttribLocation(gl.program, 'a_Position');
+        const a_PointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
+        const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+
+        const a_points = [];
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        // 鼠标点击事件
+        canvas.addEventListener('click', ({clientX, clientY}) => {
+            const { left, top, width, height } = canvas.getBoundingClientRect();
+            // 获取canvas内的具体坐标，需要减去canvas到window可视区域的位置，差量计算位置坐标
+            const [cssX, cssY]  = [clientX - left, clientY - top];
+            // 解决坐标原点位置的差异
+            const [halfWidth, halfHeight] = [width / 2, height / 2];
+            const [xBaseCenter, yBaseCenter] = [cssX - halfWidth, cssY - halfHeight];
+            // 解决y方向的差异: webgl的y轴方向和2d坐标系的y轴方向是相反的
+            const  yBaseCenterTop = -yBaseCenter;
+            // 解决坐标基底的差异
+            const [x, y] = [xBaseCenter / halfWidth, yBaseCenterTop / halfHeight];
+
+            // 3. 传递数据给attribute变量
+            const size = Math.random() * 100 + 10;
+            const arr = [Math.random(), Math.random(), Math.random(), 1.0]
+            a_points.push({x, y, size, arr});
+            renderPoints(a_points);
+        })
+
+        function renderPoints(points) {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            points.forEach(point => {
+                gl.vertexAttrib2f(a_Position, point.x, point.y);
+                gl.vertexAttrib1f(a_PointSize, point.size);
+                const arr = new Float32Array(point.arr);
+                gl.uniform4fv(u_FragColor, arr);
+                // gl.uniform4f(u_FragColor, point.r, point.g, point.b, point.a);
+                gl.drawArrays(gl.POINTS, 0, 1);
+            });
+        }
+    </script>
+</body>
+</html>

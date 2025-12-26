@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- 顶点着色器 -->
+    <!-- GLSL ES函数的命名规律：<基础函数名><参数个数><参数类型>
+        1. 函数名必须以小写字母开头
+        2. 函数名可以包含小写字母、数字和下划线
+        3. 函数名不能包含空格
+        4. 函数名不能与GLSL ES关键字冲突
+        以vertexAttrib3f为例：
+        1. 基础函数名：vertexAttrib
+        2. 参数个数：3
+        3. 参数类型：f
+    -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        // 1.在顶点着色器中定义attribute变量
+        attribute vec4 a_Position;
+        void main() {
+            gl_Position = a_Position;
+            gl_PointSize = 100.0;
+        }
+    </script>
+    <!-- 片元(纹理)着色器 -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        void main() {
+            gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
+        }
+    </script>
+    <script type="module">
+        // js 控制着色器： 可以通过attribute变量来传递数据
+        // attribute 变量 只有顶点着色器可以使用
+        // attribute 是存储限定符，是专用于向外部导出与点相关的对象，类似es6的export
+        // 可以在顶点着色器中定义attribute变量，然后在js中获取并传递数据
+        import { initShaderProgram } from '../utils.js';
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        const gl = canvas.getContext('webgl');
+        
+        initShaderProgram(gl, vsSource, fsSource);
+
+        // 2. 在js中获取attribute变量
+        const a_Position = gl.getAttribLocation(gl.program, 'a_Position');
+
+        // 3. 传递数据给attribute变量
+        // gl.vertexAttrib1f(a_Position, 0.5);
+        // gl.vertexAttrib2f(a_Position, 0.5, 0.5);
+        gl.vertexAttrib3f(a_Position, 0.5, 0.5, 0.0);
+        
+
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        // 绘制顶点
+        gl.drawArrays(gl.POINTS, 0, 1);
+    </script>
+</body>
+</html>

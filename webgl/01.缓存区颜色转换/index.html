@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script type="module">
+        import { translateWebglColor } from '../utils.js';
+        import { Color } from 'https://unpkg.com/three/build/three.module.js';
+        // 1. 获取 canvas 元素
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // 2. 获取渲染上下文
+        const gl = canvas.getContext('webgl');
+        // 3. 普wbgl通颜色设置
+        // gl.clearColor(0.5, 1, 0, 1); // 清空颜色缓冲区为绿色
+        // gl.clear(gl.COLOR_BUFFER_BIT); // 清空颜色缓冲区
+
+        // 3. 清空 canvas
+        // const [r, g, b, a] = translateWebglColor('rgba(25, 25, 254, 1)');
+        // gl.clearColor(r, g, b, a); // 清空颜色缓冲区为红色
+        // gl.clear(gl.COLOR_BUFFER_BIT); // 清空颜色缓冲区
+
+        // 3. 也可以使用three.js库来转换颜色
+        const color = new Color(1, 0, 0);
+        !(function ani() {
+            color.offsetHSL(0.005, 0, 0); // 色相偏移量, 饱和度偏移量, 亮度偏移量
+            gl.clearColor(color.r, color.g, color.b, 1); // 清空颜色缓冲区为红色
+            gl.clear(gl.COLOR_BUFFER_BIT); // 清空颜色缓冲区
+            // 动态改变颜色
+            requestAnimationFrame(ani);
+        })()
+    </script>
+</body>
+</html>
