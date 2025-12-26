@@ -8,7 +8,6 @@ import com.deepoove.poi.data.style.BorderStyle;
 import com.deepoove.poi.exception.ResolverException;
 import com.deepoove.poi.plugin.table.LoopRowTableRenderPolicy;
 import com.spire.doc.*;
-import com.ymslx.policy.DetailTablePolicy;
 import com.ymslx.policy.RenderTablePolicy;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
@@ -236,20 +235,51 @@ public class MyApplication {
              FileOutputStream fos = new FileOutputStream(outputFile)) {
             HashMap<String, Object> data = new HashMap<>();
 
-            // 1.直流电压
-            List<Map<String, Object>> dcVoltages = new ArrayList<>();
+            data.put("appearance", "符合要求");
+            data.put("signs", "符合要求");
+            data.put("inspection", "符合要求");
+
+            data.put("alarm", "不正常");
+
+            List<Map<String, Object>> alarmActionValue = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 HashMap<String, Object> dcVoltage = new HashMap<>();
-                dcVoltage.put("unit", "mV");
-                dcVoltage.put("range", "10");
-                dcVoltage.put("standard", "10.0000");
-                dcVoltage.put("positive", "9.9999");
-                dcVoltage.put("negative", "10.002");
-                dcVoltage.put("uncertainty", "0.001%");
-                dcVoltages.add(dcVoltage);
+                dcVoltage.put("gasType", "氢气");
+                dcVoltage.put("actionValue", "10");
+                dcVoltage.put("unit", "umol/mol");
+                alarmActionValue.add(dcVoltage);
+            }
+            data.put("alarmActionValue", alarmActionValue);
+
+            List<Map<String, Object>> IndicationError1 = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                HashMap<String, Object> dcVoltage = new HashMap<>();
+                dcVoltage.put("concentration", "10");
+                dcVoltage.put("average", "10.001");
+                dcVoltage.put("indicationError", "0.001");
+                IndicationError1.add(dcVoltage);
             }
 
-            data.put("dcVoltages", dcVoltages);
+            data.put("concentrationUnit1", "umol");
+            data.put("IndicationError1", IndicationError1);
+
+//            List<Map<String, Object>> dcVoltages = new ArrayList<>();
+//            for (int i = 0; i < 3; i++) {
+//                HashMap<String, Object> dcVoltage = new HashMap<>();
+//                dcVoltage.put("unit", "mV");
+//                dcVoltage.put("range", "10");
+//                dcVoltage.put("standard", "10.0000");
+//                dcVoltage.put("positive", "9.9999");
+//                dcVoltage.put("negative", "10.002");
+//                dcVoltage.put("uncertainty", "0.001%");
+//                dcVoltages.add(dcVoltage);
+//            }
+//
+//            data.put("dcVoltages", dcVoltages);
+
+//            List<Map<String, Object>> acVoltage50Hz = new ArrayList<>();
+//            data.put("acVoltage50Hz", acVoltage50Hz);
+
 //            String[][] strs = new String[][]{
 //                    {"1.直流电压：", null, null, null},
 //                    {"量程", "标准值", "显示值", "扩展不确定度\n（k=2）"},
@@ -265,14 +295,13 @@ public class MyApplication {
 //                    .build();
 //            data.put("dcVoltages", Tables.of(strs).mergeRule(rule).create());
 
-            data.put("flag", "/");
-            DetailTablePolicy detailTablePolicy = new DetailTablePolicy();
+//            DetailTablePolicy detailTablePolicy = new DetailTablePolicy();
 //            LoopRowTableRenderPolicy rowPolicy = new LoopRowTableRenderPolicy();
-//            LoopRowTableRenderPolicy rowSamePolicy = new LoopRowTableRenderPolicy(true);
+            LoopRowTableRenderPolicy rowSamePolicy = new LoopRowTableRenderPolicy(true);
 
             Configure config = Configure.builder().useSpringEL(false)
-                    .bind("dcVoltages", detailTablePolicy)
-//                    .bind("acVoltage50Hz", detailTablePolicy)
+                    .bind("alarmActionValue", rowSamePolicy)
+                    .bind("IndicationError1", rowSamePolicy)
 //                    .bind("dcVoltages", rowPolicy)
                     .build();
 
@@ -443,4 +472,65 @@ public class MyApplication {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void alphabetTemplate() throws IOException {
+        // 加载模板文件
+        ClassPathResource templateFile = new ClassPathResource("resources/static/template.docx");
+
+        File templateFilePath = Paths.get(templateFile.getURI()).toFile();
+        String templateDirPath = templateFilePath.getParent();
+
+        // 基于模板目录创建输出文件
+        File outputFile = new File(templateDirPath, "generated_" + System.currentTimeMillis() + ".docx");
+
+        try (InputStream inputStream = templateFile.getInputStream();
+             FileOutputStream fos = new FileOutputStream(outputFile)) {
+             HashMap<String, Object> data = new HashMap<>();
+
+
+             String word1 = "\uD835\uDC58";
+             String word2 = "\uD835\uDC48";
+             String word3 = "\uD835\uDC48ᵣₑₗ";
+
+            // 示例1：纯数学符号
+            String mathText = "𝑈ᵣₑₗ";
+            data.put("mathVar", MathSymbolFormatter.formatText(word1));
+
+            // 示例2：混合内容
+            String mixedText = "变量: 𝑈ᵣₑₗ = 公式值";
+            data.put("mixedContent", MathSymbolFormatter.formatMixedContent(word2));
+
+            // 示例3：普通文本
+            String normalText = "BI2025N6005030";
+            data.put("normalText", MathSymbolFormatter.formatText(normalText));
+
+            // 表格行循环
+//            List<Map<String, Object>> products = new ArrayList<>();
+//            for (int i = 1; i <= 5; i++) {
+//                Map<String, Object> product = new HashMap<>();
+//                product.put("count", i);
+//                product.put("name", "Product " + i);
+//                product.put("price", "$" + (i * 10));
+//                products.add(product);
+//            }
+//            data.put("products", products);
+
+            // data
+//            LoopRowTableRenderPolicy rowPolicy = new LoopRowTableRenderPolicy();
+
+            Configure config = Configure.builder()
+//                    .bind("products", rowSamePolicy)
+                    .build();
+
+            XWPFTemplate template = XWPFTemplate.compile(inputStream, config).render(data);
+
+            // 输出到新的文件
+            template.write(fos);
+        }
+
+        System.out.println("Generated file saved to: " + outputFile.getAbsolutePath());
+    }
+
+
 }
