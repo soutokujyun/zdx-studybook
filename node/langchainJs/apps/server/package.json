@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "compile": "tsc",
+    "dev": "node dist/1.prompt.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/community": "0.3.53",
+    "@langchain/core": "0.3.72",
+    "@langchain/openai": "0.3.17",
+    "@langchain/deepseek": "0.1.0",
+    "dotenv": "^17.2.3",
+    "langchain": "0.3.31"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0"
+  }
+}
