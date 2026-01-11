@@ -1,0 +1,25 @@
+{
+  "name": "mcp-audit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build": "bash docker/unix/build-docker.sh || docker\\windows\\build-docker.bat",
+    "docker:build:unix": "bash docker/unix/build-docker.sh",
+    "docker:build:win": "docker\\windows\\build-docker.bat",
+    "docker:generate-lock": "bash docker/unix/generate-lock-docker.sh || docker\\windows\\generate-lock-docker.bat",
+    "docker:generate-lock:unix": "bash docker/unix/generate-lock-docker.sh",
+    "docker:generate-lock:win": "docker\\windows\\generate-lock-docker.bat",
+    "docker:test": "node docker/test/test-docker.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.1",
+    "ejs": "^3.1.10",
+    "zod": "^3.25.76"
+  }
+}
