@@ -8,8 +8,8 @@ import { auditPackage } from '../index.js';
 // });
 
 auditPackage(
-  `https://github.com/webpack/webpack-dev-server/tree/v4.9.3`,
-  `D:\\backup\\webpack-dev-server_4_9_3.md`
+  `/Users/admin/zdx-studybook/electron/02-react/`,
+  `/Users/admin/zdx-studybook/electron/02-react/lock.md`
 ).then(() => {
   console.log('远程工程审计完成');
 });
