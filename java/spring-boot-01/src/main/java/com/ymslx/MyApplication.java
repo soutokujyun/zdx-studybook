@@ -8,6 +8,7 @@ import com.deepoove.poi.data.style.BorderStyle;
 import com.deepoove.poi.exception.ResolverException;
 import com.deepoove.poi.plugin.table.LoopRowTableRenderPolicy;
 import com.spire.doc.*;
+import com.ymslx.policy.Render2TablePolicy;
 import com.ymslx.policy.RenderTablePolicy;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
@@ -315,11 +316,49 @@ public class MyApplication {
 
         System.out.println("Generated file saved to: " + outputFile.getAbsolutePath());
     }
-
+    // 表格循环
     @Test
     public void renderTableTemplate() throws IOException {
         // 加载模板文件
         ClassPathResource templateFile = new ClassPathResource("resources/static/render.docx");
+        File templateFilePath = Paths.get(templateFile.getURI()).toFile();
+        String templateDirPath = templateFilePath.getParent();
+
+        // 基于模板目录创建输出文件
+        File outputFile = new File(templateDirPath, "render_" + System.currentTimeMillis() + ".docx");
+
+        try (InputStream inputStream = templateFile.getInputStream(); FileOutputStream fos = new FileOutputStream(outputFile)) {
+            HashMap<String, Object> data = new HashMap<>();
+
+            // 标准器具
+            List<Map<String, Object>> standards = new ArrayList<>();
+            for (int i = 0; i <= 3; i++) {
+                HashMap<String, Object> standard = new HashMap<>();
+                standard.put("name", "器具" + i);
+                standard.put("no", Math.random());
+                standard.put("range", "0.001");
+                standard.put("uncertainty", "3%");
+                standard.put("certificateNo", "209HBW10/3000");
+                standards.add(standard);
+            }
+            data.put("standards", standards);
+            Render2TablePolicy render2TablePolicy = new Render2TablePolicy();
+
+            Configure config = Configure.builder().useSpringEL(false)
+                    .bind("standards", render2TablePolicy)
+                    .build();
+
+            XWPFTemplate template1 = XWPFTemplate.compile(inputStream, config).render(data);
+            // 输出到新的文件
+            template1.write(fos);
+        }
+    }
+
+    // 子表格循环
+    @Test
+    public void renderChildTableTemplate() throws IOException {
+        // 加载模板文件
+        ClassPathResource templateFile = new ClassPathResource("resources/static/render2.docx");
         File templateFilePath = Paths.get(templateFile.getURI()).toFile();
         String templateDirPath = templateFilePath.getParent();
 

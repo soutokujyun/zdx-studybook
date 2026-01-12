@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <!-- 顶点着色器 -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        attribute vec4 a_Position;
+        attribute float a_PointSize;
+        void main() {
+            gl_Position = a_Position;
+            gl_PointSize = a_PointSize;
+        }
+    </script>
+    <!-- 片元(纹理)着色器 -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 u_FragColor;
+        void main() {
+            // 表示从中心点向四周扩散，距离大于0.5的片元会被丢弃
+            float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
+            if (dist > 0.5) {
+                discard;
+            }
+            gl_FragColor = u_FragColor;
+        }
+    </script>
+    <script type="module">
+        import { initShaderProgram } from '../utils.js';
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const vsSource = document.getElementById('vertexShader').innerHTML;
+        const fsSource = document.getElementById('fragmentShader').innerHTML;
+        
+        const gl = canvas.getContext('webgl');
+        // 开启片元颜色的混合
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+        initShaderProgram(gl, vsSource, fsSource);
+
+        const a_Position = gl.getAttribLocation(gl.program, 'a_Position');
+        const a_PointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
+        const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+
+        const starts = [];
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        canvas.addEventListener('click', ({clientX, clientY}) => {
+            const { left, top, width, height } = canvas.getBoundingClientRect();
+            // 获取canvas内的具体坐标，需要减去canvas到window可视区域的位置，差量计算位置坐标
+            const [cssX, cssY]  = [clientX - left, clientY - top];
+            // 解决坐标原点位置的差异
+            const [halfWidth, halfHeight] = [width / 2, height / 2];
+            const [xBaseCenter, yBaseCenter] = [cssX - halfWidth, cssY - halfHeight];
+            // 解决y方向的差异: webgl的y轴方向和2d坐标系的y轴方向是相反的
+            const  yBaseCenterTop = -yBaseCenter;
+            // 解决坐标基底的差异
+            const [x, y] = [xBaseCenter / halfWidth, yBaseCenterTop / halfHeight];
+
+            // 3. 传递数据给attribute变量
+            const size = Math.random() * 10 + 10;
+            const a = Math.random();
+            starts.push({x, y, size, a});
+            renderPoints(starts);
+        })
+
+        function renderPoints(points) {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            points.forEach(point => {
+                gl.vertexAttrib2f(a_Position, point.x, point.y);
+                gl.vertexAttrib1f(a_PointSize, point.size);
+                const arr = new Float32Array([1,1,1,point.a]);
+                gl.uniform4fv(u_FragColor, arr);
+                // gl.uniform4f(u_FragColor, point.r, point.g, point.b, point.a);
+                gl.drawArrays(gl.POINTS, 0, 1);
+            });
+        }
+    </script>
+</body>
+</html>
