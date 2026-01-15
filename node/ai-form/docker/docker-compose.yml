@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  mysql:
+    image: mysql:5.7.26
+    restart: always
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password #解决外部无法访问
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./conf/my.cnf:/etc/mysql/my.cnf"
+    networks:
+      - mynetwork # 加入自定义网络
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+        - 8000:8080
+    networks:
+        - mynetwork # 加入自定义网络
+networks:
+  mynetwork: # 网络定义
+    driver: bridge
