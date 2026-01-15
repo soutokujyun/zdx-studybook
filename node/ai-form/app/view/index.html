@@ -4,8 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        #app {
+            height: 100%;
+        }
+    </style>
+    <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
 </head>
 <body>
-    <h1>Hello, Egg!</h1>
+    <div id="app">
+        <el-container>
+            <el-header>
+                <el-button size="mini" @click="addProp">添加属性</el-button>
+            </el-header>
+            <el-aside>
+                
+            </el-aside>
+            <el-main>
+                <el-form :form="propValMap" size="mini" label-width="80px" label-position="right">
+                    <el-form-item 
+                        v-for="(item) in propDefMap" :key="item.prop_id"
+                        :prop="item.prop_id"
+                        :label="item.label">
+                        {{ item.label }}
+                        <el-input v-model="propValMap[item.prop_id]" placeholder="请输入"></el-input>
+                    </el-form-item>
+                </el-form>
+            </el-main>
+        </el-container>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        const app = new Vue({
+          el: '#app',
+          data: function() {
+            return {
+              propDefMap: [],
+              propValMap: {},
+            }
+          },
+          created() {
+            axios.get('/form/info').then(res => {
+              const data = res.data.data || {};
+              this.propDefMap = data.propDefMap || [];
+              this.propValMap = data.propValMap || {};
+            });
+          },
+          methods: {
+            addProp() {
+              axios.post('/form/add').then(res => {
+                console.log(res.data);
+              });
+            }
+          }
+        });
+        // axios.get('/form/info').then(res => {
+        //     console.log(res.data);
+        // });
+        // function addProp() {
+        //   axios.post('/form/add').then(res => {
+        //     console.log(res.data);
+        //   });
+        // }
+    </script>
 </body>
 </html>

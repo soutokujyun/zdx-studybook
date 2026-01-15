@@ -13,4 +13,8 @@ module.exports = {
     enable: true,
     package: 'egg-sequelize',
   },
+  routerGroup: {
+    enable: true,
+    package: 'egg-router-group',
+  },
 };
