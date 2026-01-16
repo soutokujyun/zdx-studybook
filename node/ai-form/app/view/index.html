@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +9,81 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        html, body {
+
+        html,
+        body {
             height: 100%;
         }
+
         #app {
             height: 100%;
+            padding: 10px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .padding-10 {
+            padding: 10px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
         }
     </style>
     <!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 </head>
+
 <body>
-    <div id="app">
-        <el-container>
-            <el-header>
-                <el-button size="mini" @click="addProp">添加属性</el-button>
-            </el-header>
-            <el-aside>
-                
-            </el-aside>
-            <el-main>
+    <div id="app" class="flex flex-col">
+        <div class="flex flex-1">
+            <div class="flex-1 padding-10">
+                <div class="title">渲染表单<el-button size="mini" @click="refreshForm">刷新</el-button></div>
                 <el-form :form="propValMap" size="mini" label-width="80px" label-position="right">
-                    <el-form-item 
-                        v-for="(item) in propDefMap" :key="item.prop_id"
-                        :prop="item.prop_id"
+                    <el-form-item v-for="(item) in propDefMap" :key="item.prop_id" :prop="item.prop_id"
                         :label="item.label">
                         {{ item.label }}
                         <el-input v-model="propValMap[item.prop_id]" placeholder="请输入"></el-input>
                     </el-form-item>
+                    <el-form-item>
+                        <el-button size="mini" @click="submitForm">提交</el-button>
+                    </el-form-item>
                 </el-form>
-            </el-main>
-        </el-container>
+            </div>
+            <div class="padding-10" style="width: 300px; border-left: 1px solid #ccc;">
+                <div class="title">新增属性</div>
+                <el-form :form="form" size="mini" label-width="80px" label-position="right">
+                    <el-form-item prop="label" label="标题">
+                        <el-input v-model="form.label" placeholder="请输入"></el-input>
+                    </el-form-item>
+                    <el-form-item prop="type" label="类型">
+                        <el-select v-model="form.type" placeholder="请选择">
+                            <el-option label="输入框" value="input"></el-option>
+                            <el-option label="文本域" value="textarea"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button size="mini" @click="addProp">添加属性</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -48,27 +91,53 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script>
         const app = new Vue({
-          el: '#app',
-          data: function() {
-            return {
-              propDefMap: [],
-              propValMap: {},
+            el: '#app',
+            data: function () {
+                return {
+                    form: {
+                        label: '',
+                        type: 'input'
+                    },
+                    propDefMap: [],
+                    propValMap: {},
+                }
+            },
+            created() {
+                this.refreshForm();
+            },
+            methods: {
+                refreshForm() {
+                    axios.get('/form/info').then(res => {
+                        const data = res.data.data || {};
+                        this.propDefMap = data.propDefMap || [];
+                        this.propValMap = data.propValMap || {};
+                        this.$message({
+                            message: '刷新成功',
+                            type: 'success',
+                            duration: 1000
+                        });
+                    });
+                },
+                submitForm() {
+                    axios.post('/form/submit', { prop_vals: this.propValMap }).then(res => {
+                        this.$message({
+                            message: res.data.data || '提交成功',
+                            type: 'success',
+                            duration: 1000
+                        });
+                    });
+                },
+                addProp() {
+                    axios.post('/form/add', this.form).then(res => {
+                        this.$message({
+                            message: '添加成功',
+                            type: 'success',
+                            duration: 1000
+                        });
+                        this.refreshForm();
+                    });
+                }
             }
-          },
-          created() {
-            axios.get('/form/info').then(res => {
-              const data = res.data.data || {};
-              this.propDefMap = data.propDefMap || [];
-              this.propValMap = data.propValMap || {};
-            });
-          },
-          methods: {
-            addProp() {
-              axios.post('/form/add').then(res => {
-                console.log(res.data);
-              });
-            }
-          }
         });
         // axios.get('/form/info').then(res => {
         //     console.log(res.data);
@@ -80,4 +149,5 @@
         // }
     </script>
 </body>
+
 </html>

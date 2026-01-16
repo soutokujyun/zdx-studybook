@@ -13,8 +13,8 @@ module.exports = app => {
     timestamps: true,
   });
 
-  // alter force
-  FormAudit.sync({ force: false });
+  // alter true
+  FormAudit.sync({ alter: true });
 
   return FormAudit;
 };

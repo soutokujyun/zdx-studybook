@@ -3,9 +3,9 @@
 module.exports = app => {
   const { INTEGER, UUIDV4, UUID, JSON, STRING } = app.Sequelize;
 
-  const ComPropDef = app.model.define('com_prop_def', {
+  const ComPropValues = app.model.define('com_prop_values', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    prop_id: {
+    biz_id: {
       type: UUID,
       defaultValue: UUIDV4,
     },
@@ -16,7 +16,7 @@ module.exports = app => {
   });
 
   // alter force
-  ComPropDef.sync({ alter: true });
+  ComPropValues.sync({ alter: true });
 
-  return ComPropDef;
+  return ComPropValues;
 };
