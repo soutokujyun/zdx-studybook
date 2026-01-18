@@ -19,7 +19,7 @@ importers:
         version: 1.0.9(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(ws@8.19.0)
       '@langchain/community':
         specifier: ^1.1.4
-        version: 1.1.4(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.57.0)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod@3.25.76))(@ibm-cloud/watsonx-ai@1.7.6)(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(ibm-cloud-sdk-core@5.4.5)(jsonwebtoken@9.0.3)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(playwright@1.57.0)(ws@8.19.0)
+        version: 1.1.4(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.57.0)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod@3.25.76))(@ibm-cloud/watsonx-ai@1.7.6)(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(ibm-cloud-sdk-core@5.4.5)(jsonwebtoken@9.0.3)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(pdf-parse@1.1.4)(playwright@1.57.0)(ws@8.19.0)
       '@langchain/core':
         specifier: ^1.1.15
         version: 1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76))
@@ -29,12 +29,18 @@ importers:
       '@langchain/openai':
         specifier: ^1.2.2
         version: 1.2.2(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(ws@8.19.0)
+      '@langchain/textsplitters':
+        specifier: ^1.0.1
+        version: 1.0.1(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))
       dotenv:
         specifier: ^16.4.5
         version: 16.6.1
       langchain:
         specifier: ^1.2.10
         version: 1.2.10(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod-to-json-schema@3.25.1(zod@3.25.76))
+      pdf-parse:
+        specifier: ^1.1.4
+        version: 1.1.4
     devDependencies:
       '@types/node':
         specifier: 24.3.0
@@ -837,6 +843,9 @@ packages:
     engines: {node: '>=10.5.0'}
     deprecated: Use your platform's native DOMException instead
 
+  node-ensure@0.0.0:
+    resolution: {integrity: sha512-DRI60hzo2oKN1ma0ckc6nQWlHU69RH6xN0sjQTjMpChPfTYvKZdcQFfdYK2RWbJcKyUizSIy/l8OTGxMAM1QDw==}
+
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
@@ -884,6 +893,10 @@ packages:
   p-timeout@7.0.1:
     resolution: {integrity: sha512-AxTM2wDGORHGEkPCt8yqxOTMgpfbEHqF51f/5fJCmwFC3C/zNcGT63SymH2ttOAaiIws2zVg4+izQCjrakcwHg==}
     engines: {node: '>=20'}
+
+  pdf-parse@1.1.4:
+    resolution: {integrity: sha512-XRIRcLgk6ZnUbsHsYXExMw+krrPE81hJ6FQPLdBNhhBefqIQKXu/WeTgNBGSwPrfU0v+UCEwn7AoAUOsVKHFvQ==}
+    engines: {node: '>=6.8.1'}
 
   peek-readable@4.1.0:
     resolution: {integrity: sha512-ZI3LnwUv5nOGbQzD9c2iDG6toheuXSZP5esSHBjopsXH4dg19soufvpUGA3uohi5anFtGb2lhAVdHzH6R/Evvg==}
@@ -1113,7 +1126,7 @@ snapshots:
       - openai
       - ws
 
-  '@langchain/community@1.1.4(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.57.0)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod@3.25.76))(@ibm-cloud/watsonx-ai@1.7.6)(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(ibm-cloud-sdk-core@5.4.5)(jsonwebtoken@9.0.3)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(playwright@1.57.0)(ws@8.19.0)':
+  '@langchain/community@1.1.4(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.57.0)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod@3.25.76))(@ibm-cloud/watsonx-ai@1.7.6)(@langchain/core@1.1.15(openai@6.16.0(ws@8.19.0)(zod@3.25.76)))(ibm-cloud-sdk-core@5.4.5)(jsonwebtoken@9.0.3)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(pdf-parse@1.1.4)(playwright@1.57.0)(ws@8.19.0)':
     dependencies:
       '@browserbasehq/stagehand': 1.14.0(@playwright/test@1.57.0)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@6.16.0(ws@8.19.0)(zod@3.25.76))(zod@3.25.76)
       '@ibm-cloud/watsonx-ai': 1.7.6
@@ -1131,6 +1144,7 @@ snapshots:
     optionalDependencies:
       '@browserbasehq/sdk': 2.6.0
       jsonwebtoken: 9.0.3
+      pdf-parse: 1.1.4
       playwright: 1.57.0
       ws: 8.19.0
     transitivePeerDependencies:
@@ -1542,6 +1556,8 @@ snapshots:
 
   node-domexception@1.0.0: {}
 
+  node-ensure@0.0.0: {}
+
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
@@ -1574,6 +1590,10 @@ snapshots:
       p-finally: 1.0.0
 
   p-timeout@7.0.1: {}
+
+  pdf-parse@1.1.4:
+    dependencies:
+      node-ensure: 0.0.0
 
   peek-readable@4.1.0: {}
 
