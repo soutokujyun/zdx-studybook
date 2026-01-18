@@ -1,8 +1,6 @@
-"use strict";
 // JS 数据类型
 // string、number、boolean、null、undefined、symbol、bigint
 // object: Array、Object、Map、Set、WeakMap、WeakSet、Function、Error...
-Object.defineProperty(exports, "__esModule", { value: true });
 // TS 数据类型
 // 上述所有类型都可以在 TS 中使用
 // 六个新类型：any、unknown、never、void、object、enum、tuple
@@ -211,3 +209,9 @@ let p = {
 // 一般以 .d.ts 结尾，为现有的javascript文件提供类型信息
 // 例如： 有一个 utils.js 文件，我们可以创建一个 utils.d.ts 文件，为其添加类型信息
 // 这样在其他文件中引入 utils.js 时，就可以获得类型检查和智能提示
+// 引用类型声明文件
+// 在 TypeScript 文件中，你可以通过三斜线指令引用这个类型声明文件：
+// -->>  /// <reference path="./utils.d.ts" />  <<--
+/// <reference path="./utils.d.ts" />
+import { add, sub } from '../src/utils.js';
+add(1, 2);
