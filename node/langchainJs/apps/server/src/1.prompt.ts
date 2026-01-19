@@ -43,13 +43,13 @@ async function translateText() {
 }
 
 // 执行翻译
-// translateText();
+translateText();
 
-const app = http.createServer(async(req, res) => {
-const result = await translateText();
-  res.end(result);
-})
+// const app = http.createServer(async(req, res) => {
+// const result = await translateText();
+//   res.end(result);
+// })
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-})
+// app.listen(3000, () => {
+//   console.log('Server is running on port 3000');
+// })
