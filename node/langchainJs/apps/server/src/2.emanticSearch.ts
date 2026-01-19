@@ -44,7 +44,7 @@ import { fileURLToPath } from 'url';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
-import { Chroma } from "@langchain/community/vectorstores/chroma";
+// import { Chroma } from "@langchain/community/vectorstores/chroma";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -84,8 +84,21 @@ await vectorStore.addDocuments(allSplits);
 // const vectorStore = new Chroma(embeddings, {
 //     collectionName: "a-test-collection",
 // });
+
 // const vector1 = await embeddings.embedQuery(allSplits.at(0)?.pageContent || '');
 // const vector2 = await embeddings.embedQuery(allSplits.at(1)?.pageContent || '');
 // console.assert(vector1.length === vector2.length);
 // console.log(`Generated vectors of length ${vector1.length}\n`);
 // console.log(vector1.slice(0, 10));
+
+// 查询使用
+const results1 = await vectorStore.similaritySearch(
+  "When was Nike incorporated?"
+);
+console.log(results1[0]);
+
+const results2 = await vectorStore.similaritySearchWithScore(
+  "What was Nike's revenue in 2023?"
+);
+
+console.log(results2[0]);
