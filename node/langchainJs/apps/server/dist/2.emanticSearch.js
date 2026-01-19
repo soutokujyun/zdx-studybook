@@ -38,6 +38,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { OpenAIEmbeddings } from "@langchain/openai";
+import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
+// import { Chroma } from "@langchain/community/vectorstores/chroma";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const loader = new PDFLoader(path.join(__dirname, "../public/test.pdf"));
@@ -59,6 +61,7 @@ const allSplits = await textSplitter.splitDocuments(docs);
 console.log(allSplits.length);
 console.log(allSplits.at(0)?.pageContent);
 console.log(process.env.DASHSCOPE_API_KEY);
+// 使用嵌入模型进行初始化，这些模型决定了如何将文本数据转换为数值向量
 const embeddings = new OpenAIEmbeddings({
     model: "text-embedding-v1",
     apiKey: process.env.DASHSCOPE_API_KEY,
@@ -66,8 +69,22 @@ const embeddings = new OpenAIEmbeddings({
         baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1'
     }
 });
-const vector1 = await embeddings.embedQuery(allSplits.at(0)?.pageContent || '');
-const vector2 = await embeddings.embedQuery(allSplits.at(1)?.pageContent || '');
-console.assert(vector1.length === vector2.length);
-console.log(`Generated vectors of length ${vector1.length}\n`);
-console.log(vector1.slice(0, 10));
+// 内存存储
+const vectorStore = new MemoryVectorStore(embeddings);
+await vectorStore.addDocuments(allSplits);
+// 容器存储
+// const vectorStore = new Chroma(embeddings, {
+//     collectionName: "a-test-collection",
+// });
+// const vector1 = await embeddings.embedQuery(allSplits.at(0)?.pageContent || '');
+// const vector2 = await embeddings.embedQuery(allSplits.at(1)?.pageContent || '');
+// console.assert(vector1.length === vector2.length);
+// console.log(`Generated vectors of length ${vector1.length}\n`);
+// console.log(vector1.slice(0, 10));
+// 查询使用
+// const results1 = await vectorStore.similaritySearch(
+//   "When was Nike incorporated?"
+// );
+// console.log(results1[0]);
+const results2 = await vectorStore.similaritySearchWithScore("请给出运动处方制定的原则");
+console.log(results2);
