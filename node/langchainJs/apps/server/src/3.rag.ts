@@ -6,8 +6,10 @@ import 'dotenv/config';
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createAgent } from 'langchain';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { OpenAIEmbeddings } from "@langchain/openai";
+import { SystemMessage, HumanMessage } from "@langchain/core/messages";
+import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
 import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
 import * as z from 'zod';
 import { tool } from "@langchain/core/tools";
@@ -33,28 +35,26 @@ const embeddings = new OpenAIEmbeddings({
     }
   }); 
 // 内存存储
+/**
+ * VectorStore：包绕向量数据库的封装器，用于存储和查询嵌入
+ */
 const vectorStore = new MemoryVectorStore(embeddings);
 await vectorStore.addDocuments(allSplits);
 
 const retrieveSchema = z.object({ query: z.string() });
 
 /**
- * 检索工具
- * 该工具用于根据查询从向量数据库中检索相关文档。
- * 它将查询作为输入，并返回与查询最相关的文档。
- * 输入：
- * - query: 要检索的查询字符串。
- * 
- * 输出：
- * - 一个包含与查询最相关的文档的数组。
- * 
- * 示例：
- * - 查询：“什么是检索增强生成？”
- * - 输出：一个包含与查询最相关的文档的数组。
+ * Retrieval(检索)--检索工具
+ * 大型语言模型（LLM）功能强大，但它们有两个关键限制:
+ * 1、有限语境——他们无法一次性吞噬整个语料库。
+ * 2、静态知识——他们的训练数据被冻结在某个时间点。
+ * 解决方法：检索增强生成（RAG）--通过上下文特定信息增强LLM的答案
  */
 const retrieve = tool(
   async ({ query }) => {
-    const retrievedDocs = await vectorStore.similaritySearch(query, 3);
+    // 从向量数据库中检索与查询最相关的文档
+    const retrievedDocs = await vectorStore.similaritySearch(query, 2);
+    // 序列化文档，将其转换为字符串格式
     const serialized = retrievedDocs
       .map(
         (doc) => `Source: ${doc.metadata.source}\nContent: ${doc.pageContent}`
@@ -63,9 +63,42 @@ const retrieve = tool(
     return [serialized, retrievedDocs];
   },
   {
-    name: "retrieve",
-    description: "Retrieve information related to a query.",
-    schema: retrieveSchema,
-    responseFormat: "content_and_artifact",
+    name: "retrieve", // 检索工具的名称
+    description: "Retrieve information related to a query.", // 检索工具的描述
+    schema: retrieveSchema, // 检索工具的输入模式
+    responseFormat: "content_and_artifact", // 响应格式
   }
 );
+
+const llm = new ChatOpenAI({
+  model: "qwen-plus",
+  temperature: 0,
+  // maxTokens: 1000, // 最大输出token数
+  // timeout: 300, // 超时时间，单位秒
+  maxRetries: 2, // 最大重试次数
+  apiKey: process.env.DASHSCOPE_API_KEY,
+  configuration: {
+    baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  }
+  // organization: "...",
+  // other params...
+  });
+  
+const agent = createAgent({
+    model: llm,
+    tools: [retrieve],
+    systemPrompt: new SystemMessage("你是一个专业的健康问答机器人，只能根据提供的信息回答问题。"),
+});
+
+let agentInputs = {
+  messages: [new HumanMessage("请给出运动处方制定的原则")],
+};
+
+const stream = await agent.stream(agentInputs, {
+  streamMode: "values",
+});
+for await (const step of stream) {
+  const lastMessage = step.messages[step.messages.length - 1];
+  console.log(`[${lastMessage?.id}]: ${lastMessage?.content}`);
+  console.log("-----\n");
+}

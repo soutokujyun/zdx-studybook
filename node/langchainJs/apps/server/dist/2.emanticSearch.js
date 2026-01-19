@@ -44,7 +44,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const loader = new PDFLoader(path.join(__dirname, "../public/test.pdf"));
 const docs = await loader.load();
-console.log(docs.length);
+// console.log(docs.length);
 // 分割器
 /**
  * 文档加载器将文档加载到内存中。
@@ -58,15 +58,15 @@ const textSplitter = new RecursiveCharacterTextSplitter({
     chunkOverlap: 200,
 });
 const allSplits = await textSplitter.splitDocuments(docs);
-console.log(allSplits.length);
-console.log(allSplits.at(0)?.pageContent);
-console.log(process.env.DASHSCOPE_API_KEY);
+// console.log(allSplits.length);
+// console.log(allSplits.at(0)?.pageContent);
+// console.log(process.env.DASHSCOPE_API_KEY);
 // 使用嵌入模型进行初始化，这些模型决定了如何将文本数据转换为数值向量
 const embeddings = new OpenAIEmbeddings({
     model: "text-embedding-v1",
     apiKey: process.env.DASHSCOPE_API_KEY,
     configuration: {
-        baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1'
+        baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     }
 });
 // 内存存储
@@ -86,5 +86,5 @@ await vectorStore.addDocuments(allSplits);
 //   "When was Nike incorporated?"
 // );
 // console.log(results1[0]);
-const results2 = await vectorStore.similaritySearchWithScore("请给出运动处方制定的原则");
+const results2 = await vectorStore.similaritySearchWithScore("请给出运动处方制定的原则", 3);
 console.log(results2);
