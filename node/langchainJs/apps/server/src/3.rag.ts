@@ -6,7 +6,7 @@ import 'dotenv/config';
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createAgent } from 'langchain';
+import { createAgent, dynamicSystemPromptMiddleware } from 'langchain';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { SystemMessage, HumanMessage } from "@langchain/core/messages";
 import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
@@ -86,8 +86,28 @@ const llm = new ChatOpenAI({
   
 const agent = createAgent({
     model: llm,
-    tools: [retrieve],
+    // tools: [retrieve], // 检索工具
     systemPrompt: new SystemMessage("你是一个专业的健康问答机器人，只能根据提供的信息回答问题。"),
+    middleware: [
+      dynamicSystemPromptMiddleware(async (state, runtime) => {
+          const lastMessage = state.messages[state.messages.length - 1];
+          const lastQuery = lastMessage?.content;
+          // If there's no query, return a default system message
+          if (!lastQuery || typeof lastQuery !== 'string') {
+              return new SystemMessage("你是一个专业的健康问答机器人，只能根据提供的信息回答问题。");
+          }
+          // 从向量数据库中检索与查询最相关的文档
+          const retrievedDocs = await vectorStore.similaritySearch(lastQuery, 2);
+          // 序列化文档，将其转换为字符串格式
+          const docsContent = retrievedDocs
+              .map((doc) => doc.pageContent)
+              .join("\n\n");
+          // Build system message
+          const systemMessage = new SystemMessage(`You are a helpful assistant. Use the following context in your response:\n\n${docsContent}`);
+          // Return the new system message
+          return systemMessage;
+      })
+    ],
 });
 
 let agentInputs = {
