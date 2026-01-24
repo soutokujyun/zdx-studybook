@@ -117,6 +117,7 @@ const agent = createAgent({
   model: llm,
   tools: [executeSql],
   systemPrompt: await getSystemPrompt(),
+  verbose: true, // 打印中间过程
 });
 
 const question = "请结合com_prop_defs和com_prop_values两张表，给出server_id为form_01的表单的所有属性值";
