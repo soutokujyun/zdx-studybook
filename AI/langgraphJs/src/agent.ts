@@ -8,36 +8,29 @@
  * - Middleware for customization
  * - Human-in-the-loop workflows
  */
-
 import { createAgent } from "langchain";
 import { TOOLS } from "./tools.js";
 import { SYSTEM_PROMPT } from "./prompts.js";
+import { ChatOpenAI } from "@langchain/openai";
 
-/**
- * The main agent instance.
- *
- * Uses createAgent from LangChain, which provides:
- * - A simpler interface for building agents
- * - Built-in middleware support for customization
- * - Automatic tool binding and execution
- * - Runs on LangGraph for durable execution
- *
- * @example
- * ```typescript
- * const result = await agent.invoke({
- *   messages: [{ role: "user", content: "What's 2 + 2?" }],
- * });
- * console.log(result.content);
- * ```
- */
+const llm = new ChatOpenAI({
+  model: "qwen-plus",
+  temperature: 0,
+  // maxTokens: 1000, // 最大输出token数
+  // timeout: 300, // 超时时间，单位秒
+  maxRetries: 2, // 最大重试次数
+  apiKey: process.env.DASHSCOPE_API_KEY,
+  configuration: {
+    baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  },
+  // organization: "...",
+  // other params...
+  verbose: true,
+});
+
 export const agent = createAgent({
-  // The model to use - supports "provider:model" format
-  // Uses ANTHROPIC_API_KEY or OPENAI_API_KEY from environment
-  model: "anthropic:claude-haiku-4-5",
-
-  // Tools available to the agent
+  model: llm,
   tools: TOOLS,
-
   // System prompt defining agent behavior
   systemPrompt: SYSTEM_PROMPT,
 

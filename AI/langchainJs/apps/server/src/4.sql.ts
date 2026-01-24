@@ -33,7 +33,7 @@ async function getSchema() {
 const DENY_RE = /\b(INSERT|UPDATE|DELETE|ALTER|DROP|CREATE|REPLACE|TRUNCATE)\b/i;
 const HAS_LIMIT_TAIL_RE = /\blimit\b\s+\d+(\s*,\s*\d+)?\s*;?\s*$/i;
 
-function sanitizeSqlQuery(q: string) {
+async function sanitizeSqlQuery(q: string) {
   let query = String(q ?? "").trim();
 
   // block multiple statements (allow one optional trailing ;)
@@ -50,17 +50,23 @@ function sanitizeSqlQuery(q: string) {
   if (DENY_RE.test(query)) {
     throw new Error("DML/DDL detected. Only read-only queries are permitted.")
   }
-
+  
   // append LIMIT only if not already present
   if (!HAS_LIMIT_TAIL_RE.test(query)) {
     query += " LIMIT 5";
+  }
+
+  try {
+    await db?.run("Explain " + query);
+  } catch (e: any) {
+    throw new Error("SQL syntax error.")
   }
   return query;
 }
 
 const executeSql = tool(
   async ({ query }) => {
-    const q = sanitizeSqlQuery(query);
+    const q = await sanitizeSqlQuery(query);
     try {
       const result = await db?.run(q);
       return typeof result === "string" ? result : JSON.stringify(result, null, 2);

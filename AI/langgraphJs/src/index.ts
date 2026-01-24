@@ -17,9 +17,7 @@ console.log("  • Search the knowledge base\n");
 
 // Example conversation
 const questions = [
-  "What time is it right now?",
-  "What's the weather like in San Francisco?",
-  "Calculate 42 * 17 + 100",
+  "请结合com_prop_defs和com_prop_values两张表，给出server_id为form_01的表单的所有属性值",
 ];
 
 for (const question of questions) {

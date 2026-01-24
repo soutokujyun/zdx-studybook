@@ -5,9 +5,43 @@
  * Each tool should have a clear name, description, and schema to help
  * the model understand when and how to use it.
  */
-
+import { db } from "./db.js";
 import { tool } from "langchain";
 import { z } from "zod";
+
+const DENY_RE = /\b(INSERT|UPDATE|DELETE|ALTER|DROP|CREATE|REPLACE|TRUNCATE)\b/i;
+const HAS_LIMIT_TAIL_RE = /\blimit\b\s+\d+(\s*,\s*\d+)?\s*;?\s*$/i;
+
+export const sanitizeSqlQuery = async (q: string) => {
+  let query = String(q ?? "").trim();
+
+  // block multiple statements (allow one optional trailing ;)
+  const semis = [...query].filter((c) => c === ";").length;
+  if (semis > 1 || (query.endsWith(";") && query.slice(0, -1).includes(";"))) {
+    throw new Error("multiple statements are not allowed.")
+  }
+  query = query.replace(/;+\s*$/g, "").trim();
+
+  // read-only gate
+  if (!query.toLowerCase().startsWith("select")) {
+    throw new Error("Only SELECT statements are allowed")
+  }
+  if (DENY_RE.test(query)) {
+    throw new Error("DML/DDL detected. Only read-only queries are permitted.")
+  }
+  
+  // append LIMIT only if not already present
+  if (!HAS_LIMIT_TAIL_RE.test(query)) {
+    query += " LIMIT 5";
+  }
+
+  try {
+    await db?.run("Explain " + query);
+  } catch (e: any) {
+    throw new Error("SQL syntax error.")
+  }
+  return query;
+};
 
 /**
  * A simple calculator tool that can perform basic arithmetic operations.
@@ -150,7 +184,25 @@ export const searchKnowledge = tool(
 );
 
 /**
+ * A tool that sanitizes and executes SQL queries.
+ */
+export const executeSql = tool(
+  async ({ query }) => {
+    const sanitizedQuery = await sanitizeSqlQuery(query);
+    const result = await db?.run(sanitizedQuery);
+    return JSON.stringify(result, null, 2);
+  },
+  {
+    name: "execute_sql",
+    description: "Execute a READ-ONLY Mysql SELECT query and return results.",
+    schema: z.object({
+      query: z.string().describe("Mysql SELECT query to execute (read-only)."),
+    }),
+  }
+);
+
+/**
  * All tools available to the agent.
  * Add or remove tools here to customize your agent's capabilities.
  */
-export const TOOLS = [calculator, getCurrentTime, getWeather, searchKnowledge];
+export const TOOLS = [executeSql];

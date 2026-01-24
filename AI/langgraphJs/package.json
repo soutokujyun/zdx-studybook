@@ -17,19 +17,20 @@
   "dependencies": {
     "@langchain/classic": "^1.0.9",
     "@langchain/community": "^1.1.4",
-    "@langchain/openai": "^1.2.2",
     "@langchain/core": "^1.1.15",
+    "@langchain/langgraph": "^1.1.2",
+    "@langchain/openai": "^1.2.2",
     "@langchain/textsplitters": "^1.0.1",
+    "dotenv": "^16.4.5",
     "langchain": "^1.2.10",
-    "zod": "^4.2.1",
+    "mysql": "^2.18.1",
     "pdf-parse": "^1.1.1",
     "typeorm": "^0.3.20",
-    "mysql": "^2.18.1"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.13",
     "@types/node": "^22.0.0",
-    "dotenv": "^17.2.3",
     "tsx": "^4.19.0",
     "typescript": "^5.9.3"
   },
