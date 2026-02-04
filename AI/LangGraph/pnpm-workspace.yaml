@@ -1,0 +1,4 @@
+packages:
+  - "01.introduction/*"
+  - "apps/*"
+  - '!**/test/**'
