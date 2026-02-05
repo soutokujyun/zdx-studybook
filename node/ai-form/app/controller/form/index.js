@@ -3,12 +3,19 @@ const BaseController = require('../base');
 class FormController extends BaseController {
   async info() {
     const { ctx } = this;
-    const service_id = 'form_01';
+    const service_id = ctx.query.service_id;
+    if (!service_id) {
+      this.error('参数错误');
+    }
     const ComPropDefList = await ctx.model.ComPropDef.findAll({
       where: {
         service_id,
       },
     });
+    // console.log(ComPropDefList);
+    if (!ComPropDefList || ComPropDefList.length === 0) {
+      this.error('参数错误');
+    }
     const propDefMap = ComPropDefList.map(item => {
       const { prop_id, prop_vals } = item;
       return { prop_id, ...prop_vals };
@@ -18,14 +25,16 @@ class FormController extends BaseController {
         service_id,
       },
     });
-    this.success({ propDefMap, propValMap: propValues.prop_vals || {} });
+    this.success({ propDefMap, propValMap: propValues?.prop_vals || {} });
   }
 
   async submit() {
     const { ctx } = this;
-    const service_id = 'form_01';
-    const { prop_vals } = ctx.request.body;
+    const { prop_vals, service_id } = ctx.request.body;
     if (!prop_vals) {
+      this.error('参数错误');
+    }
+    if (!service_id) {
       this.error('参数错误');
     }
     const valuesRet = await ctx.model.ComPropValues.findOne({

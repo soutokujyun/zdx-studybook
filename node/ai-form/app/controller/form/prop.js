@@ -4,9 +4,13 @@ class PropController extends BaseController {
 
   async add() {
     const { ctx } = this;
-    const { label, type } = ctx.request.body;
+    const { label, type, service_id } = ctx.request.body;
+    console.log(label, type, service_id);
+    if (!service_id) {
+      this.error('参数错误');
+    }
     const ret = await ctx.model.ComPropDef.create({
-      service_id: 'form_01',
+      service_id,
       prop_vals: {
         label,
         type,

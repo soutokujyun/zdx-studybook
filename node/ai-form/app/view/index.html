@@ -54,6 +54,12 @@
     <div id="app" class="flex flex-col">
         <div class="flex flex-1">
             <div class="flex-1 padding-10">
+                <div>领域选择：
+                    <el-select v-model="form.service_id" placeholder="请选择">
+                        <el-option v-for="item in serviceList" :key="item.service_id" :label="item.name"
+                            :value="item.service_id"></el-option>
+                    </el-select>
+                </div>
                 <div class="title">渲染表单<el-button size="mini" @click="refreshForm">刷新</el-button></div>
                 <el-form :form="propValMap" size="mini" label-width="80px" label-position="right">
                     <el-form-item v-for="(item) in propDefMap" :key="item.prop_id" :prop="item.prop_id"
@@ -69,6 +75,12 @@
             <div class="padding-10" style="width: 300px; border-left: 1px solid #ccc;">
                 <div class="title">新增属性</div>
                 <el-form :form="form" size="mini" label-width="80px" label-position="right">
+                    <el-form-item prop="service_id" label="领域">
+                        <el-select v-model="form.service_id" placeholder="请选择">
+                            <el-option v-for="item in serviceList" :key="item.service_id" :label="item.name"
+                                :value="item.service_id"></el-option>
+                        </el-select>
+                    </el-form-item>
                     <el-form-item prop="label" label="标题">
                         <el-input v-model="form.label" placeholder="请输入"></el-input>
                     </el-form-item>
@@ -95,19 +107,32 @@
             data: function () {
                 return {
                     form: {
+                        service_id: '',
                         label: '',
                         type: 'input'
                     },
+                    serviceList: [],
                     propDefMap: [],
                     propValMap: {},
                 }
             },
             created() {
-                this.refreshForm();
+                this.getService();
             },
             methods: {
+                getService() {
+                    const self = this;
+                    axios.get('/service/list').then(res => {
+                        const data = res.data.data || {};
+                        self.serviceList = data.serviceList || [];
+                        if (self.serviceList.length > 0) {
+                            self.form.service_id = self.serviceList[0].service_id;
+                        }
+                        this.refreshForm();
+                    });
+                },
                 refreshForm() {
-                    axios.get('/form/info').then(res => {
+                    axios.get('/form/info?service_id=' + this.form.service_id).then(res => {
                         const data = res.data.data || {};
                         this.propDefMap = data.propDefMap || [];
                         this.propValMap = data.propValMap || {};
@@ -119,7 +144,7 @@
                     });
                 },
                 submitForm() {
-                    axios.post('/form/submit', { prop_vals: this.propValMap }).then(res => {
+                    axios.post('/form/submit', { prop_vals: this.propValMap, service_id: this.form.service_id }).then(res => {
                         this.$message({
                             message: res.data.data || '提交成功',
                             type: 'success',
@@ -128,7 +153,7 @@
                     });
                 },
                 addProp() {
-                    axios.post('/form/add', this.form).then(res => {
+                    axios.post('/prop/add', this.form).then(res => {
                         this.$message({
                             message: '添加成功',
                             type: 'success',

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #app {
+            height: 100%;
+            padding: 10px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .padding-10 {
+            padding: 10px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+</head>
+
+<body>
+    <div id="app" class="flex flex-col">
+        <div class="flex flex-1">
+            <div class="flex-1 padding-10">
+                <div>领域列表<el-button size="mini" @click="refreshForm">刷新</el-button></div>
+                <li v-for="item in serviceList" :title="item.name">${item.name}</li>
+            </div>
+            <div class="padding-10" style="width: 300px; border-left: 1px solid #ccc;">
+                <div class="title">新增领域</div>
+                <el-form :form="form" size="mini" label-width="80px" label-position="right">
+                    <el-form-item prop="name" label="领域名称">
+                        <el-input v-model="form.name" placeholder="请输入"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button size="mini" @click="addService">添加</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            delimiters: ['${', '}'],
+            data: function () {
+                return {
+                    form: {
+                        name: '',
+                    },
+                    serviceList: [],
+                }
+            },
+            created() {
+                this.refreshForm();
+            },
+            methods: {
+                refreshForm() {
+                    const self = this;
+                    axios.get('/service/list').then(res => {
+                        const data = res.data.data || {};
+                        self.serviceList = data.serviceList || [];
+                       this.$nextTick(() => {
+                        this.$forceUpdate()
+                       })
+                        self.$message({
+                            message: '刷新成功',
+                            type: 'success',
+                            duration: 1000
+                        });
+                    });
+                },
+                addService() {
+                    axios.post('/service/add', this.form).then(res => {
+                        this.$message({
+                            message: '添加成功',
+                            type: 'success',
+                            duration: 1000
+                        });
+                        this.refreshForm();
+                    });
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

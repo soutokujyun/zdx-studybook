@@ -9,14 +9,14 @@ module.exports = app => {
       type: UUID,
       defaultValue: UUIDV4,
     },
-    service_id: STRING, // 服务ID
+    service_id: UUID, // 服务ID
     prop_vals: JSON,
   }, {
     timestamps: true,
   });
 
   // alter force
-  ComPropValues.sync({ alter: true });
+  ComPropValues.sync({ alter: false });
 
   return ComPropValues;
 };
