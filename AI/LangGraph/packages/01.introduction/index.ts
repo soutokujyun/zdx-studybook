@@ -20,8 +20,8 @@ import {
     StateSchema,
     MessagesValue,
     ReducedValue,
-    GraphNode,
-    ConditionalEdgeRouter,
+    type GraphNode,
+    type ConditionalEdgeRouter,
     START,
     END,
 } from "@langchain/langgraph";
@@ -50,7 +50,7 @@ const MessagesState = new StateSchema({
     // LLM调用计数器，用于统计模型被调用的次数
     llmCalls: new ReducedValue(
         z.number(),
-        { reducer: (x, y) => x + y, initialValue: 0 }
+        { reducer: (x, y) => x + y }
     ),
 });
 
@@ -114,7 +114,7 @@ const toolNode: GraphNode<typeof MessagesState> = async (state) => {
  * - 如果LLM请求了工具调用，则转到工具节点
  * - 否则，结束对话
  */
-const shouldContinue: ConditionalEdgeRouter<typeof MessagesState, "toolNode"> = (state) => {
+const shouldContinue: ConditionalEdgeRouter<typeof MessagesState> = (state) => {
     const lastMessage = state.messages.at(-1);
 
     // 检查是否是AI消息
