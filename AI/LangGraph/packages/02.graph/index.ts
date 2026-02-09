@@ -5,6 +5,7 @@
  * 2. 边（Edge）连接节点之间的路径，定义了数据的流向
  * 3. 状态（State） 整个图的状态
  */
+import fs from "fs";
 import {
     StateGraph,
     StateSchema,
@@ -57,6 +58,13 @@ const graph = new StateGraph({
   .addEdge("node2", "node3")
   .addEdge("node3", END)
   .compile();
+
+// 生成流程图
+const graphImage = await graph.getGraph().drawMermaidPng();
+console.log("流程图已生成");
+// 将 Blob 转换为 Buffer
+const buffer = Buffer.from(await graphImage.arrayBuffer());
+fs.writeFileSync("graph.png", buffer);
 
 const result = await graph.invoke({ userInput: "图灵" });
 console.log("=== 图计算结果 ===");
